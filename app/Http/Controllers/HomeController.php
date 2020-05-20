@@ -27,4 +27,13 @@ class HomeController extends Controller
 //        Auth::logout();
         return view('Dashboard.home');
     }
+
+    public function cobranza()
+    {
+
+        return view ('Dashboard.Reportes.cobranzas');
+
+
+
+    }
 }

@@ -53,7 +53,7 @@
     <execution />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -180,7 +180,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1589915987376</updated>
-      <workItem from="1589916010045" duration="14174000" />
+      <workItem from="1589916010045" duration="22040000" />
     </task>
     <servers />
   </component>
@@ -199,9 +199,21 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="484" y="238" key="NewPhpFileDialog" timestamp="1589930188627">
+    <state x="92" y="92" width="1115" height="445" key="DiffContextDialog" timestamp="1589932778091">
       <screen x="0" y="0" width="1299" height="629" />
     </state>
-    <state x="484" y="238" key="NewPhpFileDialog/0.0.1299.629@0.0.1299.629" timestamp="1589930188627" />
+    <state x="92" y="92" width="1115" height="445" key="DiffContextDialog/0.0.1299.629@0.0.1299.629" timestamp="1589932778091" />
+    <state x="484" y="238" key="NewPhpFileDialog" timestamp="1589933903270">
+      <screen x="0" y="0" width="1299" height="629" />
+    </state>
+    <state x="484" y="238" key="NewPhpFileDialog/0.0.1299.629@0.0.1299.629" timestamp="1589933903270" />
+    <state x="446" y="48" key="VcsDiffUtil.ChangesDialog" timestamp="1589932625893">
+      <screen x="0" y="0" width="1299" height="629" />
+    </state>
+    <state x="446" y="48" key="VcsDiffUtil.ChangesDialog/0.0.1299.629@0.0.1299.629" timestamp="1589932625893" />
+    <state x="312" y="-1" width="672" height="678" key="search.everywhere.popup" timestamp="1589938206265">
+      <screen x="0" y="0" width="1299" height="629" />
+    </state>
+    <state x="312" y="-1" width="672" height="678" key="search.everywhere.popup/0.0.1299.629@0.0.1299.629" timestamp="1589938206265" />
   </component>
 </project>
