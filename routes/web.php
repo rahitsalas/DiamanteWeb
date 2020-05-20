@@ -29,7 +29,7 @@ Auth::routes();
 //Auth::route(register= falso);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/cobranza', 'HomeController@cobranza')->name('cobranza');
+Route::get('/comercial', 'HomeController@comercial')->name('comercial');
 
 
 Route::get('/temp', 'logintwoController@temp')->name('temp');

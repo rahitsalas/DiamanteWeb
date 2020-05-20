@@ -33,3 +33,5 @@
 <script src="{{url('plugins/adminlte/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('plugins/adminlte/js/demo.js')}}"></script>
+
+<script src="{{url('plugins/adminlte/js/pages/dashboard3.js')}}"></script>

@@ -28,10 +28,10 @@ class HomeController extends Controller
         return view('Dashboard.home');
     }
 
-    public function cobranza()
+    public function comercial()
     {
 
-        return view ('Dashboard.Reportes.cobranzas');
+        return view ('Dashboard.Reportes.comercial');
 
 
 
