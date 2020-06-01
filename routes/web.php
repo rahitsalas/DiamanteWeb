@@ -32,9 +32,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/comercial', 'HomeController@comercial')->name('comercial');
 
 
-Route::get('/temp', 'logintwoController@temp')->name('temp');
-Route::get('/temp2', 'logintwoController@temp2')->name('temp2');
-Route::post('/temp3', 'logintwoController@temp3')->name('temp3');
+//Route::get('/temp', 'logintwoController@temp')->name('temp');
+//Route::get('/temp2', 'logintwoController@temp2')->name('temp2');
+//Route::post('/temp3', 'logintwoController@temp3')->name('temp3');
 
 //Route::get('hash',function (){
 //    return bcrypt(1);

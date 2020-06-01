@@ -49,15 +49,17 @@
                                 <p>Comercial</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="pages/charts/inline.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Produccion</p>
                             </a>
                         </li>
+
                     </ul>
                 </li>
-
+                @if(Auth::user()->id == "1")
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
@@ -93,7 +95,7 @@
                         </li>
                     </ul>
                 </li>
-
+                @endif
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
 
