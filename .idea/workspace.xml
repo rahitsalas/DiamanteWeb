@@ -13,12 +13,9 @@
     <list default="true" id="cc3beb86-bc4d-43b5-856b-f0fa7cdd4c84" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Dashboard/Reportes/comercial.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Dashboard/Reportes/comercial.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Dashboard/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Dashboard/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/Dashboard/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/Dashboard/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,6 +137,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -159,7 +157,8 @@
       <updated>1589915987376</updated>
       <workItem from="1589916010045" duration="28354000" />
       <workItem from="1590775208010" duration="42665000" />
-      <workItem from="1590946270819" duration="16789000" />
+      <workItem from="1590946270819" duration="24967000" />
+      <workItem from="1591116504893" duration="9525000" />
     </task>
     <servers />
   </component>
@@ -191,6 +190,10 @@
       <screen x="0" y="0" width="1299" height="629" />
     </state>
     <state x="446" y="48" key="VcsDiffUtil.ChangesDialog/0.0.1299.629@0.0.1299.629" timestamp="1589932625893" />
+    <state x="306" y="138" key="run.anything.popup" timestamp="1591134227165">
+      <screen x="0" y="0" width="1299" height="629" />
+    </state>
+    <state x="306" y="138" key="run.anything.popup/0.0.1299.629@0.0.1299.629" timestamp="1591134227165" />
     <state x="312" y="-1" width="672" height="678" key="search.everywhere.popup" timestamp="1589938206265">
       <screen x="0" y="0" width="1299" height="629" />
     </state>

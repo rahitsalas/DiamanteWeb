@@ -37,6 +37,7 @@
                                 <p>Gerencia General</p>
                             </a>
                         </li>
+                        @if(Auth::user()->id == "1")
                         <li class="nav-item">
                             <a href="pages/charts/flot.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -56,10 +57,10 @@
                                 <p>Produccion</p>
                             </a>
                         </li>
-
+                        @endif
                     </ul>
                 </li>
-                @if(Auth::user()->id == "1")
+
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
@@ -68,6 +69,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    @if(Auth::user()->id == "1")
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{route('comercial')}}" class="nav-link">
@@ -94,8 +96,9 @@
                             </a>
                         </li>
                     </ul>
+                    @endif
                 </li>
-                @endif
+
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
 

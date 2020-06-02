@@ -30,15 +30,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $startDate = Carbon::now()->addDays(-1);
-        $firstDay = Carbon::now()->addDays(-1)->startOfMonth();
-        $lastDay = Carbon::now()->addDays(-1)->lastOfMonth();
+        $startDate = Carbon::now()->addDays(-2);
+        $firstDay = Carbon::now()->addDays(-2)->startOfMonth();
+        $lastDay = Carbon::now()->addDays(-2)->lastOfMonth();
 
         $raw = DB::select("exec [DiamanteWeb].dbo.sp_data_DescargaHorno '".$firstDay."', '".$lastDay."'");
         $raw2 = DB::select("exec [DiamanteWeb].dbo.sp_data_ProduccionNetaPlanta '".$firstDay."', '".$lastDay."'");
+        $raw3 = DB::select("exec [DiamanteWeb].dbo.sp_data_RatioGasConSecadero '".$firstDay."', '".$lastDay."'");
+        $raw4 = DB::select("exec [DiamanteWeb].dbo.sp_data_RatioGasSinSecadero '".$firstDay."', '".$lastDay."'");
+
 
         $dataDescargaHorno = array();
         $dataProduccionNetaPlanta = array();
+        $dataRatioGasConSecadero = array();
+        $dataRatioGasSinSecadero = array();
 
         $i =0;
         $dataDescargaHorno['total'] = 0;
@@ -58,7 +63,25 @@ class HomeController extends Controller
             $i++;
         }
 
-        return view('Dashboard.home',compact('dataProduccionNetaPlanta','dataDescargaHorno','startDate'));
+        $i =0;
+        foreach ($raw3 as $item){
+            $dataRatioGasConSecadero['fecha'][$i] = date_create($item->fecha)->format('d-m');
+            $dataRatioGasConSecadero['ratio'][$i] = round((double) $item->ratio, 2, PHP_ROUND_HALF_UP);
+            $i++;
+        }
+
+        $i =0;
+        foreach ($raw4 as $item){
+            $dataRatioGasSinSecadero['fecha'][$i] = date_create($item->fecha)->format('d-m');
+            $dataRatioGasSinSecadero['ratio'][$i] = round((double) $item->ratio, 2, PHP_ROUND_HALF_UP);
+            $i++;
+        }
+
+        //dd($dataRatioGasConSecadero,$dataRatioGasSinSecadero);
+
+        return view('Dashboard.home',
+            compact('dataProduccionNetaPlanta','dataDescargaHorno',
+                'dataRatioGasConSecadero','dataRatioGasSinSecadero','startDate'));
     }
 
     public function comercial()
