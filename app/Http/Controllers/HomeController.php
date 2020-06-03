@@ -30,9 +30,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $startDate = Carbon::now()->addDays(-2);
-        $firstDay = Carbon::now()->addDays(-2)->startOfMonth();
-        $lastDay = Carbon::now()->addDays(-2)->lastOfMonth();
+        $startDate = Carbon::now()->addDays(-1);
+        $firstDay = Carbon::now()->addDays(-1)->startOfMonth();
+        $lastDay = Carbon::now()->addDays(-1)->lastOfMonth();
+
 
         $raw = DB::select("exec [DiamanteWeb].dbo.sp_data_DescargaHorno '".$firstDay."', '".$lastDay."'");
         $raw2 = DB::select("exec [DiamanteWeb].dbo.sp_data_ProduccionNetaPlanta '".$firstDay."', '".$lastDay."'");
@@ -77,7 +78,7 @@ class HomeController extends Controller
             $i++;
         }
 
-        //dd($dataRatioGasConSecadero,$dataRatioGasSinSecadero);
+//        dd($dataRatioGasConSecadero,$dataRatioGasSinSecadero);
 
         return view('Dashboard.home',
             compact('dataProduccionNetaPlanta','dataDescargaHorno',

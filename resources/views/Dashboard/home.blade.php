@@ -3,7 +3,11 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
+                @if(Auth::user()->id==1)
+                <div class="col-md-9">
+                @else
                 <div class="col-md-12">
+                @endif
                     <div class="card ">
                         <div class="card-header border-0">
                             <div class="d-flex justify-content-between">
@@ -25,9 +29,40 @@
                             </div>
                         </div>
                     </div>
-
-
                     <!-- /.card -->
+                </div>
+                @if(Auth::user()->id==1)
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-header border-0">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">{{$startDate->format('Y-m')}}</h3>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0 mt-0">
+                                <div class="d-flex">
+                                    <p class="d-flex flex-column">
+                                        <span class="text-bold text-lg">Comparativo Anual</span>
+                                </div>
+                                <!-- /.d-flex -->
+
+                                <div class="position-relative mb-4">
+                                    <canvas id="descargahornototal-chart" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                @endif
+
+
+            </div>
+            <div class="row">
+                @if(Auth::user()->id==1)
+                    <div class="col-md-9">
+                @else
+                    <div class="col-md-12">
+                @endif
 
                     <div class="card ">
                         <div class="card-header border-0">
@@ -51,9 +86,33 @@
                         </div>
                     </div>
                     <!-- /.card -->
+                </div>
 
-                    <!-- /.card -->
+                @if(Auth::user()->id==1)
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">{{$startDate->format('Y-m')}}</h3>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 mt-0">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">Comparativo Anual</span>
+                            </div>
+                            <!-- /.d-flex -->
 
+                            <div class="position-relative mb-4">
+                                <canvas id="produccionnetaplantatotal-chart" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <div class="card ">
                         <div class="card-header border-0">
                             <div class="d-flex justify-content-between">
@@ -75,50 +134,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.card -->
-
                 </div>
+
+
+            </div>
                 <!-- /.col-md-6 -->
-{{--                <div class="col-md-3">--}}
-{{--                    <div class="card">--}}
-{{--                        <div class="card-header border-0">--}}
-{{--                            <div class="d-flex justify-content-between">--}}
-{{--                                <h3 class="card-title">{{$startDate->format('Y-m')}}</h3>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="card-body pt-0 mt-0">--}}
-{{--                            <div class="d-flex">--}}
-{{--                                <p class="d-flex flex-column">--}}
-{{--                                    <span class="text-bold text-lg">Comparativo Anual</span>--}}
-{{--                            </div>--}}
-{{--                            <!-- /.d-flex -->--}}
 
-{{--                            <div class="position-relative mb-4">--}}
-{{--                                <canvas id="descargahornototal-chart" height="200"></canvas>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <!-- /.card -->--}}
 
-{{--                    <div class="card">--}}
-{{--                        <div class="card-header border-0">--}}
-{{--                            <div class="d-flex justify-content-between">--}}
-{{--                                <h3 class="card-title">{{$startDate->format('Y-m')}}</h3>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="card-body pt-0 mt-0">--}}
-{{--                            <div class="d-flex">--}}
-{{--                                <p class="d-flex flex-column">--}}
-{{--                                    <span class="text-bold text-lg">Comparativo Anual</span>--}}
-{{--                            </div>--}}
-{{--                            <!-- /.d-flex -->--}}
-
-{{--                            <div class="position-relative mb-4">--}}
-{{--                                <canvas id="produccionnetaplantatotal-chart" height="200"></canvas>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
                 <!-- /.col-md-6 -->
             </div>
             <!-- /.row -->
@@ -269,17 +291,34 @@
                             var chartInstance = this.chart,
                                 ctx = chartInstance.ctx;
                             ctx.textAlign = 'center';
-                            ctx.textBaseline = 'bottom';
+                            ctx.textBaseline = 'top';
                             ctx.fillStyle = "#666";
+                            // console.log(this.data);
                             this.data.datasets.forEach(function(dataset, i) {
                                 var meta = chartInstance.controller.getDatasetMeta(i);
-
+                                console.log(meta);
                                 meta.data.forEach(function(bar, index) {
                                     var data = dataset.data[index];
+                                    if(data===0){
+                                        ctx.fillText(data, bar._model.x, bar._model.y-20);
+                                    }else if(i===0){
+                                        ctx.fillText(data, bar._model.x+10, bar._model.y+20);
+                                    }else{
+                                        ctx.fillText(data, bar._model.x+10, bar._model.y-20);
+                                    }
 
-                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
 
                                 });
+                            //
+                            // this.data[1].forEach(function(dataset, i) {
+                            //     var meta = chartInstance.controller.getDatasetMeta(i);
+                            //     console.log(meta);
+                            //     meta.data.forEach(function(bar, index) {
+                            //         var data = dataset.data[index];
+                            //
+                            //         ctx.fillText(data, bar._model.x, bar._model.y +5);
+                            //
+                            //     });
 
                             });
                         }
@@ -288,101 +327,101 @@
             });
 
 
-            {{--var ctx = document.getElementById('descargahornototal-chart').getContext('2d');--}}
-            {{--var myChart = new Chart(ctx, {--}}
-            {{--    type: 'bar',--}}
-            {{--    data: {--}}
-            {{--        labels: ['{{$startDate->format('Y-m')}}'],--}}
-            {{--        datasets: [{--}}
-            {{--            label: '{{$startDate->format('Y-m')}}',--}}
-            {{--            data: [{{$dataDescargaHorno['total']}}],--}}
-            {{--            backgroundColor: [--}}
-            {{--                'rgba(54, 162, 235, 0.2)',--}}
-            {{--                ]--}}
-            {{--            ,--}}
-            {{--            borderColor: //[--}}
-            {{--                'rgba(54, 162, 235, 1)',--}}
-            {{--            borderWidth: 1--}}
-            {{--        }]--}}
-            {{--    },--}}
-            {{--    options: {--}}
-            {{--        scales: {--}}
-            {{--            xAxes: [{--}}
-            {{--                display: true--}}
-            {{--            }],--}}
-            {{--            yAxes: [{--}}
-            {{--                display: true,--}}
-            {{--            }]--}}
-            {{--        },--}}
-            {{--        responsive: true,--}}
-            {{--        maintainAspectRatio: false,--}}
-            {{--        "animation": {--}}
-            {{--            "duration": 1,--}}
-            {{--            "onComplete": function() {--}}
-            {{--                var chartInstance = this.chart,--}}
-            {{--                    ctx = chartInstance.ctx;--}}
-            {{--                ctx.textAlign = 'center';--}}
-            {{--                ctx.textBaseline = 'bottom';--}}
-            {{--                ctx.fillStyle = 'rgba(54, 162, 235, 1)';//"#666";--}}
-            {{--                this.data.datasets.forEach(function(dataset, i) {--}}
-            {{--                    var meta = chartInstance.controller.getDatasetMeta(i);--}}
-            {{--                    meta.data.forEach(function(bar, index) {--}}
-            {{--                        var data = dataset.data[index];--}}
-            {{--                        ctx.fillText(data, bar._model.x, bar._model.y - 5);--}}
-            {{--                    });--}}
-            {{--                });--}}
-            {{--            }--}}
-            {{--        },--}}
-            {{--    }--}}
-            {{--});--}}
+            var ctx = document.getElementById('descargahornototal-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['{{$startDate->format('Y-m')}}'],
+                    datasets: [{
+                        label: '{{$startDate->format('Y-m')}}',
+                        data: [{{$dataDescargaHorno['total']}}],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            ]
+                        ,
+                        borderColor: //[
+                            'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true
+                        }],
+                        yAxes: [{
+                            display: true,
+                        }]
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function() {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+                            ctx.fillStyle = 'rgba(54, 162, 235, 1)';//"#666";
+                            this.data.datasets.forEach(function(dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function(bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                }
+            });
 
-            {{--var ctx = document.getElementById('produccionnetaplantatotal-chart').getContext('2d');--}}
-            {{--var myChart = new Chart(ctx, {--}}
-            {{--    type: 'bar',--}}
-            {{--    data: {--}}
-            {{--        labels: ['{{$startDate->format('Y-m')}}'],--}}
-            {{--        datasets: [{--}}
-            {{--            label: '{{$startDate->format('Y-m')}}',--}}
-            {{--            data: [{{$dataProduccionNetaPlanta['total']}}],--}}
-            {{--            backgroundColor: [--}}
-            {{--                'rgba(255, 99, 132, 0.2)',--}}
-            {{--            ]--}}
-            {{--            ,--}}
-            {{--            borderColor: //[--}}
-            {{--                'rgba(255, 99, 132, 1)',--}}
-            {{--            borderWidth: 1--}}
-            {{--        }]--}}
-            {{--    },--}}
-            {{--    options: {--}}
-            {{--        scales: {--}}
-            {{--            xAxes: [{--}}
-            {{--                display: true--}}
-            {{--            }],--}}
-            {{--            yAxes: [{--}}
-            {{--                display: true,--}}
-            {{--            }]--}}
-            {{--        },--}}
-            {{--        responsive: true,--}}
-            {{--        maintainAspectRatio: false,--}}
-            {{--        "animation": {--}}
-            {{--            "duration": 1,--}}
-            {{--            "onComplete": function() {--}}
-            {{--                var chartInstance = this.chart,--}}
-            {{--                    ctx = chartInstance.ctx;--}}
-            {{--                ctx.textAlign = 'center';--}}
-            {{--                ctx.textBaseline = 'bottom';--}}
-            {{--                ctx.fillStyle = 'rgba(255, 99, 132, 1)';//"#666";--}}
-            {{--                this.data.datasets.forEach(function(dataset, i) {--}}
-            {{--                    var meta = chartInstance.controller.getDatasetMeta(i);--}}
-            {{--                    meta.data.forEach(function(bar, index) {--}}
-            {{--                        var data = dataset.data[index];--}}
-            {{--                        ctx.fillText(data, bar._model.x, bar._model.y - 5);--}}
-            {{--                    });--}}
-            {{--                });--}}
-            {{--            }--}}
-            {{--        },--}}
-            {{--    }--}}
-            {{--});--}}
+            var ctx = document.getElementById('produccionnetaplantatotal-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['{{$startDate->format('Y-m')}}'],
+                    datasets: [{
+                        label: '{{$startDate->format('Y-m')}}',
+                        data: [{{$dataProduccionNetaPlanta['total']}}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                        ]
+                        ,
+                        borderColor: //[
+                            'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true
+                        }],
+                        yAxes: [{
+                            display: true,
+                        }]
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function() {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+                            ctx.fillStyle = 'rgba(255, 99, 132, 1)';//"#666";
+                            this.data.datasets.forEach(function(dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function(bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                }
+            });
 
 
 
