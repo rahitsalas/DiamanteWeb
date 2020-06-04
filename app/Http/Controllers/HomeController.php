@@ -30,25 +30,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $startDate = Carbon::now()->addDays(-1);
-        $firstDay = Carbon::now()->addDays(-1)->startOfMonth();
-        $lastDay = Carbon::now()->addDays(-1)->lastOfMonth();
+        $diasatraso = -4;
+        $startDate = Carbon::now()->addDays($diasatraso);
+        $firstDay = Carbon::now()->addDays($diasatraso)->startOfMonth();
+        $lastDay = Carbon::now()->addDays($diasatraso)->lastOfMonth();
 
 
-        $raw = DB::select("exec [DiamanteWeb].dbo.sp_data_DescargaHorno '".$firstDay."', '".$lastDay."'");
+        $raw1 = DB::select("exec [DiamanteWeb].dbo.sp_data_DescargaHorno '".$firstDay."', '".$lastDay."'");
         $raw2 = DB::select("exec [DiamanteWeb].dbo.sp_data_ProduccionNetaPlanta '".$firstDay."', '".$lastDay."'");
         $raw3 = DB::select("exec [DiamanteWeb].dbo.sp_data_RatioGasConSecadero '".$firstDay."', '".$lastDay."'");
         $raw4 = DB::select("exec [DiamanteWeb].dbo.sp_data_RatioGasSinSecadero '".$firstDay."', '".$lastDay."'");
+        $raw5 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoDiarioMillar '".$firstDay."', '".$lastDay."'");
 
+        //dd($raw5);
 
         $dataDescargaHorno = array();
         $dataProduccionNetaPlanta = array();
         $dataRatioGasConSecadero = array();
         $dataRatioGasSinSecadero = array();
+        $dataDespachoDiaroMillar = array();
 
         $i =0;
         $dataDescargaHorno['total'] = 0;
-        foreach ($raw as $item){
+        foreach ($raw1 as $item){
             $dataDescargaHorno['fecha'][$i] = date_create($item->fecha)->format('d-m');
             $dataDescargaHorno['cantidad'][$i] = (int) $item->cantidad;
             $dataDescargaHorno['total'] += $item->cantidad;
@@ -78,11 +82,22 @@ class HomeController extends Controller
             $i++;
         }
 
-//        dd($dataRatioGasConSecadero,$dataRatioGasSinSecadero);
+        $i =0;
+        $dataDespachoDiaroMillar['total'] = 0;
+        foreach ($raw5 as $item){
+            $dataDespachoDiaroMillar['fecha'][$i] = date_create($item->fecha)->format('d-m');
+            $dataDespachoDiaroMillar['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataDespachoDiaroMillar['total'] += $item->cantidad;
+            $i++;
+        }
+
+
+       // dd($dataDespachoDiaroMillar);
 
         return view('Dashboard.home',
             compact('dataProduccionNetaPlanta','dataDescargaHorno',
-                'dataRatioGasConSecadero','dataRatioGasSinSecadero','startDate'));
+                'dataRatioGasConSecadero','dataRatioGasSinSecadero',
+                'dataDespachoDiaroMillar','startDate'));
     }
 
     public function comercial()
