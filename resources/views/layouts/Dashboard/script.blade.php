@@ -11,6 +11,8 @@
 <script src="{{url('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
 <script src="{{url('plugins/chart.js/Chart.min.js')}}"></script>
+<!-- ChartJS -->
+<script src="{{url('plugins/chart.js/chartjs-plugin-datalabels.min.js')}}"></script>
 <!-- Sparkline -->
 <script src="{{url('plugins/sparklines/sparkline.js')}}"></script>
 <!-- JQVMap -->
