@@ -606,9 +606,9 @@
                 options: {
                     //cutoutPercentage: 40,
                     responsive: false,
-                    // tooltips: {
-                    //     enabled: false
-                    // },
+                    tooltips: {
+                        enabled: false
+                    },
                     plugins: {
                         datalabels: {
                             formatter: (value, ctx) => {
