@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $diasatraso = -1;
+        $diasatraso = -6;
         $startDate = Carbon::now()->addDays($diasatraso);
         $firstDay = Carbon::now()->addDays($diasatraso)->startOfMonth();
         $lastDay = Carbon::now()->addDays($diasatraso)->lastOfMonth();
@@ -43,7 +43,7 @@ class HomeController extends Controller
         $raw5 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoDiarioMillar '".$firstDay."', '".$lastDay."'");
         $raw6 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoDiarioSoles '".$firstDay."', '".$lastDay."'");
         $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoPago '".$firstDay."', '".$lastDay."'");
-
+        $raw8 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoItem '".$firstDay."', '".$lastDay."'");
 //        dd($raw7);
 
         $dataDescargaHorno = array();
@@ -53,6 +53,7 @@ class HomeController extends Controller
         $dataDespachoDiaroMillar = array();
         $dataDespachoDiaroSoles = array();
         $dataDespachoTotalTipoPago = array();
+        $dataDespachoTotalTipoItem = array();
 
         $i =0;
         $dataDescargaHorno['total'] = 0;
@@ -113,13 +114,23 @@ class HomeController extends Controller
             $dataDespachoTotalTipoPago['total'] += $item->cantidad;
             $i++;
         }
-        //dd($dataDespachoTotalTipoPago);
+
+        $i =0;
+        $dataDespachoTotalTipoItem['total'] = 0;
+        foreach ($raw8 as $item){
+            $dataDespachoTotalTipoItem['familia'][$i] = $item->familia.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataDespachoTotalTipoItem['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataDespachoTotalTipoItem['total'] += $item->cantidad;
+            $i++;
+        }
+
+        //dd($dataDespachoTotalTipoItem);
 
         return view('Dashboard.home',
             compact('dataProduccionNetaPlanta','dataDescargaHorno',
                 'dataRatioGasConSecadero','dataRatioGasSinSecadero',
                 'dataDespachoDiaroMillar','dataDespachoDiaroSoles',
-                'dataDespachoTotalTipoPago',
+                'dataDespachoTotalTipoPago','dataDespachoTotalTipoItem',
                 'startDate'));
     }
 
