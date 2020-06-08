@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $diasatraso = -6;
+        $diasatraso = -1;
         $startDate = Carbon::now()->addDays($diasatraso);
         $firstDay = Carbon::now()->addDays($diasatraso)->startOfMonth();
         $lastDay = Carbon::now()->addDays($diasatraso)->lastOfMonth();
@@ -45,6 +45,7 @@ class HomeController extends Controller
         $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoPago '".$firstDay."', '".$lastDay."'");
         $raw8 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoItem '".$firstDay."', '".$lastDay."'");
         $raw9 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoCliente '".$firstDay."', '".$lastDay."'");
+        $raw10 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalUnidadNegocio '".$firstDay."', '".$lastDay."'");
 //        dd($raw7);
 
         $dataDescargaHorno = array();
@@ -56,6 +57,7 @@ class HomeController extends Controller
         $dataDespachoTotalTipoPago = array();
         $dataDespachoTotalTipoItem = array();
         $dataDespachoTotalTipoCliente = array();
+        $dataDespachoTotalUnidadNegocio = array();
 
         $i =0;
         $dataDescargaHorno['total'] = 0;
@@ -135,6 +137,15 @@ class HomeController extends Controller
             $i++;
         }
 
+        $i =0;
+        $dataDespachoTotalUnidadNegocio['total'] = 0;
+        foreach ($raw10 as $item){
+            $dataDespachoTotalUnidadNegocio['unidadnegocio'][$i] = $item->unidadnegocio;
+            $dataDespachoTotalUnidadNegocio['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataDespachoTotalUnidadNegocio['total'] += $item->cantidad;
+            $i++;
+        }
+
         //dd($dataDespachoTotalTipoItem);
 
         return view('Dashboard.home',
@@ -142,7 +153,7 @@ class HomeController extends Controller
                 'dataRatioGasConSecadero','dataRatioGasSinSecadero',
                 'dataDespachoDiaroMillar','dataDespachoDiaroSoles',
                 'dataDespachoTotalTipoPago','dataDespachoTotalTipoItem',
-                'dataDespachoTotalTipoCliente',
+                'dataDespachoTotalTipoCliente','dataDespachoTotalUnidadNegocio',
                 'startDate'));
     }
 

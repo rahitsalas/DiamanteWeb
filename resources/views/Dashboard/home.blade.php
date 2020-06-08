@@ -312,6 +312,30 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Venta por Agencia / Sucursal {{$startDate->format('Y-m')}}</h3>
+                                {{--                                <a href="javascript:void(0);">View Report</a>--}}
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 mt-0">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">Total {{$dataDespachoTotalUnidadNegocio['total']}} Millares</span>
+                                    <span></span>
+                                </p>
+                            </div>
+
+                            <div class="position-relative mb-4">
+                                <canvas id="despachototalunidadnegocio-chart" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -744,7 +768,57 @@
                 }
             });
 
-
+            var ctx = document.getElementById('despachototalunidadnegocio-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($dataDespachoTotalUnidadNegocio['unidadnegocio']) !!},
+                    datasets: [{
+                        label: 'Millares',
+                        data:{!! json_encode($dataDespachoTotalUnidadNegocio['cantidad']) !!},
+                        backgroundColor:
+                            // [
+                            // 'rgba(255, 159, 64, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            // ],
+                        borderColor:
+                            // [
+                            // 'rgba(255, 159, 64, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            // ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true
+                        }],
+                        yAxes: [{
+                            display: true,
+                        }]
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function() {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+                            ctx.fillStyle = "#666";//'rgba(255, 159, 64, 1)';//"#666";
+                            this.data.datasets.forEach(function(dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function(bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                }
+            });
 
 
 
