@@ -321,7 +321,7 @@
                                 {{--                                <a href="javascript:void(0);">View Report</a>--}}
                             </div>
                         </div>
-                        <div class="card-body pt-0 mt-0">
+                        <div class="card-body pt-0 mt-0 mb-0 pb-0">
                             <div class="d-flex">
                                 <p class="d-flex flex-column">
                                     <span class="text-bold text-lg">Total {{$dataDespachoTotalUnidadNegocio['total']}} Millares</span>
@@ -329,9 +329,14 @@
                                 </p>
                             </div>
 
-                            <div class="position-relative mb-4">
+                            <div class="position-relative">
                                 <canvas id="despachototalunidadnegocio-chart" height="200"></canvas>
                             </div>
+                        </div>
+                        <div class="card-footer pt-0 mt-0 bg-white">
+                            <span class="users-list-date mb-0">
+                                *Solo se muestran Agencia/Sucursal con Ventas
+                            </span>
                         </div>
                     </div>
                 </div>
