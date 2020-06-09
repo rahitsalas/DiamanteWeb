@@ -118,7 +118,7 @@
                     <div class="card ">
                         <div class="card-header border-0">
                             <div class="d-flex justify-content-between">
-                                <h3 class="card-title">Ratio Gas Mt3/Ton. {{$startDate->format('Y-m')}}</h3>
+                                <h3 class="card-title">Ratio Gas M³/Ton. {{$startDate->format('Y-m')}}</h3>
                                 {{--                                <a href="javascript:void(0);">View Report</a>--}}
                             </div>
                         </div>
@@ -260,7 +260,7 @@
                         <div class="card-body pt-0 mt-0">
                             <div class="d-flex">
                                 <p class="d-flex flex-column">
-                                    <span class="text-bold text-lg">Total {{$dataDespachoTotalTipoPago['total']}} Millares</span>
+                                    <span class="text-bold text-lg">Total {{$dataDespachoTotalTipoPago['total']}} Miles de Soles</span>
                                     <span></span>
                                 </p>
                             </div>

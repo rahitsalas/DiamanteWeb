@@ -63,7 +63,7 @@ class HomeController extends Controller
         $dataDescargaHorno['total'] = 0;
         foreach ($raw1 as $item){
             $dataDescargaHorno['fecha'][$i] = date_create($item->fecha)->format('d-m');
-            $dataDescargaHorno['cantidad'][$i] = (int) $item->cantidad;
+            $dataDescargaHorno['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);;
             $dataDescargaHorno['total'] += $item->cantidad;
             $i++;
         }
@@ -72,7 +72,7 @@ class HomeController extends Controller
         $dataProduccionNetaPlanta['total'] = 0;
         foreach ($raw2 as $item){
             $dataProduccionNetaPlanta['fecha'][$i] = date_create($item->fecha)->format('d-m');
-            $dataProduccionNetaPlanta['cantidad'][$i] = (int) $item->cantidad;
+            $dataProduccionNetaPlanta['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
             $dataProduccionNetaPlanta['total'] += $item->cantidad;
             $i++;
         }
@@ -113,11 +113,13 @@ class HomeController extends Controller
         $i =0;
         $dataDespachoTotalTipoPago['total'] = 0;
         foreach ($raw7 as $item){
-            $dataDespachoTotalTipoPago['formapago'][$i] = $item->formapago.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataDespachoTotalTipoPago['formapago'][$i] = $item->formapago.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).'k S/.';
             $dataDespachoTotalTipoPago['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
             $dataDespachoTotalTipoPago['total'] += $item->cantidad;
             $i++;
         }
+        $dataDespachoTotalTipoPago['total'] =round((double)$dataDespachoTotalTipoPago['total'],3,PHP_ROUND_HALF_UP);
+
 
         $i =0;
         $dataDespachoTotalTipoItem['total'] = 0;
