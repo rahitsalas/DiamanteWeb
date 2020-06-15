@@ -335,8 +335,142 @@
                         </div>
                         <div class="card-footer pt-0 mt-0 bg-white">
                             <span class="users-list-date mb-0">
-                                *Solo se muestran Agencia/Sucursal con Ventas
+                                *Solo se muestran Agencias o Sucursales con Ventas
                             </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 class="m-0 text-dark">Almacén</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Stock por Calidad</h3>
+                                {{--                                <a href="javascript:void(0);">View Report</a>--}}
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 mt-0">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">Total {{$dataStockTotalCalidad['total']}} Millares</span>
+                                    <span></span>
+                                </p>
+                            </div>
+                            <div class="position-relative mb-4">
+                                <canvas id="stocktotalcalidad-chart" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Stock por Familia</h3>
+                                {{--                                <a href="javascript:void(0);">View Report</a>--}}
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 mt-0">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">Total {{$dataDespachoTotalTipoItem['total']}} Millares</span>
+                                    <span></span>
+                                </p>
+                            </div>
+                            <div class="position-relative mb-4">
+                                <canvas id="despachototaltipoitem-chart" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Stock por Almacén</h3>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 mt-0">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">Total {{$dataDespachoTotalTipoCliente['total']}} Millares </span>
+                            </div>
+
+                            <div class="position-relative mb-4">
+                                <canvas id="despachototaltipocliente-chart" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Stock Familia A</h3>
+                                {{--                                <a href="javascript:void(0);">View Report</a>--}}
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 mt-0">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">Total {{$dataStockTotalCalidad['total']}} Millares</span>
+                                    <span></span>
+                                </p>
+                            </div>
+                            <div class="position-relative mb-4">
+                                <canvas id="stocktotalcalidad-chart" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Stock Familia B</h3>
+                                {{--                                <a href="javascript:void(0);">View Report</a>--}}
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 mt-0">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">Total {{$dataDespachoTotalTipoItem['total']}} Millares</span>
+                                    <span></span>
+                                </p>
+                            </div>
+                            <div class="position-relative mb-4">
+                                <canvas id="despachototaltipoitem-chart" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Stock Familia C</h3>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 mt-0">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">Total {{$dataDespachoTotalTipoCliente['total']}} Millares </span>
+                            </div>
+
+                            <div class="position-relative mb-4">
+                                <canvas id="despachototaltipocliente-chart" height="200"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -555,7 +689,11 @@
                                 var meta = chartInstance.controller.getDatasetMeta(i);
                                 meta.data.forEach(function(bar, index) {
                                     var data = dataset.data[index];
-                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                    if(data===0){
+                                        ctx.fillText(data, bar._model.x, bar._model.y-5);
+                                    }else if(i===0){
+                                        ctx.fillText(data, bar._model.x+3, bar._model.y-5);
+                                    }
                                 });
                             });
                         }
@@ -602,7 +740,11 @@
                                 var meta = chartInstance.controller.getDatasetMeta(i);
                                 meta.data.forEach(function(bar, index) {
                                     var data = dataset.data[index];
-                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                    if(data===0){
+                                        ctx.fillText(data, bar._model.x, bar._model.y-5);
+                                    }else if(i===0){
+                                        ctx.fillText(data, bar._model.x+3, bar._model.y-5);
+                                    }
                                 });
                             });
                         }
@@ -822,6 +964,61 @@
                             });
                         }
                     },
+                }
+            });
+
+            var ctx = document.getElementById('stocktotalcalidad-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                plugins: [ChartDataLabels],
+                type: 'doughnut',
+                data: {
+                    labels: {!! json_encode($dataStockTotalCalidad['calidad']) !!},
+                    datasets: [{
+                        label: '# of Tomatoes',
+                        data: {!! json_encode($dataStockTotalCalidad['cantidad']) !!},
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(115, 255, 64, 0.2)',
+                            //'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+
+                            'rgba(153, 102, 255, 0.2)',]
+
+                        ,
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgb(42, 177, 66, 1)',
+                            //'rgba(75, 192, 192, 1)',
+                            'rgba(255, 206, 86, 1)',
+
+                            'rgba(153, 102, 255, 1)',],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    //cutoutPercentage: 40,
+                    responsive: false,
+                    tooltips: {
+                        enabled: false
+                    },
+                    plugins: {
+                        datalabels: {
+                            formatter: (value, ctx) => {
+                                let sum = 0;
+                                let dataArr = ctx.chart.data.datasets[0].data;
+                                dataArr.map(data => {
+                                    sum += data;
+                                });
+                                let percentage = (value*100 / sum).toFixed(2)+"%";
+                                return percentage;
+                            },
+                            //color: '#000000',
+                        }
+                    }
                 }
             });
 

@@ -46,6 +46,7 @@ class HomeController extends Controller
         $raw8 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoItem '".$firstDay."', '".$lastDay."'");
         $raw9 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoCliente '".$firstDay."', '".$lastDay."'");
         $raw10 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalUnidadNegocio '".$firstDay."', '".$lastDay."'");
+        $raw11 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockTotalCalidad '".$firstDay."', '".$lastDay."'");
 //        dd($raw7);
 
         $dataDescargaHorno = array();
@@ -58,6 +59,7 @@ class HomeController extends Controller
         $dataDespachoTotalTipoItem = array();
         $dataDespachoTotalTipoCliente = array();
         $dataDespachoTotalUnidadNegocio = array();
+        $dataStockTotalCalidad = array();
 
         $i =0;
         $dataDescargaHorno['total'] = 0;
@@ -148,6 +150,17 @@ class HomeController extends Controller
             $i++;
         }
 
+        $i =0;
+        $dataStockTotalCalidad['total'] = 0;
+        foreach ($raw11 as $item){
+            $dataStockTotalCalidad['calidad'][$i] = $item->calidad.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataStockTotalCalidad['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataStockTotalCalidad['total'] += $item->cantidad;
+            $i++;
+        }
+        $dataStockTotalCalidad['total'] =round((double)$dataStockTotalCalidad['total'],2,PHP_ROUND_HALF_UP);
+
+
         //dd($dataDespachoTotalTipoItem);
 
         return view('Dashboard.home',
@@ -156,6 +169,7 @@ class HomeController extends Controller
                 'dataDespachoDiaroMillar','dataDespachoDiaroSoles',
                 'dataDespachoTotalTipoPago','dataDespachoTotalTipoItem',
                 'dataDespachoTotalTipoCliente','dataDespachoTotalUnidadNegocio',
+                'dataStockTotalCalidad',
                 'startDate'));
     }
 
