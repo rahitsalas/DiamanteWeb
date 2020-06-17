@@ -174,62 +174,62 @@ class HomeController extends Controller
         $dataStockTotalCalidad['total'] = 0;
         foreach ($raw11 as $item){
             $dataStockTotalCalidad['calidad'][$i] = $item->calidad;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataStockTotalCalidad['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataStockTotalCalidad['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
             $dataStockTotalCalidad['total'] += $item->cantidad;
             $i++;
         }
-        $dataStockTotalCalidad['total'] =round((double)$dataStockTotalCalidad['total'],2,PHP_ROUND_HALF_UP);
+        $dataStockTotalCalidad['total'] =round((double)$dataStockTotalCalidad['total'],0,PHP_ROUND_HALF_UP);
 
         $i =0;
         $dataStockTotalTipoItem['total'] = 0;
         foreach ($raw12 as $item){
             $dataStockTotalTipoItem['familia'][$i] = $item->familia;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataStockTotalTipoItem['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataStockTotalTipoItem['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
             $dataStockTotalTipoItem['total'] += $item->cantidad;
             $i++;
         }
-        $dataStockTotalTipoItem['total'] =round((double)$dataStockTotalTipoItem['total'],2,PHP_ROUND_HALF_UP);
+        $dataStockTotalTipoItem['total'] =round((double)$dataStockTotalTipoItem['total'],0,PHP_ROUND_HALF_UP);
 
         $i =0;
         $dataStockTotalAlmacen['total'] = 0;
         foreach ($raw13 as $item){
             $dataStockTotalAlmacen['almacen'][$i] = $item->almacen;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataStockTotalAlmacen['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataStockTotalAlmacen['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
             $dataStockTotalAlmacen['total'] += $item->cantidad;
             $i++;
         }
-        $dataStockTotalAlmacen['total'] =round((double)$dataStockTotalAlmacen['total'],2,PHP_ROUND_HALF_UP);
+        $dataStockTotalAlmacen['total'] =round((double)$dataStockTotalAlmacen['total'],0,PHP_ROUND_HALF_UP);
 
 
         $i =0;
         $dataStockFamiliaEstructural['total'] = 0;
         foreach ($raw14 as $item){
             $dataStockFamiliaEstructural['item'][$i] = $item->item;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataStockFamiliaEstructural['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataStockFamiliaEstructural['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
             $dataStockFamiliaEstructural['total'] += $item->cantidad;
             $i++;
         }
-        $dataStockFamiliaEstructural['total'] =round((double)$dataStockFamiliaEstructural['total'],2,PHP_ROUND_HALF_UP);
+        $dataStockFamiliaEstructural['total'] =round((double)$dataStockFamiliaEstructural['total'],0,PHP_ROUND_HALF_UP);
 
         $i =0;
         $dataStockFamiliaTabiqueria['total'] = 0;
         foreach ($raw15 as $item){
             $dataStockFamiliaTabiqueria['item'][$i] = $item->item;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataStockFamiliaTabiqueria['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataStockFamiliaTabiqueria['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
             $dataStockFamiliaTabiqueria['total'] += $item->cantidad;
             $i++;
         }
-        $dataStockFamiliaTabiqueria['total'] =round((double)$dataStockFamiliaTabiqueria['total'],2,PHP_ROUND_HALF_UP);
+        $dataStockFamiliaTabiqueria['total'] =round((double)$dataStockFamiliaTabiqueria['total'],0,PHP_ROUND_HALF_UP);
 
         $i =0;
         $dataStockFamiliaParaTecho['total'] = 0;
         foreach ($raw16 as $item){
             $dataStockFamiliaParaTecho['item'][$i] = $item->item;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataStockFamiliaParaTecho['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataStockFamiliaParaTecho['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
             $dataStockFamiliaParaTecho['total'] += $item->cantidad;
             $i++;
         }
-        $dataStockFamiliaParaTecho['total'] =round((double)$dataStockFamiliaParaTecho['total'],2,PHP_ROUND_HALF_UP);
+        $dataStockFamiliaParaTecho['total'] =round((double)$dataStockFamiliaParaTecho['total'],0,PHP_ROUND_HALF_UP);
 
 
         //dd($dataStockTotalTipoItem);

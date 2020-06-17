@@ -37,3 +37,10 @@
 <script src="{{url('plugins/adminlte/js/demo.js')}}"></script>
 
 <script src="{{url('plugins/adminlte/js/pages/dashboard3.js')}}"></script>
+
+
+{{--<script src="{{url('plugins/select2/js/select2.full.min.js')}}"></script>--}}
+{{--<script src="{{url('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>--}}
+{{--<!-- InputMask -->--}}
+
+{{--<script src="{{url('plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>--}}

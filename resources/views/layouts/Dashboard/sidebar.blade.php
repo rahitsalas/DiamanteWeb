@@ -31,13 +31,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @if(Auth::user()->id == "1")
                         <li class="nav-item">
                             <a href="{{route('comercial')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Gerencia General</p>
                             </a>
                         </li>
-                        @if(Auth::user()->id == "1")
+
                         <li class="nav-item">
                             <a href="pages/charts/flot.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -69,14 +70,15 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    @if(Auth::user()->id == "1")
+
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{route('comercial')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Gerencia General</p>
+                                <p>Comercial</p>
                             </a>
                         </li>
+                        @if(Auth::user()->id == "1")
                         <li class="nav-item">
                             <a href="pages/charts/flot.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
