@@ -80,6 +80,8 @@ class HomeController extends Controller
             $dataDescargaHorno['total'] += $item->cantidad;
             $i++;
         }
+        $dataDescargaHorno['total'] =round((double)$dataDescargaHorno['total'],0,PHP_ROUND_HALF_UP);
+
 
         $i =0;
         $dataProduccionNetaPlanta['total'] = 0;
@@ -89,11 +91,14 @@ class HomeController extends Controller
             $dataProduccionNetaPlanta['total'] += $item->cantidad;
             $i++;
         }
+        $dataProduccionNetaPlanta['total'] =round((double)$dataProduccionNetaPlanta['total'],0,PHP_ROUND_HALF_UP);
+
 
         $i =0;
         foreach ($raw3 as $item){
             $dataRatioGasConSecadero['fecha'][$i] = date_create($item->fecha)->format('d-m');
             $dataRatioGasConSecadero['ratio'][$i] = round((double) $item->ratio, 2, PHP_ROUND_HALF_UP);
+            $dataRatioGasConSecadero['meta'][$i] = 28;
             $i++;
         }
 
@@ -108,58 +113,62 @@ class HomeController extends Controller
         $dataDespachoDiaroMillar['total'] = 0;
         foreach ($raw5 as $item){
             $dataDespachoDiaroMillar['fecha'][$i] = date_create($item->fecha)->format('d-m');
-            $dataDespachoDiaroMillar['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataDespachoDiaroMillar['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
             $dataDespachoDiaroMillar['total'] += $item->cantidad;
             $i++;
         }
+        $dataDespachoDiaroMillar['total'] =round((double)$dataDespachoDiaroMillar['total'],0,PHP_ROUND_HALF_UP);
 
         $i =0;
         $dataDespachoDiaroSoles['total'] = 0;
         foreach ($raw6 as $item){
             $dataDespachoDiaroSoles['fecha'][$i] = date_create($item->fecha)->format('d-m');
-            $dataDespachoDiaroSoles['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataDespachoDiaroSoles['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
             $dataDespachoDiaroSoles['total'] += $item->cantidad;
             $i++;
         }
-        $dataDespachoDiaroSoles['total'] =round((double)$dataDespachoDiaroSoles['total'],3,PHP_ROUND_HALF_UP);
+        $dataDespachoDiaroSoles['total'] =round((double)$dataDespachoDiaroSoles['total'],0,PHP_ROUND_HALF_UP);
 
         $i =0;
         $dataDespachoTotalTipoPago['total'] = 0;
         foreach ($raw7 as $item){
-            $dataDespachoTotalTipoPago['formapago'][$i] = $item->formapago.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).'k S/.';
-            $dataDespachoTotalTipoPago['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataDespachoTotalTipoPago['formapago'][$i] = $item->formapago;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).'k S/.';
+            $dataDespachoTotalTipoPago['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
             $dataDespachoTotalTipoPago['total'] += $item->cantidad;
             $i++;
         }
-        $dataDespachoTotalTipoPago['total'] =round((double)$dataDespachoTotalTipoPago['total'],3,PHP_ROUND_HALF_UP);
+        $dataDespachoTotalTipoPago['total'] =round((double)$dataDespachoTotalTipoPago['total'],0,PHP_ROUND_HALF_UP);
 
 
         $i =0;
         $dataDespachoTotalTipoItem['total'] = 0;
         foreach ($raw8 as $item){
-            $dataDespachoTotalTipoItem['familia'][$i] = $item->familia.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataDespachoTotalTipoItem['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataDespachoTotalTipoItem['familia'][$i] = $item->familia;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataDespachoTotalTipoItem['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
             $dataDespachoTotalTipoItem['total'] += $item->cantidad;
             $i++;
         }
+        $dataDespachoTotalTipoItem['total'] =round((double)$dataDespachoTotalTipoItem['total'],0,PHP_ROUND_HALF_UP);
 
         $i =0;
         $dataDespachoTotalTipoCliente['total'] = 0;
         foreach ($raw9 as $item){
-            $dataDespachoTotalTipoCliente['tipocliente'][$i] = $item->tipocliente.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataDespachoTotalTipoCliente['tipocliente'][$i] = $item->tipocliente;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
             $dataDespachoTotalTipoCliente['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
             $dataDespachoTotalTipoCliente['total'] += $item->cantidad;
             $i++;
         }
+        $dataDespachoTotalTipoCliente['total'] =round((double)$dataDespachoTotalTipoCliente['total'],0,PHP_ROUND_HALF_UP);
 
         $i =0;
         $dataDespachoTotalUnidadNegocio['total'] = 0;
         foreach ($raw10 as $item){
             $dataDespachoTotalUnidadNegocio['unidadnegocio'][$i] = $item->unidadnegocio;
-            $dataDespachoTotalUnidadNegocio['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataDespachoTotalUnidadNegocio['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
             $dataDespachoTotalUnidadNegocio['total'] += $item->cantidad;
             $i++;
         }
+        $dataDespachoTotalUnidadNegocio['total'] =round((double)$dataDespachoTotalUnidadNegocio['total'],0,PHP_ROUND_HALF_UP);
 
         $i =0;
         $dataStockTotalCalidad['total'] = 0;

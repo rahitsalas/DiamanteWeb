@@ -606,6 +606,21 @@
                             borderWidth: 1.5,
                             pointBackgroundColor: 'rgba(54, 162, 235, 1)',
                             fill: false
+                        },
+                        {
+                            label: 'Meta - 28',
+                            data:{!! json_encode($dataRatioGasConSecadero['meta']) !!},
+                            backgroundColor: //[
+                                'rgb(255,255,255)',
+
+                            borderColor: //[
+                                'rgb(0,0,0)',
+                            borderWidth: 1.5,
+                            pointBackgroundColor: 'rgb(0,0,0)',
+                            fill: false,
+                            borderDash: [10,5],
+                            pointRadius: 0.5,
+                            hoverBackgroundColor: 'rgb(255,255,255)',
                         }
 
 
@@ -640,7 +655,7 @@
                                         ctx.fillText(data, bar._model.x, bar._model.y-20);
                                     }else if(i===0){
                                         ctx.fillText(data, bar._model.x+10, bar._model.y+20);
-                                    }else{
+                                    }else if(data!==28){
                                         ctx.fillText(data, bar._model.x+10, bar._model.y-20);
                                     }
                                 });
@@ -786,7 +801,7 @@
                     //cutoutPercentage: 40,
                     responsive: false,
                     tooltips: {
-                        enabled: false
+                        enabled: true
                     },
                     plugins: {
                         datalabels: {
@@ -841,7 +856,7 @@
                     //cutoutPercentage: 40,
                     responsive: false,
                     tooltips: {
-                        enabled: false
+                        enabled: true
                     },
                     plugins: {
                         datalabels: {
@@ -896,7 +911,7 @@
                     //cutoutPercentage: 40,
                     responsive: false,
                     tooltips: {
-                        enabled: false
+                        enabled: true
                     },
                     plugins: {
                         datalabels: {
