@@ -29,8 +29,8 @@ Auth::routes();
 //Auth::route(register= falso);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/comercial', 'HomeController@comercial')->name('comercial');
-
+Route::get('/comercial', 'ComercialController@comercial')->name('getcomercial');
+Route::post('/comercial','ComercialController@comercial')->name('postcomercial');
 
 //Route::get('/temp', 'logintwoController@temp')->name('temp');
 //Route::get('/temp2', 'logintwoController@temp2')->name('temp2');

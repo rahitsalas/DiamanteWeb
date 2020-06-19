@@ -33,7 +33,7 @@
                     <ul class="nav nav-treeview">
                         @if(Auth::user()->id == "1")
                         <li class="nav-item">
-                            <a href="{{route('comercial')}}" class="nav-link">
+                            <a href="{{route('getcomercial')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Gerencia General</p>
                             </a>
@@ -73,7 +73,7 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('comercial')}}" class="nav-link">
+                            <a href="{{route('getcomercial')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Comercial</p>
                             </a>
