@@ -541,6 +541,36 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Deuda Morosa 80/20 {{$startDate->format('Y-m-d')}}</h3>
+                                {{--                                <a href="javascript:void(0);">View Report</a>--}}
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 mt-0 mb-0 pb-0">
+                            <div class="d-flex mb-0 pb-0">
+                                <p class="d-flex flex-column mb-0 pb-0">
+                                    <span class="text-bold text-lg">Total {{$dataCobranzaDeudaMorosa['total']}} Miles de Soles</span>
+                                    <span></span>
+                                </p>
+                            </div>
+
+                            <div class="position-relative">
+                                <canvas id="cobranzadeudamorosa-chart" height="200"></canvas>
+                            </div>
+                        </div>
+                        <div class="card-footer pt-0 mt-0 bg-white">
+                    <span class="users-list-date mb-0">
+                        *Otros esta compuesto por varios clientes (20%)
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -1538,6 +1568,58 @@
                                 meta.data.forEach(function(bar, index) {
                                     var data = dataset.data[index];
                                     ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                }
+            });
+
+            var ctx = document.getElementById('cobranzadeudamorosa-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: {!! json_encode($dataCobranzaDeudaMorosa['cliente']) !!},
+                    datasets: [{
+                        label: 'Miles de Soles',
+                        data:{!! json_encode($dataCobranzaDeudaMorosa['monto']) !!},
+                        backgroundColor: //[
+                            'rgba(255, 99, 132, 0.2)',
+
+                        borderColor: //[
+                            'rgb(255,99,132)',
+                        // ],
+                        borderWidth: 1,
+                        //barThickness: 8,
+                        categoryPercentage: 0.5,
+                        //barPercentage: 0.5,
+
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true
+                        }],
+                        yAxes: [{
+                            display: true,
+                        }]
+                    },
+                    responsive: true,
+                    maintainAspectRatio: true   ,
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function() {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+                            ctx.fillStyle = "#666";//'rgba(255, 159, 64, 1)';//"#666";
+                            this.data.datasets.forEach(function(dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function(bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x+15, bar._model.y+7.5);
                                 });
                             });
                         }

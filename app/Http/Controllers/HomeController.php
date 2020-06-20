@@ -52,7 +52,8 @@ class HomeController extends Controller
         $raw16 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockFamiliaParaTecho '".$firstDay."', '".$lastDay."'");
         $raw17 = DB::select("exec [DiamanteWeb].dbo.sp_data_IngresosCobranzaDiario '".$firstDay."', '".$lastDay."'");
         $raw18 = DB::select("exec [DiamanteWeb].dbo.sp_data_IngresosCobranzaAcumulado '".$firstDay."', '".$lastDay."'");
-        //dd($raw15);
+        $raw19 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaDeudaMorosa '".$firstDay."', '".$lastDay."'");
+//        dd($raw19);
 
         $dataDescargaHorno = array();
         $dataProduccionNetaPlanta = array();
@@ -72,6 +73,7 @@ class HomeController extends Controller
         $dataStockFamiliaParaTecho = array();
         $dataIngresosCobranzaDiario = array();
         $dataIngresosCobranzaAcumulado = array();
+        $dataCobranzaDeudaMorosa = array();
 
         $i =0;
         $dataDescargaHorno['total'] = 0;
@@ -249,10 +251,21 @@ class HomeController extends Controller
             $i++;
         }
 
+        $i =0;
+        $dataCobranzaDeudaMorosa['total'] = 0;
+        foreach ($raw19 as $item){
+            $dataCobranzaDeudaMorosa['cliente'][$i] = $item->cliente;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataCobranzaDeudaMorosa['monto'][$i] = round((double) $item->monto, 0, PHP_ROUND_HALF_UP);
+            $dataCobranzaDeudaMorosa['total'] += $item->monto;
+            $i++;
+        }
+        $dataCobranzaDeudaMorosa['total'] =round((double)$dataCobranzaDeudaMorosa['total'],0,PHP_ROUND_HALF_UP);
+
+
         //$dataIngresosCobranzaAcumulado['total'] =round((double)$dataIngresosCobranzaAcumulado['total'],0,PHP_ROUND_HALF_UP);
 
 
-        //dd($dataStockTotalTipoItem);
+//        dd($dataCobranzaDeudaMorosa);
 
         return view('Dashboard.home',
             compact('dataProduccionNetaPlanta','dataDescargaHorno',
@@ -264,6 +277,7 @@ class HomeController extends Controller
                 'dataStockTotalAlmacen','dataStockFamiliaEstructural',
                 'dataStockFamiliaTabiqueria','dataStockFamiliaParaTecho',
                 'dataIngresosCobranzaDiario','dataIngresosCobranzaAcumulado',
+                'dataCobranzaDeudaMorosa',
                 'startDate'));
     }
 
