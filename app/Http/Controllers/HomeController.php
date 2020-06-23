@@ -53,7 +53,10 @@ class HomeController extends Controller
         $raw17 = DB::select("exec [DiamanteWeb].dbo.sp_data_IngresosCobranzaDiario '".$firstDay."', '".$lastDay."'");
         $raw18 = DB::select("exec [DiamanteWeb].dbo.sp_data_IngresosCobranzaAcumulado '".$firstDay."', '".$lastDay."'");
         $raw19 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaDeudaMorosa '".$firstDay."', '".$lastDay."'");
-//        dd($raw19);
+        $raw20 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaClasificacion '".$firstDay."', '".$lastDay."'");
+        $raw21 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaClasificacionVencida '".$firstDay."', '".$lastDay."'");
+        $raw22 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaClasificacionxVencer '".$firstDay."', '".$lastDay."'");
+       // dd($raw20);
 
         $dataDescargaHorno = array();
         $dataProduccionNetaPlanta = array();
@@ -74,6 +77,9 @@ class HomeController extends Controller
         $dataIngresosCobranzaDiario = array();
         $dataIngresosCobranzaAcumulado = array();
         $dataCobranzaDeudaMorosa = array();
+        $dataCobranzaClasificacion = array();
+        $dataCobranzaClasificacionVencida = array();
+        $dataCobranzaClasificacionxVencer = array();
 
         $i =0;
         $dataDescargaHorno['total'] = 0;
@@ -261,11 +267,41 @@ class HomeController extends Controller
         }
         $dataCobranzaDeudaMorosa['total'] =round((double)$dataCobranzaDeudaMorosa['total'],0,PHP_ROUND_HALF_UP);
 
+        $i =0;
+        $dataCobranzaClasificacion['total'] = 0;
+        foreach ($raw20 as $item){
+            $dataCobranzaClasificacion['vencidaflag'][$i] = $item->vencidaflag;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataCobranzaClasificacion['monto'][$i] = round((double) $item->monto, 0, PHP_ROUND_HALF_UP);
+            $dataCobranzaClasificacion['total'] += $item->monto;
+            $i++;
+        }
+        $dataCobranzaClasificacion['total'] =round((double)$dataCobranzaClasificacion['total'],0,PHP_ROUND_HALF_UP);
+
+        $i =0;
+        $dataCobranzaClasificacionVencida['total'] = 0;
+        foreach ($raw21 as $item){
+            $dataCobranzaClasificacionVencida['clasificacion'][$i] = $item->clasificacion;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataCobranzaClasificacionVencida['monto'][$i] = round((double) $item->monto, 0, PHP_ROUND_HALF_UP);
+            $dataCobranzaClasificacionVencida['total'] += $item->monto;
+            $i++;
+        }
+        $dataCobranzaClasificacionVencida['total'] =round((double)$dataCobranzaClasificacionVencida['total'],0,PHP_ROUND_HALF_UP);
+
+        $i =0;
+        $dataCobranzaClasificacionxVencer['total'] = 0;
+        foreach ($raw22 as $item){
+            $dataCobranzaClasificacionxVencer['clasificacion'][$i] = $item->clasificacion;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataCobranzaClasificacionxVencer['monto'][$i] = round((double) $item->monto, 0, PHP_ROUND_HALF_UP);
+            $dataCobranzaClasificacionxVencer['total'] += $item->monto;
+            $i++;
+        }
+        $dataCobranzaClasificacionxVencer['total'] =round((double)$dataCobranzaClasificacionxVencer['total'],0,PHP_ROUND_HALF_UP);
+
 
         //$dataIngresosCobranzaAcumulado['total'] =round((double)$dataIngresosCobranzaAcumulado['total'],0,PHP_ROUND_HALF_UP);
 
 
-//        dd($dataCobranzaDeudaMorosa);
+        //dd($dataCobranzaClasificacionVencida);
 
         return view('Dashboard.home',
             compact('dataProduccionNetaPlanta','dataDescargaHorno',
@@ -277,8 +313,10 @@ class HomeController extends Controller
                 'dataStockTotalAlmacen','dataStockFamiliaEstructural',
                 'dataStockFamiliaTabiqueria','dataStockFamiliaParaTecho',
                 'dataIngresosCobranzaDiario','dataIngresosCobranzaAcumulado',
-                'dataCobranzaDeudaMorosa',
-                'startDate'));
+                'dataCobranzaDeudaMorosa','dataCobranzaClasificacion',
+                'dataCobranzaClasificacionVencida','dataCobranzaClasificacionxVencer',
+                'startDate'
+            ));
     }
 
     public function comercial()
@@ -321,36 +359,36 @@ class HomeController extends Controller
     }
 
     public function getDataReporteDescargaHorno($periodo){
-//        SELECT wtra.fechadocumento fecha, sum(wdet.cantidad)  cantidad
-//	FROM [DiamanteWeb].[dbo].[WH_TransaccionHeader] wtra
-//	left join [DiamanteWeb].[dbo].wh_transacciondetalle wdet
-//	on wtra.numerodocumento = wdet.numerodocumento
-//        and wtra.tipodocumento = wdet.tipodocumento
-//	where wtra.periodo =  @Periodo
-//	group by wtra.fechadocumento
-        //$periodo = date_create();
-        $raw = DB::table('WH_TransaccionHeader')
-            ->select('wh_transaccionHeader.fechadocumento as fecha',DB::raw('sum(wh_transacciondetalle.cantidad) as cantidad'))
-            ->join('wh_transacciondetalle', function ($join) {
-                $join->on('wh_transaccionHeader.numerodocumento', '=', 'wh_transacciondetalle.numerodocumento')
-                    ->on('wh_transaccionHeader.tipodocumento', '=', 'wh_transacciondetalle.tipodocumento');
-            })
-            ->join('wh_itemmast','wh_transacciondetalle.item','=','wh_itemmast.item')
-//            ->where('WH_TransaccionHeader.periodo',$periodo)
-            ->whereYear('WH_TransaccionHeader.fechadocumento',$periodo->format('Y'))
-            ->whereMonth('WH_TransaccionHeader.fechadocumento',$periodo->format('m'))
-            ->where('wh_itemmast.itemtipo','=','PT')
+    //        SELECT wtra.fechadocumento fecha, sum(wdet.cantidad)  cantidad
+    //	FROM [DiamanteWeb].[dbo].[WH_TransaccionHeader] wtra
+    //	left join [DiamanteWeb].[dbo].wh_transacciondetalle wdet
+    //	on wtra.numerodocumento = wdet.numerodocumento
+    //        and wtra.tipodocumento = wdet.tipodocumento
+    //	where wtra.periodo =  @Periodo
+    //	group by wtra.fechadocumento
+    //$periodo = date_create();
+    $raw = DB::table('WH_TransaccionHeader')
+    ->select('wh_transaccionHeader.fechadocumento as fecha',DB::raw('sum(wh_transacciondetalle.cantidad) as cantidad'))
+    ->join('wh_transacciondetalle', function ($join) {
+        $join->on('wh_transaccionHeader.numerodocumento', '=', 'wh_transacciondetalle.numerodocumento')
+            ->on('wh_transaccionHeader.tipodocumento', '=', 'wh_transacciondetalle.tipodocumento');
+    })
+    ->join('wh_itemmast','wh_transacciondetalle.item','=','wh_itemmast.item')
+    //            ->where('WH_TransaccionHeader.periodo',$periodo)
+    ->whereYear('WH_TransaccionHeader.fechadocumento',$periodo->format('Y'))
+    ->whereMonth('WH_TransaccionHeader.fechadocumento',$periodo->format('m'))
+    ->where('wh_itemmast.itemtipo','=','PT')
 
-//            ->whereBetween(''.[$ini,$fin])
-            ->groupBy('WH_TransaccionHeader.fechadocumento')
-//            ->sum('wh_transacciondetalle.cantidad')
-            ->get();
-//        if()
+    //            ->whereBetween(''.[$ini,$fin])
+    ->groupBy('WH_TransaccionHeader.fechadocumento')
+    //            ->sum('wh_transacciondetalle.cantidad')
+    ->get();
+    //        if()
 
-        ;
-//        DB::raw('count(*) as user_count, status')
+    ;
+    //        DB::raw('count(*) as user_count, status')
 
 
-        return $raw;
+    return $raw;
     }
 }
