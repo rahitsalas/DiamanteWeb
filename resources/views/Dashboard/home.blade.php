@@ -973,7 +973,9 @@
                                 return percentage;
                             },
                             //color: '#000000',
-                        }
+                            display: 'auto',
+                            //color: '#000000',
+                        },
                     }
                 }
             });
@@ -1028,7 +1030,9 @@
                                 return percentage;
                             },
                             //color: '#000000',
-                        }
+                            display: 'auto',
+                            //color: '#000000',
+                        },
                     }
                 }
             });
@@ -1083,7 +1087,9 @@
                                 return percentage;
                             },
                             //color: '#000000',
-                        }
+                            display: 'auto',
+                            //color: '#000000',
+                        },
                     }
                 }
             });
