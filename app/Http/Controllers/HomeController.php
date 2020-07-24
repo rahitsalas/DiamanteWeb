@@ -56,6 +56,7 @@ class HomeController extends Controller
         $raw20 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaClasificacion '".$firstDay."', '".$lastDay."'");
         $raw21 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaClasificacionVencida '".$firstDay."', '".$lastDay."'");
         $raw22 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaClasificacionxVencer '".$firstDay."', '".$lastDay."'");
+        $raw23 = DB::select("exec [DiamanteWeb].dbo.sp_data_SaldoCajaDiario '". Carbon::now()->addDays(-30)."', '".$startDate."'");
        // dd($raw20);
 
         $dataDescargaHorno = array();
@@ -80,6 +81,7 @@ class HomeController extends Controller
         $dataCobranzaClasificacion = array();
         $dataCobranzaClasificacionVencida = array();
         $dataCobranzaClasificacionxVencer = array();
+        $dataSaldoCajaDiario = array();
 
         $i =0;
         $dataDescargaHorno['total'] = 0;
@@ -298,6 +300,13 @@ class HomeController extends Controller
         $dataCobranzaClasificacionxVencer['total'] =round((double)$dataCobranzaClasificacionxVencer['total'],0,PHP_ROUND_HALF_UP);
 
 
+        $i =0;
+        foreach ($raw23 as $item){
+            $dataSaldoCajaDiario['fecha'][$i] = date_create($item->fecha)->format('d-m');//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataSaldoCajaDiario['monto'][$i] = round((double) $item->monto, 2, PHP_ROUND_HALF_UP);
+            $i++;
+        }
+
         //$dataIngresosCobranzaAcumulado['total'] =round((double)$dataIngresosCobranzaAcumulado['total'],0,PHP_ROUND_HALF_UP);
 
 
@@ -315,6 +324,7 @@ class HomeController extends Controller
                 'dataIngresosCobranzaDiario','dataIngresosCobranzaAcumulado',
                 'dataCobranzaDeudaMorosa','dataCobranzaClasificacion',
                 'dataCobranzaClasificacionVencida','dataCobranzaClasificacionxVencer',
+                'dataSaldoCajaDiario',
                 'startDate'
             ));
     }
