@@ -32,6 +32,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/comercial', 'ComercialController@comercial')->name('getcomercial');
 Route::post('/comercial','ComercialController@comercial')->name('postcomercial');
 
+Route::get('/administracion', 'AdministracionController@administracion')->name('getadministracion');
+Route::post('/administracion','AdministracionController@administracion')->name('postadministracion');
+
 //Route::get('/temp', 'logintwoController@temp')->name('temp');
 //Route::get('/temp2', 'logintwoController@temp2')->name('temp2');
 //Route::post('/temp3', 'logintwoController@temp3')->name('temp3');

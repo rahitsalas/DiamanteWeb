@@ -78,13 +78,14 @@
                                 <p>Comercial</p>
                             </a>
                         </li>
-                        @if(Auth::user()->id == "1")
+
                         <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
+                            <a href="{{route('getadministracion')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Administracion y Finanzas</p>
                             </a>
                         </li>
+                        @if(Auth::user()->id == "1")
                         <li class="nav-item">
                             <a href="pages/charts/inline.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

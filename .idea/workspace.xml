@@ -11,7 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc3beb86-bc4d-43b5-856b-f0fa7cdd4c84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/Dashboard/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Dashboard/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/Dashboard/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/Dashboard/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,11 +135,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/lang" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/Dashboard/Reportes" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\diamante\resources\views\Dashboard\Reportes" />
       <recent name="C:\laragon\www\diamante\resources\lang" />
     </key>
   </component>
@@ -171,7 +174,9 @@
       <workItem from="1594658819347" duration="1672000" />
       <workItem from="1594992598635" duration="857000" />
       <workItem from="1595255459497" duration="2564000" />
-      <workItem from="1595547448073" duration="3900000" />
+      <workItem from="1595547448073" duration="4494000" />
+      <workItem from="1596645799365" duration="2631000" />
+      <workItem from="1597681473739" duration="2243000" />
     </task>
     <servers />
   </component>
@@ -191,10 +196,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="379" y="69" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1592426209646">
-      <screen x="0" y="0" width="1299" height="629" />
+    <state x="399" y="72" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597683404149">
+      <screen x="0" y="0" width="1366" height="656" />
     </state>
     <state x="379" y="69" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1299.629@0.0.1299.629" timestamp="1592426209646" />
+    <state x="399" y="72" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.656@0.0.1366.656" timestamp="1597683404149" />
     <state x="92" y="92" width="1115" height="445" key="DiffContextDialog" timestamp="1589932778091">
       <screen x="0" y="0" width="1299" height="629" />
     </state>
