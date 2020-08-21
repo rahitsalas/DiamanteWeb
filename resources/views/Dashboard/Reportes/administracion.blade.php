@@ -4,39 +4,32 @@
         <div class="container-fluid">
            <div class="row mt-2 mb-2">
                 <div class="col-sm-6 mb-0">
-                    <h2 class="m-0 text-dark">Administración y Finanzas</h2>
+                    <h2 class="m-0 text-dark">Logística</h2>
                 </div>
-                <div class="col-sm-6 mb-0">
-{{--                    <form method="POST" action="{{ route('comercialprocesar') }}">--}}
-{{--                        <div class="row">--}}
-{{--                            <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>--}}
-{{--                            <textarea></textarea>--}}
-{{--                            <button type="submit" class="btn btn-primary">Procesar</button>--}}
+{{--                <div class="col-sm-6 mb-0">--}}
+{{--                    <form method="POST" action="{{ route('postadministracion') }}" class="col-sm-10">--}}
+{{--                        @csrf--}}
+{{--                        <div class="row ">--}}
+{{--                            <div class="col-sm-10 ">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        <div class="input-group-prepend">--}}
+{{--                                              <span class="input-group-text">--}}
+{{--                                                <i class="far fa-calendar-alt"></i>--}}
+{{--                                              </span>--}}
+{{--                                        </div>--}}
+{{--                                        <input type="text" name="fechas" class="form-control float-right" id="filtrofecha" >--}}
+
+{{--                                    </div>--}}
+{{--                                    <!-- /.input group -->--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-sm-2">--}}
+{{--                                <button type="submit" class="btn btn-primary">Procesar</button>--}}
+{{--                            </div>--}}
 {{--                        </div>--}}
 {{--                    </form>--}}
-                    <form method="POST" action="{{ route('postadministracion') }}" class="col-sm-10">
-                        @csrf
-                        <div class="row ">
-                            <div class="col-sm-10 ">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                              <span class="input-group-text">
-                                                <i class="far fa-calendar-alt"></i>
-                                              </span>
-                                        </div>
-                                        <input type="text" name="fechas" class="form-control float-right" id="filtrofecha" >
-
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <button type="submit" class="btn btn-primary">Procesar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+{{--                </div>--}}
             </div>
 
             <div class="row">
@@ -265,47 +258,47 @@
             //$('#reservation').daterangepicker()
             //Date range picker with time picker
 
-            $('#filtrofecha').daterangepicker({
-                "locale": {
-
-                    "format": "DD/MM/YYYY",
-                    "separator": " - ",
-                    "applyLabel": "Ok",
-                    "cancelLabel": "Cancel",
-                    "fromLabel": "Desde",
-                    "toLabel": "Hasta",
-                    minDate: '01/01/2012',
-                    maxDate: '12/31/2014',
-                    dateLimit: { days: 60 },
-                    // "customRangeLabel": "Custom",
-                    // "minYear": "2019",
-                    // "maxYear": parseInt(moment().format('YYYY'),10),
-                    "daysOfWeek": [
-                        "Do",
-                        "Lu",
-                        "Ma",
-                        "Mi",
-                        "Ju",
-                        "Vi",
-                        "Sa"
-                    ],
-                    "monthNames": [
-                        "Enero",
-                        "Febrero",
-                        "Marzo",
-                        "Abril",
-                        "Mayo",
-                        "Junio",
-                        "Julio",
-                        "Agusto",
-                        "Septiembre",
-                        "Octubre",
-                        "Noviembre",
-                        "Diciembre"
-                    ],
-                    "firstDay": 1
-                }
-            })
+            // $('#filtrofecha').daterangepicker({
+            //     "locale": {
+            //
+            //         "format": "DD/MM/YYYY",
+            //         "separator": " - ",
+            //         "applyLabel": "Ok",
+            //         "cancelLabel": "Cancel",
+            //         "fromLabel": "Desde",
+            //         "toLabel": "Hasta",
+            //         minDate: '01/01/2012',
+            //         maxDate: '12/31/2014',
+            //         dateLimit: { days: 60 },
+            //         // "customRangeLabel": "Custom",
+            //         // "minYear": "2019",
+            //         // "maxYear": parseInt(moment().format('YYYY'),10),
+            //         "daysOfWeek": [
+            //             "Do",
+            //             "Lu",
+            //             "Ma",
+            //             "Mi",
+            //             "Ju",
+            //             "Vi",
+            //             "Sa"
+            //         ],
+            //         "monthNames": [
+            //             "Enero",
+            //             "Febrero",
+            //             "Marzo",
+            //             "Abril",
+            //             "Mayo",
+            //             "Junio",
+            //             "Julio",
+            //             "Agusto",
+            //             "Septiembre",
+            //             "Octubre",
+            //             "Noviembre",
+            //             "Diciembre"
+            //         ],
+            //         "firstDay": 1
+            //     }
+            // })
 
 
             var ctx = document.getElementById('ordencompraserviciosoles-chart').getContext('2d');
@@ -556,6 +549,9 @@
                     ]
                 },
                 options: {
+                    tooltips: {
+                        enabled: false
+                    },
                     scales: {
                         xAxes: [{
                             display: true,
@@ -582,8 +578,11 @@
                                 }
                                 return true;
                             }
-                        }
-                    }
+                        },
+                        onClick: (e) => e.stopPropagation()
+                    },
+
+
                     // legend: {
                     //     labels: {
                     //         filter: function(item, chart) {

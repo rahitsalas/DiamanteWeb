@@ -173,7 +173,7 @@ class AdministracionController extends Controller
                 //$dataDespachoDiaroMillar['fecha'][$i] = date_create($item->fecha)->format('d-m');
                 $dataOrdenCompraServicioMixActualOS['porcentaje'][$j] = round((double)$item->porcentaje, 0, PHP_ROUND_HALF_UP);
                 $dataOrdenCompraServicioMixActualOS['clasificacion'] = $item->clasificacion;
-                $dataOrdenCompraServicioMixActualOS['mes'][$j] = (string)($startDate->year-1).' '.$item->mesdescripcion.' '.(string)($startDate->year);
+                $dataOrdenCompraServicioMixActualOS['mes'][$j] = substr((string)($startDate->year-1),2,2).' '.substr($item->mesdescripcion,0,3).'. '.substr((string)($startDate->year),2,2);
                 $j++;
             }
             elseif((string)$item->año === (string)($startDate->year-1) and $item->clasificacion == 'Orden de Servicio'){
