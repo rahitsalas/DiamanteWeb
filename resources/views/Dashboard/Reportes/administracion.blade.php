@@ -376,35 +376,35 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card ">
-                        <div class="card-header border-0">
-                            <div class="d-flex justify-content-between">
-                                <h3 class="card-title">Obligaciones Pendientes 80/20 * Cuenta 43 * {{$startDate->format('Y-m-d')}}</h3>
-                                {{--                                <a href="javascript:void(0);">View Report</a>--}}
-                            </div>
-                        </div>
-                        <div class="card-body pt-0 mt-0 mb-0 pb-0">
-                            <div class="d-flex mb-0 pb-0">
-                                <p class="d-flex flex-column mb-0 pb-0">
-                                    <span class="text-bold text-lg">Total {{$dataPagosPendientes43['total']}} Miles de Soles</span>
-                                    <span></span>
-                                </p>
-                            </div>
+{{--            <div class="row">--}}
+{{--                <div class="col-md-12">--}}
+{{--                    <div class="card ">--}}
+{{--                        <div class="card-header border-0">--}}
+{{--                            <div class="d-flex justify-content-between">--}}
+{{--                                <h3 class="card-title">Obligaciones Pendientes 80/20 * Cuenta 43 * {{$startDate->format('Y-m-d')}}</h3>--}}
+{{--                                --}}{{--                                <a href="javascript:void(0);">View Report</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="card-body pt-0 mt-0 mb-0 pb-0">--}}
+{{--                            <div class="d-flex mb-0 pb-0">--}}
+{{--                                <p class="d-flex flex-column mb-0 pb-0">--}}
+{{--                                    <span class="text-bold text-lg">Total {{$dataPagosPendientes43['total']}} Miles de Soles</span>--}}
+{{--                                    <span></span>--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
 
-                            <div class="position-relative">
-                                <canvas id="pagospendientes43-chart" height="200"></canvas>
-                            </div>
-                        </div>
-                        <div class="card-footer pt-0 mt-0 bg-white">
-                            <span class="users-list-date mb-0">
-                                *Otros esta compuesto por varios proveedores (20%) *Solo Obligaciones Vencidas
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{{--                            <div class="position-relative">--}}
+{{--                                <canvas id="pagospendientes43-chart" height="200"></canvas>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="card-footer pt-0 mt-0 bg-white">--}}
+{{--                            <span class="users-list-date mb-0">--}}
+{{--                                *Otros esta compuesto por varios proveedores (20%) *Solo Obligaciones Vencidas--}}
+{{--                            </span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
 
         </div>
@@ -1193,57 +1193,57 @@
             });
 
 
-            var ctx = document.getElementById('pagospendientes43-chart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                // plugins: [ChartDataLabels],
-                type: 'horizontalBar',
-                data: {
-                    labels: {!! json_encode($dataPagosPendientes43['proveedor']) !!},
-                    datasets: [{
-                        label: 'Miles de Soles',
-                        data:{!! json_encode($dataPagosPendientes43['monto']) !!},
-                        backgroundColor: //[
-                            'rgba(54, 162, 235, 0.2)',
+            {{--var ctx = document.getElementById('pagospendientes43-chart').getContext('2d');--}}
+            {{--var myChart = new Chart(ctx, {--}}
+            {{--    // plugins: [ChartDataLabels],--}}
+            {{--    type: 'horizontalBar',--}}
+            {{--    data: {--}}
+            {{--        labels: {!! json_encode($dataPagosPendientes43['proveedor']) !!},--}}
+            {{--        datasets: [{--}}
+            {{--            label: 'Miles de Soles',--}}
+            {{--            data:{!! json_encode($dataPagosPendientes43['monto']) !!},--}}
+            {{--            backgroundColor: //[--}}
+            {{--                'rgba(54, 162, 235, 0.2)',--}}
 
-                        borderColor: //[
-                            'rgba(54, 162, 235, 1)',
-                        borderWidth: 1,
-                        // barThickness: 15,
-                        // categoryPercentage: 0.5,
-                        // barPercentage: 0.5,
+            {{--            borderColor: //[--}}
+            {{--                'rgba(54, 162, 235, 1)',--}}
+            {{--            borderWidth: 1,--}}
+            {{--            // barThickness: 15,--}}
+            {{--            // categoryPercentage: 0.5,--}}
+            {{--            // barPercentage: 0.5,--}}
 
-                    }]
-                },
-                options: {
-                    scales: {
-                        xAxes: [{
-                            display: true,
-                        }],
-                        yAxes: [{
-                            display: true,
-                        }]
-                    },
-                    responsive: true,
-                    maintainAspectRatio: false   ,
-                    "animation": {
-                        "duration": 1,
-                        "onComplete": function() {
-                            var chartInstance = this.chart,
-                                ctx = chartInstance.ctx;
-                            ctx.textAlign = 'center';
-                            ctx.textBaseline = 'bottom';
-                            ctx.fillStyle = "#666";//'rgba(255, 159, 64, 1)';//"#666";
-                            this.data.datasets.forEach(function(dataset, i) {
-                                var meta = chartInstance.controller.getDatasetMeta(i);
-                                meta.data.forEach(function(bar, index) {
-                                    var data = dataset.data[index];
-                                    ctx.fillText(data, bar._model.x+15, bar._model.y+7);
-                                });
-                            });
-                        }
-                    },
-                }
-            });
+            {{--        }]--}}
+            {{--    },--}}
+            {{--    options: {--}}
+            {{--        scales: {--}}
+            {{--            xAxes: [{--}}
+            {{--                display: true,--}}
+            {{--            }],--}}
+            {{--            yAxes: [{--}}
+            {{--                display: true,--}}
+            {{--            }]--}}
+            {{--        },--}}
+            {{--        responsive: true,--}}
+            {{--        maintainAspectRatio: false   ,--}}
+            {{--        "animation": {--}}
+            {{--            "duration": 1,--}}
+            {{--            "onComplete": function() {--}}
+            {{--                var chartInstance = this.chart,--}}
+            {{--                    ctx = chartInstance.ctx;--}}
+            {{--                ctx.textAlign = 'center';--}}
+            {{--                ctx.textBaseline = 'bottom';--}}
+            {{--                ctx.fillStyle = "#666";//'rgba(255, 159, 64, 1)';//"#666";--}}
+            {{--                this.data.datasets.forEach(function(dataset, i) {--}}
+            {{--                    var meta = chartInstance.controller.getDatasetMeta(i);--}}
+            {{--                    meta.data.forEach(function(bar, index) {--}}
+            {{--                        var data = dataset.data[index];--}}
+            {{--                        ctx.fillText(data, bar._model.x+15, bar._model.y+7);--}}
+            {{--                    });--}}
+            {{--                });--}}
+            {{--            }--}}
+            {{--        },--}}
+            {{--    }--}}
+            {{--});--}}
 
             {{--var ctx = document.getElementById('despachodiariosoles-chart').getContext('2d');--}}
             {{--var myChart = new Chart(ctx, {--}}

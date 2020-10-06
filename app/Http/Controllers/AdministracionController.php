@@ -43,12 +43,12 @@ class AdministracionController extends Controller
         $raw4 = DB::select("exec [DiamanteWeb].dbo.sp_data_OrdenCompraServicioCantidad ");
         $raw5 = DB::select("exec [DiamanteWeb].dbo.sp_data_OrdenCompraServicioMix ");
         $raw6 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionPendiente42 '".$startDate."'");
-
+//        dd($startDate,$raw1,$raw2,$raw3,$raw4,$raw5,$raw6);
         $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionClasificacion '".$startDate."'");
         $raw8 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionClasificacionVencida '".$startDate."'");
         $raw9 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionClasificacionxVencer '".$startDate."'");
         $raw10 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionClasificacionDeuda '".$startDate."'");
-        $raw11 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionPendiente43 '".$startDate."'");
+//        $raw11 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionPendiente43 '".$startDate."'");
 //         dd($raw11,$raw6);
 
        // $raw5 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoDiarioMillar '".$firstDay."', '".$lastDay."'");
@@ -299,15 +299,15 @@ class AdministracionController extends Controller
         }
         $dataPagosClasificacionFlujoVencida['total'] =round((double)$dataPagosClasificacionFlujoVencida['total'],0,PHP_ROUND_HALF_UP);
 
-        $i =0;
-        $dataPagosPendientes43['total'] = 0;
-        foreach ($raw11 as $item){
-            $dataPagosPendientes43['proveedor'][$i] = $item->proveedor;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataPagosPendientes43['monto'][$i] = round((double) $item->monto, 0, PHP_ROUND_HALF_UP);
-            $dataPagosPendientes43['total'] += $item->monto;
-            $i++;
-        }
-        $dataPagosPendientes43['total'] =round((double)$dataPagosPendientes43['total'],0,PHP_ROUND_HALF_UP);
+//        $i =0;
+//        $dataPagosPendientes43['total'] = 0;
+//        foreach ($raw11 as $item){
+//            $dataPagosPendientes43['proveedor'][$i] = $item->proveedor;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataPagosPendientes43['monto'][$i] = round((double) $item->monto, 0, PHP_ROUND_HALF_UP);
+//            $dataPagosPendientes43['total'] += $item->monto;
+//            $i++;
+//        }
+//        $dataPagosPendientes43['total'] =round((double)$dataPagosPendientes43['total'],0,PHP_ROUND_HALF_UP);
 
 //        dd($dataPagosPendientes43,$dataPagosPendientes42);
 
@@ -345,8 +345,8 @@ class AdministracionController extends Controller
             'dataOrdenCompraServicioMixActualOC','dataOrdenCompraServicioMixPasadoOC',
             'dataPagosPendientes42','dataPagosClasificacion',
             'dataPagosClasificacionxVencer','dataPagosClasificacionVencida',
-            'dataPagosClasificacionFlujoVencida','dataPagosClasificacionFlujoxVencer',
-            'dataPagosPendientes43'
+            'dataPagosClasificacionFlujoVencida','dataPagosClasificacionFlujoxVencer'
+//            ,            'dataPagosPendientes43'
         ));
     }
 }
