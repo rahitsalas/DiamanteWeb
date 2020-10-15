@@ -44,6 +44,21 @@ Route::post('/administracion','AdministracionController@administracion')->name('
 //});
 
 
+Route::prefix('/administracion')->group(function (){
+    Route::get('/almacen','AdministracionController@almacen')->name('getadministracionalmacen');
+    Route::get('/contabilidad','AdministracionController@contabilidad')->name('getadministracioncontabilidad');
+    Route::get('/compras','AdministracionController@compras')->name('getadministracioncompras');
+    Route::get('/creditos','AdministracionController@creditos')->name('getadministracioncreditos');
+    Route::get('/finanzas','AdministracionController@finanzas')->name('getadministracionfinanzas');
+    Route::get('/tesoreria','AdministracionController@tesoreria')->name('getadministraciontesoreria');
+
+//    Route::post('updateprofile','SellerController@updateprofile')->name('updateS');
+//    Route::post('updatepass','SellerController@updatepass')->name('updatepassS');
+//    Route::post('updatewallet','SellerController@updatewallet')->name('updateWS');
+
+
+});
+
 
 Route::prefix('backoffice/vendedor')->group(function (){
     Route::get('/deposito','SellerController@deposit')->name('sdeposit');

@@ -71,8 +71,10 @@ class ComercialController extends Controller
         }
         $dataDespachoDiaroSoles['total'] =round((double)$dataDespachoDiaroSoles['total'],0,PHP_ROUND_HALF_UP);
 
+//        dd($raw6,$dataDespachoDiaroSoles,
+//            json_encode($dataDespachoDiaroSoles),json_encode($raw6));
 
         return view ('Dashboard.Reportes.comercial',compact('startDate',
-            'dataDespachoDiaroMillar','dataDespachoDiaroSoles'          ));
+            'dataDespachoDiaroMillar','dataDespachoDiaroSoles','raw6'          ));
     }
 }

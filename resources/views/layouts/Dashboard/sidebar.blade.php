@@ -24,7 +24,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-th"></i>
                         <p>
                             Reportes
                             <i class="right fas fa-angle-left"></i>
@@ -72,19 +72,108 @@
                     </a>
 
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('getcomercial')}}" class="nav-link">
+
+
+                        <li class="nav-item has-treeview">
+                            <a
+{{--                                href="{{route('getadministracion')}}" --}}
+                                class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Comercial</p>
+                                <p>Adm. y Finanzas</p>
+                                <i class="right fas fa-angle-left"></i>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a
+                                        href="#"
+{{--                                        href="{{route('getadministracionalmacen')}}" --}}
+                                        class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Almacén</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="#"
+{{--                                       href="{{route('getadministracioncontabilidad')}}" --}}
+                                       class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Contabilidad</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{route('getadministracioncompras')}}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Compras</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a
+                                        href="#"
+{{--                                        href="{{route('getadministracioncreditos')}}"--}}
+                                        class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Créditos y Cobranzas</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a
+                                        href="#"
+{{--                                        href="{{route('getadministracionfinanzas')}}" --}}
+                                        class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Finanzas</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{route('getadministraciontesoreria')}}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Tesorería</p>
+                                    </a>
+                                </li>
+
+                            </ul>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="{{route('getadministracion')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Administracion y Finanzas</p>
-                            </a>
-                        </li>
+                        @if(Auth::user()->id == "1")
+                            <li class="nav-item has-treeview">
+                                <a
+                                    {{--                                href="{{route('getcomercial')}}" --}}
+                                    class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Comercial</p>
+                                    <i class="right fas fa-angle-left"></i>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Créd. y Cobr.</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Compras</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Despachos</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        @endif
+
                         @if(Auth::user()->id == "1")
                         <li class="nav-item">
                             <a href="pages/charts/inline.html" class="nav-link">
