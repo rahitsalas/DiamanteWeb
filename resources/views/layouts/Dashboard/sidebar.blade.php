@@ -111,8 +111,8 @@
 
                                 <li class="nav-item">
                                     <a
-                                        href="#"
-{{--                                        href="{{route('getadministracioncreditos')}}"--}}
+{{--                                        href="#"--}}
+                                        href="{{route('getadministracioncreditos')}}"
                                         class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Créditos y Cobranzas</p>
