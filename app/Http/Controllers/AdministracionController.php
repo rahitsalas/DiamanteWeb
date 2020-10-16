@@ -1269,48 +1269,54 @@ class AdministracionController extends Controller
         $j =0;
         foreach ($raw2 as $item){
             $dataIndiceMorosidad01['fecha'][$j] = date_create($item->fecha)->format('d-m');
-            $dataIndiceMorosidad01['indice'][$j] = $item->Indice;
-            $dataIndiceMorosidad01['total'][$j] = round((double)$item->Total/1000, 0);
+            $dataIndiceMorosidad01['indice'][$j] = round((double)$item->Indice,0);
+            $dataIndiceMorosidad01['total'][$j] = round((double)$item->TotalPendiente/1000, 0);
+            $dataIndiceMorosidad01['objetivo'][$j] = round((double)$item->Objetivo, 0);
             $j++;
         }
 
         $j =0;
         foreach ($raw3 as $item){
             $dataIndiceMorosidad02['fecha'][$j] = date_create($item->fecha)->format('d-m');
-            $dataIndiceMorosidad02['indice'][$j] = $item->Indice;
-            $dataIndiceMorosidad02['total'][$j] = round((double)$item->Total/1000, 0);
+            $dataIndiceMorosidad02['indice'][$j] = round((double)$item->Indice,0);
+            $dataIndiceMorosidad02['total'][$j] = round((double)$item->TotalPendiente/1000, 0);
+            $dataIndiceMorosidad02['objetivo'][$j] = round((double)$item->Objetivo, 0);
             $j++;
         }
 
         $j =0;
         foreach ($raw4 as $item){
             $dataIndiceMorosidad05['fecha'][$j] = date_create($item->fecha)->format('d-m');
-            $dataIndiceMorosidad05['indice'][$j] = $item->Indice;
-            $dataIndiceMorosidad05['total'][$j] = round((double)$item->Total/1000, 0);
+            $dataIndiceMorosidad05['indice'][$j] = round((double)$item->Indice,0);
+            $dataIndiceMorosidad05['total'][$j] = round((double)$item->TotalPendiente/1000, 0);
+            $dataIndiceMorosidad05['objetivo'][$j] = round((double)$item->Objetivo, 0);
             $j++;
         }
 
         $j =0;
         foreach ($raw5 as $item){
             $dataIndiceMorosidad06['fecha'][$j] = date_create($item->fecha)->format('d-m');
-            $dataIndiceMorosidad06['indice'][$j] = $item->Indice;
-            $dataIndiceMorosidad06['total'][$j] = round((double)$item->Total/1000, 0);
+            $dataIndiceMorosidad06['indice'][$j] = round((double)$item->Indice,0);
+            $dataIndiceMorosidad06['total'][$j] = round((double)$item->TotalPendiente/1000, 0);
+            $dataIndiceMorosidad06['objetivo'][$j] = round((double)$item->Objetivo, 0);
             $j++;
         }
 
         $j =0;
         foreach ($raw6 as $item){
             $dataIndiceMorosidad12['fecha'][$j] = date_create($item->fecha)->format('d-m');
-            $dataIndiceMorosidad12['indice'][$j] = $item->Indice;
-            $dataIndiceMorosidad12['total'][$j] = round((double)$item->Total/1000, 0);
+            $dataIndiceMorosidad12['indice'][$j] = round((double)$item->Indice,0);
+            $dataIndiceMorosidad12['total'][$j] = round((double)$item->TotalPendiente/1000, 0);
+            $dataIndiceMorosidad12['objetivo'][$j] = round((double)$item->Objetivo, 0);
             $j++;
         }
 
         $j =0;
         foreach ($raw7 as $item){
             $dataIndiceMorosidad13['fecha'][$j] = date_create($item->fecha)->format('d-m');
-            $dataIndiceMorosidad13['indice'][$j] = $item->Indice;
-            $dataIndiceMorosidad13['total'][$j] = round((double)$item->Total/1000, 0);
+            $dataIndiceMorosidad13['indice'][$j] = round((double)$item->Indice,0);
+            $dataIndiceMorosidad13['total'][$j] = round((double)$item->TotalPendiente/1000, 0);
+            $dataIndiceMorosidad13['objetivo'][$j] = round((double)$item->Objetivo, 0);
             $j++;
         }
 //        dd($dataIndiceMorosidad00,$dataIndiceMorosidad01
