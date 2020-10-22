@@ -111,6 +111,31 @@
                    </div>
                </div>
 
+               <div class="col-12">
+                   <div class="card">
+                       <div class="card-header">
+                           <h3 class="card-title">Distribución de Deuda Vencida</h3>
+                       </div>
+                       <!-- /.card-header -->
+                       <div class="card-body">
+                           <table id="example2" class="table table-bordered table-display"  >
+                               <thead>
+                               <tr>
+                                   <th>CODIGO</th>
+                                   <th>SEGMENTO</th>
+                                   <th>DIAS VENCIMIENTO</th>
+                                   <th>TOTAL</th>
+                                   <th>%</th>
+                               </tr>
+                               </thead>
+                               <tbody>
+                               </tbody>
+                           </table>
+                       </div>
+                       <!-- /.card-body -->
+                   </div>
+               </div>
+
 
 
         </div>
@@ -1121,6 +1146,55 @@
                     maintainAspectRatio: false,
                 }
             });
+
+            function commaSeparateNumber(val) {
+                while (/(\d+)(\d{3})/.test(val.toString())) {
+                    val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+                }
+                return val;
+            };
+
+            $("#example2").DataTable({
+                data:{!! json_encode($dataIndiceMorisidadDetalle00) !!},
+
+                columns: [
+                    { data: 'TipoCliente' },
+                    { data: 'TipoClienteDescripcion' },
+                    { data: 'clasificacion' },
+                    { data: 'montopendiente' },
+                    { data: 'porcentaje' },
+
+                ],
+                columnDefs: [
+                    { render: function ( data, type, row ) {
+                            return (100 * data).toFixed(2)+'%';
+                        },
+                        targets: [ 4 ],
+
+                    },
+                    { render: function ( data, type, row ) {
+                            return commaSeparateNumber((1 * data).toFixed(2));
+                        },
+                        targets: [ 3 ]
+
+                    },
+                    {className: "text-right", targets: [ 3,4 ]}
+                ],
+                ordering: false,
+                searching: false,
+                fixedColumns:   true,
+                 dom: 'Bfrtip',
+                buttons: [
+                    // 'copy', 'csv',
+                    'excel',
+                    // 'pdf', 'print'
+                ],
+                order: [[1,'desc']],
+                paging: false,
+                info: false
+
+            });
+
         }
     </script>
 

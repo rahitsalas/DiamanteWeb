@@ -154,80 +154,10 @@
                                     <tr>
                                         <th>fecha</th>
                                         <th>cantidad</th>
-{{--                                        <th>3</th>--}}
-{{--                                        <th>4</th>--}}
-{{--                                        <th>5</th>--}}
-{{--                                        <th>6</th>--}}
                                     </tr>
                                     </thead>
                                     <tbody>
-{{--                                    @foreach($raw6 as $item)--}}
-{{--                                    <tr>--}}
-{{--                                        <td>{{$item->fecha}}</td>--}}
-{{--                                        <td>{{$item->cantidad}}</td>--}}
-{{--                                        <td></td>--}}
-{{--                                        <td></td>--}}
-{{--                                        <td></td>--}}
-{{--                                        <td></td>--}}
-{{--                                    </tr>--}}
-{{--                                    @endforeach--}}
                                     </tbody>
-{{--                                    <thead></thead>--}}
-{{--                                    <tbody></tbody>--}}
-{{--                                    <tr>--}}
-{{--                                        <th>Column 1</th>--}}
-{{--                                        <th>Column 2</th>--}}
-{{--                                    </tr>--}}
-{{--                                    </thead>--}}
-{{--                                    <tbody>--}}
-{{--                                    <tr>--}}
-{{--                                        <td>Row 1 Data 1</td>--}}
-{{--                                        <td>Row 1 Data 2</td>--}}
-{{--                                    </tr>--}}
-{{--                                    <tr>--}}
-{{--                                        <td>Row 2 Data 1</td>--}}
-{{--                                        <td>Row 2 Data 2</td>--}}
-{{--                                    </tr>--}}
-{{--                                    </tbody>--}}
-{{--                                    <thead>--}}
-{{--                                    <tr>--}}
-{{--                                        <th>Rendering engine</th>--}}
-{{--                                        <th>Browser</th>--}}
-{{--                                        <th>Platform(s)</th>--}}
-{{--                                        <th>Engine version</th>--}}
-{{--                                        <th>CSS grade</th>--}}
-{{--                                    </tr>--}}
-{{--                                    </thead>--}}
-{{--                                    <tbody>--}}
-{{--                                    <tr>--}}
-{{--                                        <td>Trident</td>--}}
-{{--                                        <td>Internet--}}
-{{--                                            Explorer 4.0--}}
-{{--                                        </td>--}}
-{{--                                        <td>Win 95+</td>--}}
-{{--                                        <td> 4</td>--}}
-{{--                                        <td>X</td>--}}
-{{--                                    </tr>--}}
-{{--                                    <tr>--}}
-{{--                                        <td>Trident</td>--}}
-{{--                                        <td>Internet--}}
-{{--                                            Explorer 5.0--}}
-{{--                                        </td>--}}
-{{--                                        <td>Win 95+</td>--}}
-{{--                                        <td>5</td>--}}
-{{--                                        <td>C</td>--}}
-{{--                                    </tr>--}}
-
-{{--                                    </tbody>--}}
-{{--                                    <tfoot>--}}
-{{--                                    <tr>--}}
-{{--                                        <th>Rendering engine</th>--}}
-{{--                                        <th>Browser</th>--}}
-{{--                                        <th>Platform(s)</th>--}}
-{{--                                        <th>Engine version</th>--}}
-{{--                                        <th>CSS grade</th>--}}
-{{--                                    </tr>--}}
-{{--                                    </tfoot>--}}
                                 </table>
                             </div>
                             <!-- /.card-body -->

@@ -1246,6 +1246,10 @@ class AdministracionController extends Controller
         $raw6 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidad '12'"); //FE
         $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidad '13'"); //DI
 
+        $dataIndiceMorisidadDetalle00 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '00'");
+
+
+//        dd($dataIndiceMorisidadDetalle);
 
         $dataIndiceMorosidad00 = array();
         $dataIndiceMorosidad01 = array();
@@ -1327,7 +1331,8 @@ class AdministracionController extends Controller
         return view ('Dashboard.Reportes.Administracion.creditoscobranzas',compact('startDate',
             'dataIndiceMorosidad00','dataIndiceMorosidad01','dataIndiceMorosidad02',
             'dataIndiceMorosidad05', 'dataIndiceMorosidad06',
-            'dataIndiceMorosidad12', 'dataIndiceMorosidad13'
+            'dataIndiceMorosidad12', 'dataIndiceMorosidad13',
+            'dataIndiceMorisidadDetalle00'
 
 //            ,
 //            'dataOrdenCompraServicioCantidadActual','dataOrdenCompraServicioCantidadPasado',
