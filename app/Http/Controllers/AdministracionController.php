@@ -1247,6 +1247,12 @@ class AdministracionController extends Controller
         $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidad '13'"); //DI
 
         $dataIndiceMorisidadDetalle00 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '00'");
+        $dataIndiceMorisidadDetalle01 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '01'");
+        $dataIndiceMorisidadDetalle02 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '02'");
+        $dataIndiceMorisidadDetalle05 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '05'");
+        $dataIndiceMorisidadDetalle06 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '06'");
+        $dataIndiceMorisidadDetalle12 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '12'");
+        $dataIndiceMorisidadDetalle13 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '13'");
 
 
 //        dd($dataIndiceMorisidadDetalle);
@@ -1332,7 +1338,9 @@ class AdministracionController extends Controller
             'dataIndiceMorosidad00','dataIndiceMorosidad01','dataIndiceMorosidad02',
             'dataIndiceMorosidad05', 'dataIndiceMorosidad06',
             'dataIndiceMorosidad12', 'dataIndiceMorosidad13',
-            'dataIndiceMorisidadDetalle00'
+            'dataIndiceMorisidadDetalle00','dataIndiceMorisidadDetalle01','dataIndiceMorisidadDetalle02',
+            'dataIndiceMorisidadDetalle05','dataIndiceMorisidadDetalle06','dataIndiceMorisidadDetalle12',
+            'dataIndiceMorisidadDetalle13'
 
 //            ,
 //            'dataOrdenCompraServicioCantidadActual','dataOrdenCompraServicioCantidadPasado',
