@@ -380,7 +380,7 @@
                             type: 'linear',
                             position: 'left',
                             ticks: {
-                                max: 25,
+                                max: 40,
                                 min: 0
                             },
                             gridLines: {
@@ -391,7 +391,7 @@
                             type: 'linear',
                             position: 'right',
                             ticks: {
-                                max: 500,
+                                max: 1000,
                                 min: 0
                             },
                             gridLines: {
@@ -666,7 +666,7 @@
                             type: 'linear',
                             position: 'left',
                             ticks: {
-                                max: 50,
+                                max: 100,
                                 min: 0
                             },
                             gridLines: {
@@ -677,7 +677,7 @@
                             type: 'linear',
                             position: 'right',
                             ticks: {
-                                max: 20,
+                                max: 40,
                                 min: 0
                             },
                             gridLines: {
@@ -809,7 +809,7 @@
                             type: 'linear',
                             position: 'left',
                             ticks: {
-                                max: 30,
+                                max: 50,
                                 min: 0
                             },
                             gridLines: {
@@ -820,7 +820,7 @@
                             type: 'linear',
                             position: 'right',
                             ticks: {
-                                max: 100,
+                                max: 300,
                                 min: 0
                             },
                             gridLines: {
@@ -1238,7 +1238,7 @@
                             type: 'linear',
                             position: 'left',
                             ticks: {
-                                max: 16,
+                                max: 30,
                                 min: 0
                             },
                             gridLines: {
@@ -1249,7 +1249,7 @@
                             type: 'linear',
                             position: 'right',
                             ticks: {
-                                max: 140,
+                                max: 250,
                                 min: 0
                             },
                             gridLines: {
