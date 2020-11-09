@@ -167,41 +167,50 @@
                         },
 
 
-
-
-
-                        // {
-                        {{--    label: {!! json_encode($dataOrdenCompraServicioMixPasadoOS['clasificacion']) !!},--}}
-                        {{--    data:{!! json_encode($dataOrdenCompraServicioMixPasadoOS['porcentaje']) !!},--}}
-                        {{--    backgroundColor: //[--}}
-                        {{--        'rgba(255, 99, 132, 0.2)',--}}
-
-                        {{--    borderColor: //[--}}
-                        {{--        'rgba(255, 99, 132, 1)',--}}
-                        {{--    borderWidth: 1,--}}
-                        {{--    stack: 'OrdenCompra'--}}
-                        {{--},--}}
-
-                        {{--{--}}
-                        {{--    label: {!! json_encode($dataOrdenCompraServicioMixActualOS['clasificacion']) !!},--}}
-                        {{--    label: 'OC',--}}
-                        {{--    data:{!! json_encode($dataOrdenCompraServicioMixActualOS['porcentaje']) !!},--}}
-                        {{--    backgroundColor: //[--}}
-                        {{--        'rgba(255, 99, 132, 0.2)',--}}
-
-                        {{--    borderColor: //[--}}
-                        {{--        'rgba(255, 99, 132, 1)',--}}
-                        {{--    borderWidth: 1,--}}
-                        {{--    stack: 'OrdenServicio',--}}
-                        {{--    // hiddenLegend: true,--}}
-                        {{--},--}}
-
-
                     ]
                 },
                 options: {
                     tooltips: {
-                        enabled: true
+                        // enabled: true,
+                        mode: 'label',
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                var corporation = data.datasets[tooltipItem.datasetIndex].label;
+                                var valor = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                var total = 0;
+                                for (var i = 0; i < data.datasets.length; i++)
+                                    total += data.datasets[i].data[tooltipItem.index];
+                                if (tooltipItem.datasetIndex != data.datasets.length - 1) {
+                                    return corporation + " : " + valor.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, ' ');
+                                } else {
+                                    return [corporation + " : " + valor.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, ' '), "TOTAL : S/ " + Math.round((total + Number.EPSILON) * 100) / 100];
+                                }
+                            },
+                            // labelColor:  'rgba(255, 159, 64, 1)',
+                            labelColor: function(tooltipItem, data) {
+                                var dataset = data.config.data.datasets[tooltipItem.datasetIndex];
+                                // if (tooltipItem.datasetIndex !== data.datasets.length - 1) {
+                                //     return {
+                                //         borderColor: dataset.borderColor,
+                                //         backgroundColor: dataset.backgroundColor
+                                //     }
+                                // } else {
+                                //     return {
+                                //         borderColor: dataset.borderColor,
+                                //         backgroundColor: dataset.backgroundColor
+                                //     }
+                                // }
+                                return {
+                                    borderColor: dataset.borderColor,
+                                    backgroundColor: dataset.backgroundColor
+                                }
+                                // return {
+                                //     borderColor: 'rgb(255, 0, 0)',
+                                //     backgroundColor: 'rgb(255, 0, 0)'
+                                // };
+
+                            },
+                        }
                     },
                     scales: {
                         xAxes: [{
@@ -210,34 +219,15 @@
                         }],
                         yAxes: [{
                             display: true,
-                            // stacked: true
-                            // ticks: {
-                            //     // Include a dollar sign in the ticks
-                            //     callback: function(value, index, values) {
-                            //         return  value+'%';
-                            //     }
-                            // }
+                            stacked: true
                         }]
                     },
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
                         datalabels: {
-                            // formatter: (value, ctx) => {
-                            //     let sum = 0;
-                            //     let dataArr = ctx.chart.data.datasets[0].data;
-                            //     dataArr.map(data => {
-                            //         sum += data;
-                            //     });
-                            //     let percentage = (value*100 / sum).toFixed(2)+"%";
-                            //     return percentage;
-                            // },
-                            //color: '#000000',
                             formatter: function(value, index, values) {
                                 if(value !=0 ){
-                                    // value = value.toString();
-                                    // value = value.split(/(?=(?:...)*$)/);
-                                    // value = value.join(',');
                                     return value;
                                 }else{
                                     value = "";
@@ -248,48 +238,6 @@
                             //color: '#000000',
                         },
                     }
-                    // "animation": {
-                    //     "duration": 1,
-                    //     "onComplete": function() {
-                    //         var chartInstance = this.chart,
-                    //             ctx = chartInstance.ctx;
-                    //         ctx.textAlign = 'center';
-                    //         ctx.textBaseline = 'bottom';
-                    //         ctx.fillStyle = 'rgba(255, 159, 64, 1)';//"#666";
-                    //         this.data.datasets.forEach(function(dataset, i) {
-                    //             var meta = chartInstance.controller.getDatasetMeta(i);
-                    //             meta.data.forEach(function(bar, index) {
-                    //                 var data = dataset.data[index];
-                    //                 if(data===0){
-                    //                     ctx.fillText(data, bar._model.x, bar._model.y-5);
-                    //                 }else if(i===0){
-                    //                     ctx.fillText(data, bar._model.x+3, bar._model.y-5);
-                    //                 }
-                    //             });
-                    //         });
-                    //     }
-                    // },
-                    // legend: {
-                    //     labels: {
-                    //         filter: function (legendItem, chartData) {
-                    //             if (legendItem.datasetIndex === 1 || legendItem.datasetIndex === 3) {
-                    //                 return false;
-                    //             }
-                    //             return true;
-                    //         }
-                    //     },
-                    //     onClick: (e) => e.stopPropagation()
-                    // },
-
-
-                    // legend: {
-                    //     labels: {
-                    //         filter: function(item, chart) {
-                    //             // Logic to remove a particular legend item goes here
-                    //             return !item.text.includes('OC');
-                    //         }
-                    //     }
-                    // }
                 }
             });
 
