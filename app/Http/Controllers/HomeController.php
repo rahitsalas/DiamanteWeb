@@ -47,17 +47,17 @@ class HomeController extends Controller
 ////        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9);
 //        $raw10 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalUnidadNegocio '".$firstDay."', '".$lastDay."'");
 ////        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10);
-        $raw11 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockTotalCalidad '".$firstDay."', '".$lastDay."'");
-//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11);
-        $raw12 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockTotalTipoItem '".$firstDay."', '".$lastDay."'");
-//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12);
-        $raw13 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockTotalAlmacen '".$firstDay."', '".$lastDay."'");
-//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13);
-        $raw14 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockFamiliaEstructural '".$firstDay."', '".$lastDay."'");
-//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14);
-        $raw15 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockFamiliaTabiqueria '".$firstDay."', '".$lastDay."'");
-//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14,$raw15);
-        $raw16 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockFamiliaParaTecho '".$firstDay."', '".$lastDay."'");
+//        $raw11 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockTotalCalidad '".$firstDay."', '".$lastDay."'");
+////        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11);
+//        $raw12 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockTotalTipoItem '".$firstDay."', '".$lastDay."'");
+////        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12);
+//        $raw13 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockTotalAlmacen '".$firstDay."', '".$lastDay."'");
+////        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13);
+//        $raw14 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockFamiliaEstructural '".$firstDay."', '".$lastDay."'");
+////        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14);
+//        $raw15 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockFamiliaTabiqueria '".$firstDay."', '".$lastDay."'");
+////        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14,$raw15);
+//        $raw16 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockFamiliaParaTecho '".$firstDay."', '".$lastDay."'");
 //        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14,$raw15,$raw16);
         $raw17 = DB::select("exec [DiamanteWeb].dbo.sp_data_IngresosCobranzaDiario '".$firstDay."', '".$lastDay."'");
 //        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14,$raw15,$raw16,$raw17);
@@ -85,12 +85,12 @@ class HomeController extends Controller
 //        $dataDespachoTotalTipoItem = array();
 //        $dataDespachoTotalTipoCliente = array();
 //        $dataDespachoTotalUnidadNegocio = array();
-        $dataStockTotalCalidad = array();
-        $dataStockTotalTipoItem = array();
-        $dataStockTotalAlmacen = array();
-        $dataStockFamiliaEstructural = array();
-        $dataStockFamiliaTabiqueria = array();
-        $dataStockFamiliaParaTecho = array();
+//        $dataStockTotalCalidad = array();
+//        $dataStockTotalTipoItem = array();
+//        $dataStockTotalAlmacen = array();
+//        $dataStockFamiliaEstructural = array();
+//        $dataStockFamiliaTabiqueria = array();
+//        $dataStockFamiliaParaTecho = array();
         $dataIngresosCobranzaDiario = array();
         $dataIngresosCobranzaAcumulado = array();
         $dataCobranzaDeudaMorosa = array();
@@ -196,67 +196,67 @@ class HomeController extends Controller
 //            $i++;
 //        }
 //        $dataDespachoTotalUnidadNegocio['total'] =round((double)$dataDespachoTotalUnidadNegocio['total'],0,PHP_ROUND_HALF_UP);
-
-        $i =0;
-        $dataStockTotalCalidad['total'] = 0;
-        foreach ($raw11 as $item){
-            $dataStockTotalCalidad['calidad'][$i] = $item->calidad;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataStockTotalCalidad['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
-            $dataStockTotalCalidad['total'] += $item->cantidad;
-            $i++;
-        }
-        $dataStockTotalCalidad['total'] =round((double)$dataStockTotalCalidad['total'],0,PHP_ROUND_HALF_UP);
-
-        $i =0;
-        $dataStockTotalTipoItem['total'] = 0;
-        foreach ($raw12 as $item){
-            $dataStockTotalTipoItem['familia'][$i] = $item->familia;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataStockTotalTipoItem['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
-            $dataStockTotalTipoItem['total'] += $item->cantidad;
-            $i++;
-        }
-        $dataStockTotalTipoItem['total'] =round((double)$dataStockTotalTipoItem['total'],0,PHP_ROUND_HALF_UP);
-
-        $i =0;
-        $dataStockTotalAlmacen['total'] = 0;
-        foreach ($raw13 as $item){
-            $dataStockTotalAlmacen['almacen'][$i] = $item->almacen;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataStockTotalAlmacen['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
-            $dataStockTotalAlmacen['total'] += $item->cantidad;
-            $i++;
-        }
-        $dataStockTotalAlmacen['total'] =round((double)$dataStockTotalAlmacen['total'],0,PHP_ROUND_HALF_UP);
-
-
-        $i =0;
-        $dataStockFamiliaEstructural['total'] = 0;
-        foreach ($raw14 as $item){
-            $dataStockFamiliaEstructural['item'][$i] = $item->item;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataStockFamiliaEstructural['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
-            $dataStockFamiliaEstructural['total'] += $item->cantidad;
-            $i++;
-        }
-        $dataStockFamiliaEstructural['total'] =round((double)$dataStockFamiliaEstructural['total'],0,PHP_ROUND_HALF_UP);
-
-        $i =0;
-        $dataStockFamiliaTabiqueria['total'] = 0;
-        foreach ($raw15 as $item){
-            $dataStockFamiliaTabiqueria['item'][$i] = $item->item;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataStockFamiliaTabiqueria['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
-            $dataStockFamiliaTabiqueria['total'] += $item->cantidad;
-            $i++;
-        }
-        $dataStockFamiliaTabiqueria['total'] =round((double)$dataStockFamiliaTabiqueria['total'],0,PHP_ROUND_HALF_UP);
-
-        $i =0;
-        $dataStockFamiliaParaTecho['total'] = 0;
-        foreach ($raw16 as $item){
-            $dataStockFamiliaParaTecho['item'][$i] = $item->item;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataStockFamiliaParaTecho['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
-            $dataStockFamiliaParaTecho['total'] += $item->cantidad;
-            $i++;
-        }
-        $dataStockFamiliaParaTecho['total'] =round((double)$dataStockFamiliaParaTecho['total'],0,PHP_ROUND_HALF_UP);
+//
+//        $i =0;
+//        $dataStockTotalCalidad['total'] = 0;
+//        foreach ($raw11 as $item){
+//            $dataStockTotalCalidad['calidad'][$i] = $item->calidad;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataStockTotalCalidad['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
+//            $dataStockTotalCalidad['total'] += $item->cantidad;
+//            $i++;
+//        }
+//        $dataStockTotalCalidad['total'] =round((double)$dataStockTotalCalidad['total'],0,PHP_ROUND_HALF_UP);
+//
+//        $i =0;
+//        $dataStockTotalTipoItem['total'] = 0;
+//        foreach ($raw12 as $item){
+//            $dataStockTotalTipoItem['familia'][$i] = $item->familia;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataStockTotalTipoItem['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
+//            $dataStockTotalTipoItem['total'] += $item->cantidad;
+//            $i++;
+//        }
+//        $dataStockTotalTipoItem['total'] =round((double)$dataStockTotalTipoItem['total'],0,PHP_ROUND_HALF_UP);
+//
+//        $i =0;
+//        $dataStockTotalAlmacen['total'] = 0;
+//        foreach ($raw13 as $item){
+//            $dataStockTotalAlmacen['almacen'][$i] = $item->almacen;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataStockTotalAlmacen['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
+//            $dataStockTotalAlmacen['total'] += $item->cantidad;
+//            $i++;
+//        }
+//        $dataStockTotalAlmacen['total'] =round((double)$dataStockTotalAlmacen['total'],0,PHP_ROUND_HALF_UP);
+//
+//
+//        $i =0;
+//        $dataStockFamiliaEstructural['total'] = 0;
+//        foreach ($raw14 as $item){
+//            $dataStockFamiliaEstructural['item'][$i] = $item->item;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataStockFamiliaEstructural['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
+//            $dataStockFamiliaEstructural['total'] += $item->cantidad;
+//            $i++;
+//        }
+//        $dataStockFamiliaEstructural['total'] =round((double)$dataStockFamiliaEstructural['total'],0,PHP_ROUND_HALF_UP);
+//
+//        $i =0;
+//        $dataStockFamiliaTabiqueria['total'] = 0;
+//        foreach ($raw15 as $item){
+//            $dataStockFamiliaTabiqueria['item'][$i] = $item->item;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataStockFamiliaTabiqueria['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
+//            $dataStockFamiliaTabiqueria['total'] += $item->cantidad;
+//            $i++;
+//        }
+//        $dataStockFamiliaTabiqueria['total'] =round((double)$dataStockFamiliaTabiqueria['total'],0,PHP_ROUND_HALF_UP);
+//
+//        $i =0;
+//        $dataStockFamiliaParaTecho['total'] = 0;
+//        foreach ($raw16 as $item){
+//            $dataStockFamiliaParaTecho['item'][$i] = $item->item;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataStockFamiliaParaTecho['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
+//            $dataStockFamiliaParaTecho['total'] += $item->cantidad;
+//            $i++;
+//        }
+//        $dataStockFamiliaParaTecho['total'] =round((double)$dataStockFamiliaParaTecho['total'],0,PHP_ROUND_HALF_UP);
 
         $i =0;
         $dataIngresosCobranzaDiario['total'] = 0;
@@ -333,9 +333,9 @@ class HomeController extends Controller
                 'dataRatioGasConSecadero','dataRatioGasSinSecadero',
                 'dataDespachoDiaroMillar','dataDespachoDiaroSoles',
 
-                'dataStockTotalCalidad','dataStockTotalTipoItem',
-                'dataStockTotalAlmacen','dataStockFamiliaEstructural',
-                'dataStockFamiliaTabiqueria','dataStockFamiliaParaTecho',
+//                'dataStockTotalCalidad','dataStockTotalTipoItem',
+//                'dataStockTotalAlmacen','dataStockFamiliaEstructural',
+//                'dataStockFamiliaTabiqueria','dataStockFamiliaParaTecho',
                 'dataIngresosCobranzaDiario','dataIngresosCobranzaAcumulado',
                 'dataCobranzaDeudaMorosa','dataCobranzaClasificacion',
                 'dataCobranzaClasificacionVencida','dataCobranzaClasificacionxVencer',
