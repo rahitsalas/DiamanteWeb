@@ -40,13 +40,13 @@ class HomeController extends Controller
         $raw4 = DB::select("exec [DiamanteWeb].dbo.sp_data_RatioGasSinSecadero '".$firstDay."', '".$lastDay."'");
         $raw5 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoDiarioMillar '".$firstDay."', '".$lastDay."'");
         $raw6 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoDiarioSoles '".$firstDay."', '".$lastDay."'");
-        $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoPago '".$firstDay."', '".$lastDay."'");
-        $raw8 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoItem '".$firstDay."', '".$lastDay."'");
-//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8);
-        $raw9 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoCliente '".$firstDay."', '".$lastDay."'");
-//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9);
-        $raw10 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalUnidadNegocio '".$firstDay."', '".$lastDay."'");
-//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10);
+//        $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoPago '".$firstDay."', '".$lastDay."'");
+//        $raw8 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoItem '".$firstDay."', '".$lastDay."'");
+////        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8);
+//        $raw9 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoCliente '".$firstDay."', '".$lastDay."'");
+////        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9);
+//        $raw10 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalUnidadNegocio '".$firstDay."', '".$lastDay."'");
+////        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10);
         $raw11 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockTotalCalidad '".$firstDay."', '".$lastDay."'");
 //        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11);
         $raw12 = DB::select("exec [DiamanteWeb].dbo.sp_data_StockTotalTipoItem '".$firstDay."', '".$lastDay."'");
@@ -81,10 +81,10 @@ class HomeController extends Controller
         $dataRatioGasSinSecadero = array();
         $dataDespachoDiaroMillar = array();
         $dataDespachoDiaroSoles = array();
-        $dataDespachoTotalTipoPago = array();
-        $dataDespachoTotalTipoItem = array();
-        $dataDespachoTotalTipoCliente = array();
-        $dataDespachoTotalUnidadNegocio = array();
+//        $dataDespachoTotalTipoPago = array();
+//        $dataDespachoTotalTipoItem = array();
+//        $dataDespachoTotalTipoCliente = array();
+//        $dataDespachoTotalUnidadNegocio = array();
         $dataStockTotalCalidad = array();
         $dataStockTotalTipoItem = array();
         $dataStockTotalAlmacen = array();
@@ -155,47 +155,47 @@ class HomeController extends Controller
             $i++;
         }
         $dataDespachoDiaroSoles['total'] =round((double)$dataDespachoDiaroSoles['total'],0,PHP_ROUND_HALF_UP);
-
-        $i =0;
-        $dataDespachoTotalTipoPago['total'] = 0;
-        foreach ($raw7 as $item){
-            $dataDespachoTotalTipoPago['formapago'][$i] = $item->formapago;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).'k S/.';
-            $dataDespachoTotalTipoPago['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
-            $dataDespachoTotalTipoPago['total'] += $item->cantidad;
-            $i++;
-        }
-        $dataDespachoTotalTipoPago['total'] =round((double)$dataDespachoTotalTipoPago['total'],0,PHP_ROUND_HALF_UP);
-
-
-        $i =0;
-        $dataDespachoTotalTipoItem['total'] = 0;
-        foreach ($raw8 as $item){
-            $dataDespachoTotalTipoItem['familia'][$i] = $item->familia;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataDespachoTotalTipoItem['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
-            $dataDespachoTotalTipoItem['total'] += $item->cantidad;
-            $i++;
-        }
-        $dataDespachoTotalTipoItem['total'] =round((double)$dataDespachoTotalTipoItem['total'],0,PHP_ROUND_HALF_UP);
-
-        $i =0;
-        $dataDespachoTotalTipoCliente['total'] = 0;
-        foreach ($raw9 as $item){
-            $dataDespachoTotalTipoCliente['tipocliente'][$i] = $item->tipocliente;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataDespachoTotalTipoCliente['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
-            $dataDespachoTotalTipoCliente['total'] += $item->cantidad;
-            $i++;
-        }
-        $dataDespachoTotalTipoCliente['total'] =round((double)$dataDespachoTotalTipoCliente['total'],0,PHP_ROUND_HALF_UP);
-
-        $i =0;
-        $dataDespachoTotalUnidadNegocio['total'] = 0;
-        foreach ($raw10 as $item){
-            $dataDespachoTotalUnidadNegocio['unidadnegocio'][$i] = $item->unidadnegocio;
-            $dataDespachoTotalUnidadNegocio['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
-            $dataDespachoTotalUnidadNegocio['total'] += $item->cantidad;
-            $i++;
-        }
-        $dataDespachoTotalUnidadNegocio['total'] =round((double)$dataDespachoTotalUnidadNegocio['total'],0,PHP_ROUND_HALF_UP);
+//
+//        $i =0;
+//        $dataDespachoTotalTipoPago['total'] = 0;
+//        foreach ($raw7 as $item){
+//            $dataDespachoTotalTipoPago['formapago'][$i] = $item->formapago;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).'k S/.';
+//            $dataDespachoTotalTipoPago['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
+//            $dataDespachoTotalTipoPago['total'] += $item->cantidad;
+//            $i++;
+//        }
+//        $dataDespachoTotalTipoPago['total'] =round((double)$dataDespachoTotalTipoPago['total'],0,PHP_ROUND_HALF_UP);
+//
+//
+//        $i =0;
+//        $dataDespachoTotalTipoItem['total'] = 0;
+//        foreach ($raw8 as $item){
+//            $dataDespachoTotalTipoItem['familia'][$i] = $item->familia;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataDespachoTotalTipoItem['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
+//            $dataDespachoTotalTipoItem['total'] += $item->cantidad;
+//            $i++;
+//        }
+//        $dataDespachoTotalTipoItem['total'] =round((double)$dataDespachoTotalTipoItem['total'],0,PHP_ROUND_HALF_UP);
+//
+//        $i =0;
+//        $dataDespachoTotalTipoCliente['total'] = 0;
+//        foreach ($raw9 as $item){
+//            $dataDespachoTotalTipoCliente['tipocliente'][$i] = $item->tipocliente;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataDespachoTotalTipoCliente['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+//            $dataDespachoTotalTipoCliente['total'] += $item->cantidad;
+//            $i++;
+//        }
+//        $dataDespachoTotalTipoCliente['total'] =round((double)$dataDespachoTotalTipoCliente['total'],0,PHP_ROUND_HALF_UP);
+//
+//        $i =0;
+//        $dataDespachoTotalUnidadNegocio['total'] = 0;
+//        foreach ($raw10 as $item){
+//            $dataDespachoTotalUnidadNegocio['unidadnegocio'][$i] = $item->unidadnegocio;
+//            $dataDespachoTotalUnidadNegocio['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
+//            $dataDespachoTotalUnidadNegocio['total'] += $item->cantidad;
+//            $i++;
+//        }
+//        $dataDespachoTotalUnidadNegocio['total'] =round((double)$dataDespachoTotalUnidadNegocio['total'],0,PHP_ROUND_HALF_UP);
 
         $i =0;
         $dataStockTotalCalidad['total'] = 0;
@@ -332,8 +332,7 @@ class HomeController extends Controller
             compact('dataProduccionNetaPlanta','dataDescargaHorno',
                 'dataRatioGasConSecadero','dataRatioGasSinSecadero',
                 'dataDespachoDiaroMillar','dataDespachoDiaroSoles',
-                'dataDespachoTotalTipoPago','dataDespachoTotalTipoItem',
-                'dataDespachoTotalTipoCliente','dataDespachoTotalUnidadNegocio',
+
                 'dataStockTotalCalidad','dataStockTotalTipoItem',
                 'dataStockTotalAlmacen','dataStockFamiliaEstructural',
                 'dataStockFamiliaTabiqueria','dataStockFamiliaParaTecho',

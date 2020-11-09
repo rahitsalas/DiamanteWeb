@@ -98,6 +98,15 @@ class ComercialController extends Controller
         }
 
         $raw1 = DB::select("exec [DiamanteWeb].dbo.sp_data_DescuentoMensual '".$startDate."'");
+
+        $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoPago '".$firstDay."', '".$lastDay."'");
+        $raw8 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoItem '".$firstDay."', '".$lastDay."'");
+//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8);
+        $raw9 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalTipoCliente '".$firstDay."', '".$lastDay."'");
+//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9);
+        $raw10 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalUnidadNegocio '".$firstDay."', '".$lastDay."'");
+//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10);
+
 //        dd($raw1);
 //        $dataDescuentoMensual00 = array();
         $dataDescuentoMensual01 = array();
@@ -107,6 +116,14 @@ class ComercialController extends Controller
         $dataDescuentoMensual07 = array();
         $dataDescuentoMensual12 = array();
         $dataDescuentoMensual13 = array();
+
+
+        $dataDespachoTotalTipoPago = array();
+        $dataDespachoTotalTipoItem = array();
+        $dataDespachoTotalTipoCliente = array();
+        $dataDespachoTotalUnidadNegocio = array();
+
+
 //        $i =0;
         $j =0; $k =0; $l =0; $m =0; $n =0; $o =0; $p=0;
         $dataDescuentoMensual01['total'] = 0;
@@ -169,9 +186,53 @@ class ComercialController extends Controller
 //        );
 
 
+        $i =0;
+        $dataDespachoTotalTipoPago['total'] = 0;
+        foreach ($raw7 as $item){
+            $dataDespachoTotalTipoPago['formapago'][$i] = $item->formapago;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).'k S/.';
+            $dataDespachoTotalTipoPago['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
+            $dataDespachoTotalTipoPago['total'] += $item->cantidad;
+            $i++;
+        }
+        $dataDespachoTotalTipoPago['total'] =round((double)$dataDespachoTotalTipoPago['total'],0,PHP_ROUND_HALF_UP);
+
+
+        $i =0;
+        $dataDespachoTotalTipoItem['total'] = 0;
+        foreach ($raw8 as $item){
+            $dataDespachoTotalTipoItem['familia'][$i] = $item->familia;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataDespachoTotalTipoItem['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
+            $dataDespachoTotalTipoItem['total'] += $item->cantidad;
+            $i++;
+        }
+        $dataDespachoTotalTipoItem['total'] =round((double)$dataDespachoTotalTipoItem['total'],0,PHP_ROUND_HALF_UP);
+
+        $i =0;
+        $dataDespachoTotalTipoCliente['total'] = 0;
+        foreach ($raw9 as $item){
+            $dataDespachoTotalTipoCliente['tipocliente'][$i] = $item->tipocliente;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataDespachoTotalTipoCliente['cantidad'][$i] = round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP);
+            $dataDespachoTotalTipoCliente['total'] += $item->cantidad;
+            $i++;
+        }
+        $dataDespachoTotalTipoCliente['total'] =round((double)$dataDespachoTotalTipoCliente['total'],0,PHP_ROUND_HALF_UP);
+
+        $i =0;
+        $dataDespachoTotalUnidadNegocio['total'] = 0;
+        foreach ($raw10 as $item){
+            $dataDespachoTotalUnidadNegocio['unidadnegocio'][$i] = $item->unidadnegocio;
+            $dataDespachoTotalUnidadNegocio['cantidad'][$i] = round((double) $item->cantidad, 0, PHP_ROUND_HALF_UP);
+            $dataDespachoTotalUnidadNegocio['total'] += $item->cantidad;
+            $i++;
+        }
+        $dataDespachoTotalUnidadNegocio['total'] =round((double)$dataDespachoTotalUnidadNegocio['total'],0,PHP_ROUND_HALF_UP);
+
+
         return view ('Dashboard.Reportes.Comercial.ventas',compact('startDate',
             'dataDescuentoMensual01','dataDescuentoMensual02','dataDescuentoMensual05','dataDescuentoMensual06',
-            'dataDescuentoMensual07','dataDescuentoMensual12','dataDescuentoMensual13'
+            'dataDescuentoMensual07','dataDescuentoMensual12','dataDescuentoMensual13',
+            'dataDespachoTotalTipoPago','dataDespachoTotalTipoItem',
+            'dataDespachoTotalTipoCliente','dataDespachoTotalUnidadNegocio'
         ));
 
 
