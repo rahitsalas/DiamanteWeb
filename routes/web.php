@@ -52,11 +52,12 @@ Route::prefix('/administracion')->group(function (){
     Route::get('/finanzas','AdministracionController@finanzas')->name('getadministracionfinanzas');
     Route::get('/tesoreria','AdministracionController@tesoreria')->name('getadministraciontesoreria');
 
-//    Route::post('updateprofile','SellerController@updateprofile')->name('updateS');
-//    Route::post('updatepass','SellerController@updatepass')->name('updatepassS');
-//    Route::post('updatewallet','SellerController@updatewallet')->name('updateWS');
+});
 
-
+Route::prefix('/comercial')->group(function (){
+    Route::get('/ventas','ComercialController@ventas')->name('getcomercialventas');
+    Route::get('/marketing','ComercialController@marketing')->name('getcomercialmarketing');
+    Route::get('/postventa','ComercialController@postventa')->name('getcomercialpostventa');
 });
 
 

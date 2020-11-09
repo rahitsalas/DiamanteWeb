@@ -139,7 +139,7 @@
                             </ul>
                         </li>
 
-                        @if(Auth::user()->id == "1")
+{{--                        @if(Auth::user()->id == "1")--}}
                             <li class="nav-item has-treeview">
                                 <a
                                     {{--                                href="{{route('getcomercial')}}" --}}
@@ -150,29 +150,29 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="{{route('getcomercialventas')}}" class="nav-link">
                                             <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Créd. y Cobr.</p>
+                                            <p>Ventas</p>
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="{{route('getcomercialmarketing')}}" class="nav-link">
                                             <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Compras</p>
+                                            <p>Marketing</p>
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="{{route('getcomercialpostventa')}}" class="nav-link">
                                             <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Despachos</p>
+                                            <p>PostVenta</p>
                                         </a>
                                     </li>
 
                                 </ul>
                             </li>
-                        @endif
+{{--                        @endif--}}
 
                         @if(Auth::user()->id == "1")
                         <li class="nav-item">

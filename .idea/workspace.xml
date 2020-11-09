@@ -135,13 +135,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/Dashboard/Reportes/Administracion" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/Dashboard/Reportes/Comercial" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\diamante\resources\views\Dashboard\Reportes\Comercial" />
       <recent name="C:\laragon\www\diamante\resources\views\Dashboard\Reportes\Administracion" />
       <recent name="C:\laragon\www\diamante\resources\views\Dashboard\Reportes" />
       <recent name="C:\laragon\www\diamante\resources\lang" />
@@ -198,7 +199,10 @@
       <workItem from="1602708935871" duration="33092000" />
       <workItem from="1603159461026" duration="5298000" />
       <workItem from="1603376046296" duration="161000" />
-      <workItem from="1603376778544" duration="16444000" />
+      <workItem from="1603376778544" duration="17212000" />
+      <workItem from="1604088421051" duration="620000" />
+      <workItem from="1604198824118" duration="4724000" />
+      <workItem from="1604882660163" duration="11513000" />
     </task>
     <servers />
   </component>
@@ -251,9 +255,10 @@
       <screen x="1366" y="0" width="1366" height="728" />
     </state>
     <state x="1756" y="0" width="585" height="728" key="find.popup/0.0.1366.728/1366.0.1366.728@1366.0.1366.728" timestamp="1603408792288" />
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1602717105636">
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1604891879604">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1602717105636" />
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1604891879604" />
   </component>
 </project>
