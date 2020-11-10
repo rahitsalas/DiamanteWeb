@@ -192,7 +192,7 @@
                                 dataArr.map(data => {
                                     sum += data;
                                 });
-                                let percentage = (value*100 / sum).toFixed(2)+"%";
+                                let percentage = (value*100 / sum).toFixed(0)+"%";
                                 return percentage;
                             },
                             //color: '#000000',
@@ -248,7 +248,7 @@
                                 dataArr.map(data => {
                                     sum += data;
                                 });
-                                let percentage = (value*100 / sum).toFixed(2)+"%";
+                                let percentage = (value*100 / sum).toFixed(0)+"%";
                                 // if((value*100 / sum)>5) {
                                 return percentage;
                                 // }
@@ -316,7 +316,7 @@
                                 dataArr.map(data => {
                                     sum += data;
                                 });
-                                let percentage = (value*100 / sum).toFixed(2)+"%";
+                                let percentage = (value*100 / sum).toFixed(0)+"%";
                                 // if((value*100 / sum)>5) {
                                 return percentage;
                                 // }
@@ -384,7 +384,7 @@
                                 dataArr.map(data => {
                                     sum += data;
                                 });
-                                let percentage = (value*100 / sum).toFixed(2)+"%";
+                                let percentage = (value*100 / sum).toFixed(0)+"%";
                                 // if((value*100 / sum)>5) {
                                 return percentage;
                                 // }
@@ -394,7 +394,7 @@
 
                             },
 
-                            anchor: 'end',
+                            // anchor: 'end',
                             // align: 'end',
                             // offset: 10,
                             display: 'auto',
@@ -452,7 +452,7 @@
                                 dataArr.map(data => {
                                     sum += data;
                                 });
-                                let percentage = (value*100 / sum).toFixed(2)+"%";
+                                let percentage = (value*100 / sum).toFixed(0)+"%";
                                 // if((value*100 / sum)>5) {
                                 return percentage;
                                 // }
@@ -520,7 +520,7 @@
                                 dataArr.map(data => {
                                     sum += data;
                                 });
-                                let percentage = (value*100 / sum).toFixed(2)+"%";
+                                let percentage = (value*100 / sum).toFixed(0)+"%";
                                 // if((value*100 / sum)>5) {
                                 return percentage;
                                 // }
@@ -530,7 +530,7 @@
 
                             },
 
-                            anchor: 'end',
+                            // anchor: 'end',
                             // align: 'end',
                             // offset: 10,
                             display: 'auto',

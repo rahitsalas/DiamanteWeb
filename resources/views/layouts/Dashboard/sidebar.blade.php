@@ -121,8 +121,8 @@
 
                                 <li class="nav-item">
                                     <a
-                                        href="#"
-{{--                                        href="{{route('getadministracionfinanzas')}}" --}}
+{{--                                        href="#"--}}
+                                        href="{{route('getadministracionfinanzas')}}"
                                         class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Finanzas</p>

@@ -2,10 +2,12 @@
 @section('content')
     <div class="content">
         <div class="container-fluid">
-           <div class="row mt-2 mb-2">
+           <div class="row mt-1 mb-2">
                <div class="col-sm-6 mb-0">
                    <h2 class="m-0 text-dark">Ingresos por Cobranzas</h2>
                </div>
+
+
 
                {{--               <div class="row">--}}
                <div class="col-md-12">
@@ -32,6 +34,34 @@
                         <span class="users-list-date mb-0">
                             *Solo se muestran Ingresos por Cobranzas
                         </span>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="col-md-12">
+                   <div class="card ">
+                       <div class="card-header border-0">
+                           <div class="d-flex justify-content-between">
+                               <h3 class="card-title">Ingresos Diarios por Cobranzas {{$startDate->format('Y-m')}}</h3>
+                               {{--                                <a href="javascript:void(0);">View Report</a>--}}
+                           </div>
+                       </div>
+                       <div class="card-body pt-0 mt-0 mb-0 pb-0">
+                           <div class="d-flex">
+                               <p class="d-flex flex-column">
+                                   <span class="text-bold text-lg">Total {{$dataIngresosCobranzaDiario['total']}} Miles de Soles</span>
+                                   <span></span>
+                               </p>
+                           </div>
+
+                           <div class="position-relative">
+                               <canvas id="ingresocobranzadiario-chart" height="200"></canvas>
+                           </div>
+                       </div>
+                       <div class="card-footer pt-0 mt-0 bg-white">
+                            <span class="users-list-date mb-0">
+                                *Solo se muestran Ingresos por Cobranzas
+                            </span>
                        </div>
                    </div>
                </div>
@@ -259,9 +289,6 @@
                    </div>
                </div>
 
-               <div class="col-sm-6 mb-0">
-                   <h2 class="m-0 text-dark">Cuentas por Cobrar Pre-Covid</h2>
-               </div>
                <div class="col-12">
                    <div class="card">
                        <div class="card-header">
@@ -288,6 +315,10 @@
                </div>
 
 
+               <div class="col-sm-8 mb-0">
+                   <h2 class="m-0 text-dark">Cuentas por Cobrar - Total (Pre-Post Covid)</h2>
+               </div>
+
 {{--               </div>--}}
 
 {{--               <div class="row">--}}
@@ -301,7 +332,7 @@
                        </div>
                        <div class="card-body pt-0 mt-0 mb-0 pb-0">
                            <div class="d-flex mb-0 pb-0">
-                               <p class="d-flex flex-column mb-0 pb-0">
+                               <p class="d-flex flex-column mb-0 pb-0 mr-2">
                                    <span class="text-bold text-lg">Total {{$dataCobranzaDeudaMorosa['total']}} Miles de Soles</span>
                                    <span></span>
                                </p>
@@ -1713,6 +1744,57 @@
                         },
 
                     }
+                }
+            });
+
+            var ctx = document.getElementById('ingresocobranzadiario-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: {!! json_encode($dataIngresosCobranzaDiario['fecha']) !!},
+                    datasets: [{
+                        label: 'Miles de Soles',
+                        data:{!! json_encode($dataIngresosCobranzaDiario['monto']) !!},
+                        backgroundColor: //[
+                            'rgba(115,255,64,0.2)',
+
+                        borderColor: //[
+                            'rgb(42, 177, 66, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true
+                        }],
+                        yAxes: [{
+                            display: true,
+                        }]
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function() {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+                            ctx.fillStyle = 'rgb(42,177,66)';//"#666";
+                            this.data.datasets.forEach(function(dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function(bar, index) {
+                                    var data = dataset.data[index];
+                                    if(data===0){
+                                        ctx.fillText(data, bar._model.x, bar._model.y-5);
+                                    }else if(i===0){
+                                        ctx.fillText(data, bar._model.x+3, bar._model.y-5);
+                                    }
+                                });
+                            });
+                        }
+                    },
                 }
             });
 

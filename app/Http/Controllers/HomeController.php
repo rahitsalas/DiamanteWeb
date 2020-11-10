@@ -71,8 +71,8 @@ class HomeController extends Controller
 ////        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14,$raw15,$raw16,$raw17,$raw18,$raw19,$raw20,$raw21);
 //        $raw22 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaClasificacionxVencer '".$firstDay."', '".$lastDay."'");
 //        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14,$raw15,$raw16,$raw17,$raw18,$raw19,$raw20,$raw21,$raw22);
-        $raw23 = DB::select("exec [DiamanteWeb].dbo.sp_data_SaldoCajaDiario '". Carbon::now()->addDays(-30)."', '".$startDate."'");
-//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14,$raw15,$raw16,$raw17,$raw18,$raw19,$raw20,$raw21,$raw22,$raw23);
+//        $raw23 = DB::select("exec [DiamanteWeb].dbo.sp_data_SaldoCajaDiario '". Carbon::now()->addDays(-30)."', '".$startDate."'");
+////        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14,$raw15,$raw16,$raw17,$raw18,$raw19,$raw20,$raw21,$raw22,$raw23);
 
 
         $dataDescargaHorno = array();
@@ -97,7 +97,7 @@ class HomeController extends Controller
 //        $dataCobranzaClasificacion = array();
 //        $dataCobranzaClasificacionVencida = array();
 //        $dataCobranzaClasificacionxVencer = array();
-        $dataSaldoCajaDiario = array();
+//        $dataSaldoCajaDiario = array();
 
         $i =0;
         $dataDescargaHorno['total'] = 0;
@@ -316,12 +316,12 @@ class HomeController extends Controller
 //        $dataCobranzaClasificacionxVencer['total'] =round((double)$dataCobranzaClasificacionxVencer['total'],0,PHP_ROUND_HALF_UP);
 
 
-        $i =0;
-        foreach ($raw23 as $item){
-            $dataSaldoCajaDiario['fecha'][$i] = date_create($item->fecha)->format('d-m');//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
-            $dataSaldoCajaDiario['monto'][$i] = round((double) $item->monto, 2, PHP_ROUND_HALF_UP);
-            $i++;
-        }
+//        $i =0;
+//        foreach ($raw23 as $item){
+//            $dataSaldoCajaDiario['fecha'][$i] = date_create($item->fecha)->format('d-m');//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataSaldoCajaDiario['monto'][$i] = round((double) $item->monto, 2, PHP_ROUND_HALF_UP);
+//            $i++;
+//        }
 
         //$dataIngresosCobranzaAcumulado['total'] =round((double)$dataIngresosCobranzaAcumulado['total'],0,PHP_ROUND_HALF_UP);
 
@@ -340,7 +340,7 @@ class HomeController extends Controller
 //                'dataIngresosCobranzaAcumulado',
 //                'dataCobranzaDeudaMorosa','dataCobranzaClasificacion',
 //                'dataCobranzaClasificacionVencida','dataCobranzaClasificacionxVencer',
-                'dataSaldoCajaDiario',
+//                'dataSaldoCajaDiario',
                 'startDate'
             ));
     }
