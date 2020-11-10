@@ -3,8 +3,41 @@
     <div class="content">
         <div class="container-fluid">
            <div class="row mt-2 mb-2">
+               <div class="col-sm-6 mb-0">
+                   <h2 class="m-0 text-dark">Ingresos por Cobranzas</h2>
+               </div>
+
+               {{--               <div class="row">--}}
+               <div class="col-md-12">
+                   <div class="card ">
+                       <div class="card-header border-0">
+                           <div class="d-flex justify-content-between">
+                               <h3 class="card-title">Ingresos Acumulados por Cobranzas {{$startDate->format('Y-m')}}</h3>
+                               {{--                                <a href="javascript:void(0);">View Report</a>--}}
+                           </div>
+                       </div>
+                       <div class="card-body pt-0 mt-0 mb-0 pb-0">
+                           {{--                            <div class="d-flex">--}}
+                           {{--                                <p class="d-flex flex-column">--}}
+                           {{--                                    <span class="text-bold text-lg">Total {{$dataIngresosCobranzaAcumulado['total']}} Millares</span>--}}
+                           {{--                                    <span></span>--}}
+                           {{--                                </p>--}}
+                           {{--                            </div>--}}
+
+                           <div class="position-relative">
+                               <canvas id="ingresocobranzaacumulado-chart" height="200"></canvas>
+                           </div>
+                       </div>
+                       <div class="card-footer pt-0 mt-0 bg-white">
+                        <span class="users-list-date mb-0">
+                            *Solo se muestran Ingresos por Cobranzas
+                        </span>
+                       </div>
+                   </div>
+               </div>
+
                 <div class="col-sm-6 mb-0">
-                    <h2 class="m-0 text-dark">Cuentas por Cobrar</h2>
+                    <h2 class="m-0 text-dark">Cuentas por Cobrar Post-Covid</h2>
                 </div>
                 <div class="col-md-12">
                     <div class="card ">
@@ -226,6 +259,9 @@
                    </div>
                </div>
 
+               <div class="col-sm-6 mb-0">
+                   <h2 class="m-0 text-dark">Cuentas por Cobrar Pre-Covid</h2>
+               </div>
                <div class="col-12">
                    <div class="card">
                        <div class="card-header">
@@ -252,8 +288,105 @@
                </div>
 
 
+{{--               </div>--}}
 
-        </div>
+{{--               <div class="row">--}}
+               <div class="col-md-12">
+                   <div class="card ">
+                       <div class="card-header border-0">
+                           <div class="d-flex justify-content-between">
+                               <h3 class="card-title">Deuda Morosa 80/20 {{$startDate->format('Y-m-d')}}</h3>
+                               {{--                                <a href="javascript:void(0);">View Report</a>--}}
+                           </div>
+                       </div>
+                       <div class="card-body pt-0 mt-0 mb-0 pb-0">
+                           <div class="d-flex mb-0 pb-0">
+                               <p class="d-flex flex-column mb-0 pb-0">
+                                   <span class="text-bold text-lg">Total {{$dataCobranzaDeudaMorosa['total']}} Miles de Soles</span>
+                                   <span></span>
+                               </p>
+                           </div>
+
+                           <div class="position-relative">
+                               <canvas id="cobranzadeudamorosa-chart" height="150"></canvas>
+                           </div>
+                       </div>
+                       <div class="card-footer pt-0 mt-0 bg-white">
+                <span class="users-list-date mb-0">
+                    *Otros esta compuesto por varios clientes (20%)
+                </span>
+                       </div>
+                   </div>
+               </div>
+{{--               </div>--}}
+
+               <div class="row">
+                   <div class="col-md-4">
+                       <div class="card ">
+                           <div class="card-header border-0">
+                               <div class="d-flex justify-content-between">
+                                   <h3 class="card-title">Clasificación de Cobranza Pendiente</h3>
+                                   {{--                                <a href="javascript:void(0);">View Report</a>--}}
+                               </div>
+                           </div>
+                           <div class="card-body pt-0 mt-0">
+                               <div class="d-flex">
+                                   <p class="d-flex flex-column">
+                                       <span class="text-bold text-lg">Total {{$dataCobranzaClasificacion['total']}} Miles de Soles</span>
+                                       <span></span>
+                                   </p>
+                               </div>
+                               <div class="position-relative mb-4">
+                                   <canvas id="cobranzaclasificacionvencimiento-chart" height="200"></canvas>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-md-4">
+                       <div class="card ">
+                           <div class="card-header border-0">
+                               <div class="d-flex justify-content-between">
+                                   <h3 class="card-title">Clasificación de Cobranza Vencida</h3>
+                                   {{--                                                                <a href="javascript:void(0);">View Report</a>--}}
+                               </div>
+                           </div>
+                           <div class="card-body pt-0 mt-0">
+                               <div class="d-flex">
+                                   <p class="d-flex flex-column">
+                                       <span class="text-bold text-lg">Total {{$dataCobranzaClasificacionVencida['total']}} Miles de Soles</span>
+                                       <span></span>
+                                   </p>
+                               </div>
+                               <div class="position-relative mb-4">
+                                   <canvas id="cobranzaclasificacionvencida-chart" height="200"></canvas>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-md-4">
+                       <div class="card">
+                           <div class="card-header border-0">
+                               <div class="d-flex justify-content-between">
+                                   <h3 class="card-title">Clasificación Cobranza x Vencer</h3>
+                               </div>
+                           </div>
+                           <div class="card-body pt-0 mt-0">
+                               <div class="d-flex">
+                                   <p class="d-flex flex-column">
+                                       <span class="text-bold text-lg">Total {{$dataCobranzaClasificacionxVencer['total']}} Miles de Soles</span>
+                               </div>
+
+                               <div class="position-relative mb-4">
+                                   <canvas id="cobranzaclasificacionxvencer-chart" height="200"></canvas>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+
+
+
+           </div>
         <!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -1259,6 +1392,327 @@
                     },
                     responsive: true,
                     maintainAspectRatio: false,
+                }
+            });
+
+
+            var ctx = document.getElementById('ingresocobranzaacumulado-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($dataIngresosCobranzaAcumulado['fecha']) !!},
+                    datasets: [{
+                        label: 'Millones de Soles',
+                        data:{!! json_encode($dataIngresosCobranzaAcumulado['monto']) !!},
+                        backgroundColor:
+                        // [
+                        // 'rgba(255, 159, 64, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                        // ],
+                        borderColor:
+                        // [
+                        // 'rgba(255, 159, 64, 1)',
+                            'rgba(54, 162, 235, 1)',
+                        // ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true
+                        }],
+                        yAxes: [{
+                            display: true,
+                        }]
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function() {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+                            ctx.fillStyle = "#666";//'rgba(255, 159, 64, 1)';//"#666";
+                            this.data.datasets.forEach(function(dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function(bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                }
+            });
+
+            var ctx = document.getElementById('cobranzadeudamorosa-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: {!! json_encode($dataCobranzaDeudaMorosa['cliente']) !!},
+                    datasets: [{
+                        label: 'Miles de Soles',
+                        data:{!! json_encode($dataCobranzaDeudaMorosa['monto']) !!},
+                        backgroundColor: //[
+                            'rgba(255, 99, 132, 0.2)',
+
+                        borderColor: //[
+                            'rgb(255,99,132)',
+                        // ],
+                        borderWidth: 1,
+                        // barThickness: 15,
+                        // categoryPercentage: 0.5,
+                        // barPercentage: 0.5,
+
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                        }],
+                        yAxes: [{
+                            display: true,
+                        }]
+                    },
+                    // responsive: true,
+                    // maintainAspectRatio: true   ,
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function() {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+                            ctx.fillStyle = "#666";//'rgba(255, 159, 64, 1)';//"#666";
+                            this.data.datasets.forEach(function(dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function(bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x+15, bar._model.y+7.5);
+                                });
+                            });
+                        }
+                    },
+                }
+            });
+
+            var ctx = document.getElementById('cobranzaclasificacionvencimiento-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                plugins: [ChartDataLabels],
+                type: 'doughnut',
+                data: {
+                    labels: {!! json_encode($dataCobranzaClasificacion['vencidaflag']) !!},
+                    datasets: [{
+                        label: '# of Tomatoes',
+                        data: {!! json_encode($dataCobranzaClasificacion['monto']) !!},
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(115, 255, 64, 0.2)',
+                            //'rgba(75, 192, 192, 0.2)',
+                            // 'rgba(255, 206, 86, 0.2)',
+
+                            'rgba(153, 102, 255, 0.2)',]
+
+                        ,
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgb(42, 177, 66, 1)',
+                            //'rgba(75, 192, 192, 1)',
+                            // 'rgba(255, 206, 86, 1)',
+
+                            'rgba(153, 102, 255, 1)',],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    display: 'auto',
+                    //cutoutPercentage: 40,
+                    responsive: false,
+                    tooltips: {
+                        enabled: true,
+                    },
+                    plugins: {
+                        datalabels: {
+                            formatter: (value, ctx) => {
+                                let sum = 0;
+                                let dataArr = ctx.chart.data.datasets[0].data;
+                                dataArr.map(data => {
+                                    sum += data;
+                                });
+                                let percentage = (value*100 / sum).toFixed(0)+"%";
+                                // if((value*100 / sum)>5) {
+                                return percentage;
+                                // }
+                                // else{
+                                //     return null;
+                                // }
+
+                            },
+
+                            // anchor: 'end',
+                            // align: 'end',
+                            // offset: 10,
+                            display: 'auto',
+                            //color: '#000000',
+                        },
+
+                    }
+                }
+            });
+
+            var ctx = document.getElementById('cobranzaclasificacionvencida-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                plugins: [ChartDataLabels],
+                type: 'doughnut',
+                data: {
+                    labels: {!! json_encode($dataCobranzaClasificacionVencida['clasificacion']) !!},
+                    datasets: [{
+                        label: '# of Tomatoes',
+                        data: {!! json_encode($dataCobranzaClasificacionVencida['monto']) !!},
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(115, 255, 64, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(8,173,173,0.2)',
+                            'rgba(142,16,115,0.2)',
+
+                            'rgba(255, 206, 86, 0.2)',
+
+                            ,]
+
+                        ,
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgb(42, 177, 66, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgb(51,198,176)',
+                            'rgb(175,39,152)',
+
+                            'rgba(255, 206, 86, 1)',
+
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    display: 'auto',
+                    //cutoutPercentage: 40,
+                    responsive: false,
+                    tooltips: {
+                        enabled: true,
+                    },
+                    plugins: {
+                        datalabels: {
+                            formatter: (value, ctx) => {
+                                let sum = 0;
+                                let dataArr = ctx.chart.data.datasets[0].data;
+                                dataArr.map(data => {
+                                    sum += data;
+                                });
+                                let percentage = (value*100 / sum).toFixed(0)+"%";
+                                // if((value*100 / sum)>5) {
+                                return percentage;
+                                // }
+                                // else{
+                                //     return null;
+                                // }
+
+                            },
+
+                            //anchor: 'end',
+                            // align: 'end',
+                            // offset: 10,
+                            display: 'auto',
+                            //color: '#000000',
+                        },
+
+                    }
+                }
+            });
+
+            var ctx = document.getElementById('cobranzaclasificacionxvencer-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                plugins: [ChartDataLabels],
+                type: 'doughnut',
+                data: {
+                    labels: {!! json_encode($dataCobranzaClasificacionxVencer['clasificacion']) !!},
+                    datasets: [{
+                        label: '# of Tomatoes',
+                        data: {!! json_encode($dataCobranzaClasificacionxVencer['monto']) !!},
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(115, 255, 64, 0.2)',
+                            //'rgba(75, 192, 192, 0.2)',
+                            // 'rgba(255, 206, 86, 0.2)',
+
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(8,173,173,0.2)',
+                            'rgba(142,16,115,0.2)',
+                        ]
+
+                        ,
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgb(42, 177, 66, 1)',
+                            //'rgba(75, 192, 192, 1)',
+                            // 'rgba(255, 206, 86, 1)',
+
+                            'rgba(153, 102, 255, 1)',
+                            'rgb(51,198,176)',
+                            'rgb(175,39,152)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    display: 'auto',
+                    //cutoutPercentage: 40,
+                    responsive: false,
+                    tooltips: {
+                        enabled: true,
+                    },
+                    plugins: {
+                        datalabels: {
+                            formatter: (value, ctx) => {
+                                let sum = 0;
+                                let dataArr = ctx.chart.data.datasets[0].data;
+                                dataArr.map(data => {
+                                    sum += data;
+                                });
+                                let percentage = (value*100 / sum).toFixed(0)+"%";
+                                // if((value*100 / sum)>5) {
+                                return percentage;
+                                // }
+                                // else{
+                                //     return null;
+                                // }
+
+                            },
+
+                            //anchor: 'end',
+                            // align: 'end',
+                            // offset: 10,
+                            display: 'auto',
+                            //color: '#000000',
+                        },
+
+                    }
                 }
             });
 

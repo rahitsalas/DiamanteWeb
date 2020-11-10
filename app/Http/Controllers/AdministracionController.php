@@ -1029,6 +1029,17 @@ class AdministracionController extends Controller
         $raw6 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidad '12'"); //FE
         $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidad '13'"); //DI
 
+        $raw18 = DB::select("exec [DiamanteWeb].dbo.sp_data_IngresosCobranzaAcumulado '".$firstDay."', '".$lastDay."'");
+//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14,$raw15,$raw16,$raw17,$raw18);
+        $raw19 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaDeudaMorosa '".$firstDay."', '".$lastDay."'");
+//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14,$raw15,$raw16,$raw17,$raw18,$raw19);
+        $raw20 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaClasificacion '".$firstDay."', '".$lastDay."'");
+//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14,$raw15,$raw16,$raw17,$raw18,$raw19,$raw20);
+        $raw21 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaClasificacionVencida '".$firstDay."', '".$lastDay."'");
+//        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10,$raw11,$raw12,$raw13,$raw14,$raw15,$raw16,$raw17,$raw18,$raw19,$raw20,$raw21);
+        $raw22 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaClasificacionxVencer '".$firstDay."', '".$lastDay."'");
+
+
         $dataIndiceMorisidadDetalle00 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '00'");
         $dataIndiceMorisidadDetalle01 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '01'");
         $dataIndiceMorisidadDetalle02 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '02'");
@@ -1048,6 +1059,11 @@ class AdministracionController extends Controller
         $dataIndiceMorosidad12 = array();
         $dataIndiceMorosidad13 = array();
 
+        $dataIngresosCobranzaAcumulado = array();
+        $dataCobranzaDeudaMorosa = array();
+        $dataCobranzaClasificacion = array();
+        $dataCobranzaClasificacionVencida = array();
+        $dataCobranzaClasificacionxVencer = array();
 
 
         $j =0;
@@ -1117,13 +1133,65 @@ class AdministracionController extends Controller
 //            ,$dataIndiceMorosidad12,$dataIndiceMorosidad13);
 
 
+        $i =0;
+        foreach ($raw18 as $item){
+            $dataIngresosCobranzaAcumulado['fecha'][$i] = date_create($item->fecha)->format('d-m');//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataIngresosCobranzaAcumulado['monto'][$i] = round((double) $item->monto, 2, PHP_ROUND_HALF_UP);
+            $i++;
+        }
+
+        $i =0;
+        $dataCobranzaDeudaMorosa['total'] = 0;
+        foreach ($raw19 as $item){
+            $dataCobranzaDeudaMorosa['cliente'][$i] = $item->cliente;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataCobranzaDeudaMorosa['monto'][$i] = round((double) $item->monto, 0, PHP_ROUND_HALF_UP);
+            $dataCobranzaDeudaMorosa['total'] += $item->monto;
+            $i++;
+        }
+        $dataCobranzaDeudaMorosa['total'] =round((double)$dataCobranzaDeudaMorosa['total'],0,PHP_ROUND_HALF_UP);
+
+        $i =0;
+        $dataCobranzaClasificacion['total'] = 0;
+        foreach ($raw20 as $item){
+            $dataCobranzaClasificacion['vencidaflag'][$i] = $item->vencidaflag;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataCobranzaClasificacion['monto'][$i] = round((double) $item->monto, 0, PHP_ROUND_HALF_UP);
+            $dataCobranzaClasificacion['total'] += $item->monto;
+            $i++;
+        }
+        $dataCobranzaClasificacion['total'] =round((double)$dataCobranzaClasificacion['total'],0,PHP_ROUND_HALF_UP);
+
+        $i =0;
+        $dataCobranzaClasificacionVencida['total'] = 0;
+        foreach ($raw21 as $item){
+            $dataCobranzaClasificacionVencida['clasificacion'][$i] = $item->clasificacion;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataCobranzaClasificacionVencida['monto'][$i] = round((double) $item->monto, 0, PHP_ROUND_HALF_UP);
+            $dataCobranzaClasificacionVencida['total'] += $item->monto;
+            $i++;
+        }
+        $dataCobranzaClasificacionVencida['total'] =round((double)$dataCobranzaClasificacionVencida['total'],0,PHP_ROUND_HALF_UP);
+
+        $i =0;
+        $dataCobranzaClasificacionxVencer['total'] = 0;
+        foreach ($raw22 as $item){
+            $dataCobranzaClasificacionxVencer['clasificacion'][$i] = $item->clasificacion;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+            $dataCobranzaClasificacionxVencer['monto'][$i] = round((double) $item->monto, 0, PHP_ROUND_HALF_UP);
+            $dataCobranzaClasificacionxVencer['total'] += $item->monto;
+            $i++;
+        }
+        $dataCobranzaClasificacionxVencer['total'] =round((double)$dataCobranzaClasificacionxVencer['total'],0,PHP_ROUND_HALF_UP);
+
+
+
         return view ('Dashboard.Reportes.Administracion.creditoscobranzas',compact('startDate',
             'dataIndiceMorosidad00','dataIndiceMorosidad01','dataIndiceMorosidad02',
             'dataIndiceMorosidad05', 'dataIndiceMorosidad06',
             'dataIndiceMorosidad12', 'dataIndiceMorosidad13',
             'dataIndiceMorisidadDetalle00','dataIndiceMorisidadDetalle01','dataIndiceMorisidadDetalle02',
             'dataIndiceMorisidadDetalle05','dataIndiceMorisidadDetalle06','dataIndiceMorisidadDetalle12',
-            'dataIndiceMorisidadDetalle13'
+            'dataIndiceMorisidadDetalle13',
+            'dataIngresosCobranzaAcumulado',
+            'dataCobranzaDeudaMorosa','dataCobranzaClasificacion',
+            'dataCobranzaClasificacionVencida','dataCobranzaClasificacionxVencer'
 
 //            ,
 //            'dataOrdenCompraServicioCantidadActual','dataOrdenCompraServicioCantidadPasado',
