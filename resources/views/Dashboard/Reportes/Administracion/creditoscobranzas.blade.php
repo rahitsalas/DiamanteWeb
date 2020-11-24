@@ -973,7 +973,7 @@
                             type: 'linear',
                             position: 'left',
                             ticks: {
-                                max: 50,
+                                max: 70,
                                 min: 0
                             },
                             gridLines: {
@@ -984,7 +984,7 @@
                             type: 'linear',
                             position: 'right',
                             ticks: {
-                                max: 300,
+                                max: 700,
                                 min: 0
                             },
                             gridLines: {
