@@ -144,7 +144,7 @@
             var ctx = document.getElementById('rotacionobrero-chart').getContext('2d');
             var myChart = new Chart(ctx, {
                 plugins: [ChartDataLabels],
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: {!! json_encode($dataIndiceRotacionPersonalObreroPasado2['mes']) !!},
 
@@ -156,7 +156,8 @@
 
                         borderColor: //[
                             'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        fill: false,
                     },
                         {
                             label: {!! json_encode($dataIndiceRotacionPersonalObreroPasado['año']) !!},
@@ -166,7 +167,8 @@
 
                             borderColor: //[
                                 'rgb(42, 177, 66, 1)',
-                            borderWidth: 1
+                            borderWidth: 1,
+                            fill: false,
                         },
                         {
                             label: {!! json_encode($dataIndiceRotacionPersonalObreroActual['año']) !!},
@@ -176,7 +178,8 @@
 
                             borderColor: //[
                                 'rgba(54, 162, 235, 1)',
-                            borderWidth: 1
+                            borderWidth: 1,
+                            fill: false,
                         }
                     ]
                 },
