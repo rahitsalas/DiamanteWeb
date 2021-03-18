@@ -138,7 +138,7 @@
                                 <li class="nav-item">
                                     <a href="{{route('getadministracionrrhh')}}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>RRHH</p>
+                                        <p>Desarrollo Humano</p>
                                     </a>
                                 </li>
 

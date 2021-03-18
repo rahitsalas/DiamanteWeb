@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mt-2 mb-2">
                 <div class="col-sm-6 mb-0">
-                    <h2 class="m-0 text-dark">RRHH</h2>
+                    <h2 class="m-0 text-dark">Desarrollo Humano</h2>
                 </div>
             </div>
 
@@ -24,7 +24,7 @@
                         </div>
                         <div class="card-footer pt-0 mt-0 bg-white">
                             <span class="users-list-date mb-0">
-                                *Administrativos y Obreros
+                                *Empleados y Obreros
                             </span>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                     <div class="card ">
                         <div class="card-header border-0">
                             <div class="d-flex justify-content-between">
-                                <h3 class="card-title">Rotación de Personal Administrativo</h3>
+                                <h3 class="card-title">Rotación de Personal Empleado</h3>
                                 {{--                                <a href="javascript:void(0);">View Report</a>--}}
                             </div>
                         </div>
@@ -144,7 +144,7 @@
             var ctx = document.getElementById('rotacionobrero-chart').getContext('2d');
             var myChart = new Chart(ctx, {
                 plugins: [ChartDataLabels],
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: {!! json_encode($dataIndiceRotacionPersonalObreroPasado2['mes']) !!},
 
@@ -157,7 +157,7 @@
                         borderColor: //[
                             'rgba(255, 99, 132, 1)',
                         borderWidth: 1,
-                        fill: false,
+                        // fill: false,
                     },
                         {
                             label: {!! json_encode($dataIndiceRotacionPersonalObreroPasado['año']) !!},
@@ -168,7 +168,7 @@
                             borderColor: //[
                                 'rgb(42, 177, 66, 1)',
                             borderWidth: 1,
-                            fill: false,
+                            // fill: false,
                         },
                         {
                             label: {!! json_encode($dataIndiceRotacionPersonalObreroActual['año']) !!},
@@ -179,7 +179,7 @@
                             borderColor: //[
                                 'rgba(54, 162, 235, 1)',
                             borderWidth: 1,
-                            fill: false,
+                            // fill: false,
                         }
                     ]
                 },
