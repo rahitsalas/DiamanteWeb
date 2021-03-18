@@ -107,7 +107,6 @@
       <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
-      <path value="$PROJECT_DIR$/vendor/nunomaduro/collision" />
       <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
       <path value="$PROJECT_DIR$/vendor/fruitcake/laravel-cors" />
       <path value="$PROJECT_DIR$/vendor/scrivo/highlight.php" />
@@ -125,6 +124,8 @@
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/vendor/nunomaduro/collision" />
     </include_path>
   </component>
   <component name="ProjectId" id="1c8hAsN3WNRi4mk0ePyTEBR9hbd" />
@@ -213,7 +214,7 @@
       <workItem from="1612982000378" duration="1545000" />
       <workItem from="1614033661848" duration="1788000" />
       <workItem from="1614700614817" duration="1225000" />
-      <workItem from="1616016362417" duration="11451000" />
+      <workItem from="1616016362417" duration="16055000" />
     </task>
     <servers />
   </component>

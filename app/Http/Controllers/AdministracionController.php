@@ -1381,7 +1381,7 @@ class AdministracionController extends Controller
     }
 
 
-    public function rrhh(Request $request)
+    public function desarrollohumano(Request $request)
     {
         $getfecha = $request->input('fechas') ?: null;
         if($getfecha != null){
@@ -1402,6 +1402,14 @@ class AdministracionController extends Controller
         $raw6 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceRotacionPersonal '".$startDate."', 'ALL'");
         $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceRotacionPersonal '".$startDate."', 'OB'");
         $raw8 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceRotacionPersonal '".$startDate."', 'EM'");
+
+        $raw9 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceAusentismo '".$startDate."', 'ALL'");
+        $raw10 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceAusentismo '".$startDate."', 'OB'");
+        $raw11 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceAusentismo '".$startDate."', 'EM'");
+
+        $raw12 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceDescansoMedico '".$startDate."', 'ALL'");
+        $raw13 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceDescansoMedico '".$startDate."', 'OB'");
+        $raw14 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceDescansoMedico '".$startDate."', 'EM'");
 //        dd($raw6,$raw7,$raw8);
 //        dd($startDate,$raw1,$raw2,$raw3,$raw4,$raw5,$raw6);
 //        $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionClasificacion '".$startDate."'");
@@ -1420,6 +1428,28 @@ class AdministracionController extends Controller
         $dataIndiceRotacionPersonalGeneralPasado2 = array();
         $dataIndiceRotacionPersonalObreroPasado2 = array();
         $dataIndiceRotacionPersonalEmpleadoPasado2 = array();
+
+
+        $dataIndiceAusentismoGeneralActual = array();
+        $dataIndiceAusentismoObreroActual = array();
+        $dataIndiceAusentismoEmpleadoActual = array();
+        $dataIndiceAusentismoGeneralPasado = array();
+        $dataIndiceAusentismoObreroPasado = array();
+        $dataIndiceAusentismoEmpleadoPasado = array();
+        $dataIndiceAusentismoGeneralPasado2 = array();
+        $dataIndiceAusentismoObreroPasado2 = array();
+        $dataIndiceAusentismoEmpleadoPasado2 = array();
+
+
+        $dataIndiceDescansoMedicoGeneralActual = array();
+        $dataIndiceDescansoMedicoObreroActual = array();
+        $dataIndiceDescansoMedicoEmpleadoActual = array();
+        $dataIndiceDescansoMedicoGeneralPasado = array();
+        $dataIndiceDescansoMedicoObreroPasado = array();
+        $dataIndiceDescansoMedicoEmpleadoPasado = array();
+        $dataIndiceDescansoMedicoGeneralPasado2 = array();
+        $dataIndiceDescansoMedicoObreroPasado2 = array();
+        $dataIndiceDescansoMedicoEmpleadoPasado2 = array();
 
         $j =0;
         $k =0;
@@ -1516,7 +1546,200 @@ class AdministracionController extends Controller
         }
 
 
-//        dd($dataIndiceRotacionPersonalGeneralActual,$dataIndiceRotacionPersonalGeneralPasado,$dataIndiceRotacionPersonalGeneralPasado2);
+
+        $j =0;
+        $k =0;
+        $l =0;
+
+//        $dataIndiceAusentismoGeneral['total'] = 0;
+        foreach ($raw9 as $item){
+//            $dataPagosClasificacionFlujoVencida['total'] += $item->monto;
+            if(substr($item->periodo,0,4) == $startDate->year) {
+                $dataIndiceAusentismoGeneralActual['nombre'] = 'General';
+                $dataIndiceAusentismoGeneralActual['indice'][$j] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                $dataIndiceAusentismoGeneralActual['año'] = substr($item->periodo,0,4);
+                $dataIndiceAusentismoGeneralActual['mes'][$j] = $item->mesdescripcion;
+                $j++;
+            }
+            else{
+                if(substr($item->periodo,0,4) == ($startDate->year-1)) {
+                    $dataIndiceAusentismoGeneralPasado['año']= substr($item->periodo,0,4);
+                    $dataIndiceAusentismoGeneralPasado['indice'][$k] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceAusentismoGeneralPasado['mes'][$k] = $item->mesdescripcion;
+                    $k++;
+                }
+                else{
+                    $dataIndiceAusentismoGeneralPasado2['año'] = substr($item->periodo,0,4);
+                    $dataIndiceAusentismoGeneralPasado2['indice'][$l] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceAusentismoGeneralPasado2['mes'][$l] = $item->mesdescripcion;
+                    $l++;
+                }
+            }
+
+        }
+//        dd($dataIndiceAusentismoGeneralActual,$dataIndiceAusentismoGeneralPasado2,$dataIndiceAusentismoGeneralPasado2);
+
+        $j =0;
+        $k =0;
+        $l =0;
+
+//        $dataIndiceAusentismoGeneral['total'] = 0;
+        foreach ($raw10 as $item){
+//            $dataPagosClasificacionFlujoVencida['total'] += $item->monto;
+            if(substr($item->periodo,0,4) == $startDate->year) {
+                $dataIndiceAusentismoObreroActual['nombre'] = 'General';
+                $dataIndiceAusentismoObreroActual['indice'][$j] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                $dataIndiceAusentismoObreroActual['año'] = substr($item->periodo,0,4);
+                $dataIndiceAusentismoObreroActual['mes'][$j] = $item->mesdescripcion;
+                $j++;
+            }
+            else{
+                if(substr($item->periodo,0,4) == ($startDate->year-1)) {
+                    $dataIndiceAusentismoObreroPasado['año']= substr($item->periodo,0,4);
+                    $dataIndiceAusentismoObreroPasado['indice'][$k] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceAusentismoObreroPasado['mes'][$k] = $item->mesdescripcion;
+                    $k++;
+                }
+                else{
+                    $dataIndiceAusentismoObreroPasado2['año'] = substr($item->periodo,0,4);
+                    $dataIndiceAusentismoObreroPasado2['indice'][$l] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceAusentismoObreroPasado2['mes'][$l] = $item->mesdescripcion;
+                    $l++;
+                }
+            }
+
+        }
+
+        $j =0;
+        $k =0;
+        $l =0;
+
+//        $dataIndiceAusentismoGeneral['total'] = 0;
+        foreach ($raw11 as $item){
+//            $dataPagosClasificacionFlujoVencida['total'] += $item->monto;
+            if(substr($item->periodo,0,4) == $startDate->year) {
+                $dataIndiceAusentismoEmpleadoActual['nombre'] = 'General';
+                $dataIndiceAusentismoEmpleadoActual['indice'][$j] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                $dataIndiceAusentismoEmpleadoActual['año'] = substr($item->periodo,0,4);
+                $dataIndiceAusentismoEmpleadoActual['mes'][$j] = $item->mesdescripcion;
+                $j++;
+            }
+            else{
+                if(substr($item->periodo,0,4) == ($startDate->year-1)) {
+                    $dataIndiceAusentismoEmpleadoPasado['año']= substr($item->periodo,0,4);
+                    $dataIndiceAusentismoEmpleadoPasado['indice'][$k] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceAusentismoEmpleadoPasado['mes'][$k] = $item->mesdescripcion;
+                    $k++;
+                }
+                else{
+                    $dataIndiceAusentismoEmpleadoPasado2['año'] = substr($item->periodo,0,4);
+                    $dataIndiceAusentismoEmpleadoPasado2['indice'][$l] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceAusentismoEmpleadoPasado2['mes'][$l] = $item->mesdescripcion;
+                    $l++;
+                }
+            }
+
+        }
+
+
+        $j =0;
+        $k =0;
+        $l =0;
+
+//        $dataIndiceDescansoMedicoGeneral['total'] = 0;
+        foreach ($raw12 as $item){
+//            $dataPagosClasificacionFlujoVencida['total'] += $item->monto;
+            if(substr($item->periodo,0,4) == $startDate->year) {
+                $dataIndiceDescansoMedicoGeneralActual['nombre'] = 'General';
+                $dataIndiceDescansoMedicoGeneralActual['indice'][$j] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                $dataIndiceDescansoMedicoGeneralActual['año'] = substr($item->periodo,0,4);
+                $dataIndiceDescansoMedicoGeneralActual['mes'][$j] = $item->mesdescripcion;
+                $j++;
+            }
+            else{
+                if(substr($item->periodo,0,4) == ($startDate->year-1)) {
+                    $dataIndiceDescansoMedicoGeneralPasado['año']= substr($item->periodo,0,4);
+                    $dataIndiceDescansoMedicoGeneralPasado['indice'][$k] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceDescansoMedicoGeneralPasado['mes'][$k] = $item->mesdescripcion;
+                    $k++;
+                }
+                else{
+                    $dataIndiceDescansoMedicoGeneralPasado2['año'] = substr($item->periodo,0,4);
+                    $dataIndiceDescansoMedicoGeneralPasado2['indice'][$l] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceDescansoMedicoGeneralPasado2['mes'][$l] = $item->mesdescripcion;
+                    $l++;
+                }
+            }
+
+        }
+//        dd($dataIndiceDescansoMedicoGeneralActual,$dataIndiceDescansoMedicoGeneralPasado2,$dataIndiceDescansoMedicoGeneralPasado2);
+
+        $j =0;
+        $k =0;
+        $l =0;
+
+//        $dataIndiceDescansoMedicoGeneral['total'] = 0;
+        foreach ($raw13 as $item){
+//            $dataPagosClasificacionFlujoVencida['total'] += $item->monto;
+            if(substr($item->periodo,0,4) == $startDate->year) {
+                $dataIndiceDescansoMedicoObreroActual['nombre'] = 'General';
+                $dataIndiceDescansoMedicoObreroActual['indice'][$j] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                $dataIndiceDescansoMedicoObreroActual['año'] = substr($item->periodo,0,4);
+                $dataIndiceDescansoMedicoObreroActual['mes'][$j] = $item->mesdescripcion;
+                $j++;
+            }
+            else{
+                if(substr($item->periodo,0,4) == ($startDate->year-1)) {
+                    $dataIndiceDescansoMedicoObreroPasado['año']= substr($item->periodo,0,4);
+                    $dataIndiceDescansoMedicoObreroPasado['indice'][$k] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceDescansoMedicoObreroPasado['mes'][$k] = $item->mesdescripcion;
+                    $k++;
+                }
+                else{
+                    $dataIndiceDescansoMedicoObreroPasado2['año'] = substr($item->periodo,0,4);
+                    $dataIndiceDescansoMedicoObreroPasado2['indice'][$l] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceDescansoMedicoObreroPasado2['mes'][$l] = $item->mesdescripcion;
+                    $l++;
+                }
+            }
+
+        }
+
+        $j =0;
+        $k =0;
+        $l =0;
+
+//        $dataIndiceDescansoMedicoGeneral['total'] = 0;
+        foreach ($raw14 as $item){
+//            $dataPagosClasificacionFlujoVencida['total'] += $item->monto;
+            if(substr($item->periodo,0,4) == $startDate->year) {
+                $dataIndiceDescansoMedicoEmpleadoActual['nombre'] = 'General';
+                $dataIndiceDescansoMedicoEmpleadoActual['indice'][$j] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                $dataIndiceDescansoMedicoEmpleadoActual['año'] = substr($item->periodo,0,4);
+                $dataIndiceDescansoMedicoEmpleadoActual['mes'][$j] = $item->mesdescripcion;
+                $j++;
+            }
+            else{
+                if(substr($item->periodo,0,4) == ($startDate->year-1)) {
+                    $dataIndiceDescansoMedicoEmpleadoPasado['año']= substr($item->periodo,0,4);
+                    $dataIndiceDescansoMedicoEmpleadoPasado['indice'][$k] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceDescansoMedicoEmpleadoPasado['mes'][$k] = $item->mesdescripcion;
+                    $k++;
+                }
+                else{
+                    $dataIndiceDescansoMedicoEmpleadoPasado2['año'] = substr($item->periodo,0,4);
+                    $dataIndiceDescansoMedicoEmpleadoPasado2['indice'][$l] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceDescansoMedicoEmpleadoPasado2['mes'][$l] = $item->mesdescripcion;
+                    $l++;
+                }
+            }
+
+        }
+
+
+//        dd($dataIndiceAusentismoGeneralActual,$dataIndiceAusentismoGeneralPasado,$dataIndiceAusentismoGeneralPasado2);
+
+//        dd($dataIndiceDescansoMedicoGeneralActual,$dataIndiceDescansoMedicoGeneralPasado,$dataIndiceDescansoMedicoGeneralPasado2);
 //        $dataPagosClasificacionFlujoVencida['total'] =round((double)$dataPagosClasificacionFlujoVencida['total'],0,PHP_ROUND_HALF_UP);
 //
 //        $i =0;
@@ -1539,7 +1762,28 @@ class AdministracionController extends Controller
         'dataIndiceRotacionPersonalEmpleadoPasado',
         'dataIndiceRotacionPersonalGeneralPasado2',
         'dataIndiceRotacionPersonalObreroPasado2',
-        'dataIndiceRotacionPersonalEmpleadoPasado2'
+        'dataIndiceRotacionPersonalEmpleadoPasado2',
+
+            'dataIndiceAusentismoGeneralActual',
+            'dataIndiceAusentismoObreroActual',
+            'dataIndiceAusentismoEmpleadoActual',
+            'dataIndiceAusentismoGeneralPasado',
+            'dataIndiceAusentismoObreroPasado',
+            'dataIndiceAusentismoEmpleadoPasado',
+            'dataIndiceAusentismoGeneralPasado2',
+            'dataIndiceAusentismoObreroPasado2',
+            'dataIndiceAusentismoEmpleadoPasado2',
+
+            'dataIndiceDescansoMedicoGeneralActual',
+        'dataIndiceDescansoMedicoObreroActual',
+        'dataIndiceDescansoMedicoEmpleadoActual',
+        'dataIndiceDescansoMedicoGeneralPasado',
+        'dataIndiceDescansoMedicoObreroPasado',
+        'dataIndiceDescansoMedicoEmpleadoPasado',
+        'dataIndiceDescansoMedicoGeneralPasado2',
+        'dataIndiceDescansoMedicoObreroPasado2',
+        'dataIndiceDescansoMedicoEmpleadoPasado2'
+
 //            'dataPagosPendientes42','dataPagosClasificacion',
 //            'dataPagosClasificacionxVencer','dataPagosClasificacionVencida',
 //            'dataPagosClasificacionFlujoVencida','dataPagosClasificacionFlujoxVencer',

@@ -136,7 +136,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('getadministracionrrhh')}}" class="nav-link">
+                                    <a href="{{route('getadministraciondesarrollohumano')}}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Desarrollo Humano</p>
                                     </a>
