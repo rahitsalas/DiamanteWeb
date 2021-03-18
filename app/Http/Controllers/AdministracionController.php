@@ -1381,5 +1381,175 @@ class AdministracionController extends Controller
     }
 
 
+    public function rrhh(Request $request)
+    {
+        $getfecha = $request->input('fechas') ?: null;
+        if($getfecha != null){
+            $fechas = explode(' - ', $getfecha);
+            $startDate = Carbon::now();
+            $firstDay = Carbon::createFromFormat('d/m/Y', $fechas[0]);
+            // dd($startDate,$fechas[0],$fechas[1],Carbon::createFromFormat('d/m/Y', $fechas[1]));
+            $lastDay = Carbon::createFromFormat('d/m/Y', $fechas[1]);
+        }
+
+        else{
+            $diasatraso = -1;
+            $startDate = Carbon::now()->addDays($diasatraso);
+            $firstDay = Carbon::now()->addDays($diasatraso)->startOfMonth();
+            $lastDay = Carbon::now()->addDays($diasatraso)->lastOfMonth();
+        }
+
+        $raw6 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceRotacionPersonal '".$startDate."', 'ALL'");
+        $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceRotacionPersonal '".$startDate."', 'OB'");
+        $raw8 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceRotacionPersonal '".$startDate."', 'EM'");
+//        dd($raw6,$raw7,$raw8);
+//        dd($startDate,$raw1,$raw2,$raw3,$raw4,$raw5,$raw6);
+//        $raw7 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionClasificacion '".$startDate."'");
+//        $raw8 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionClasificacionVencida '".$startDate."'");
+//        $raw9 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionClasificacionxVencer '".$startDate."'");
+//        $raw10 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionClasificacionDeuda '".$startDate."'");
+//        $raw11 = DB::select("exec [DiamanteWeb].dbo.sp_data_ObligacionPendiente43 '".$startDate."'");
+//
+//
+        $dataIndiceRotacionPersonalGeneralActual = array();
+        $dataIndiceRotacionPersonalObreroActual = array();
+        $dataIndiceRotacionPersonalEmpleadoActual = array();
+        $dataIndiceRotacionPersonalGeneralPasado = array();
+        $dataIndiceRotacionPersonalObreroPasado = array();
+        $dataIndiceRotacionPersonalEmpleadoPasado = array();
+        $dataIndiceRotacionPersonalGeneralPasado2 = array();
+        $dataIndiceRotacionPersonalObreroPasado2 = array();
+        $dataIndiceRotacionPersonalEmpleadoPasado2 = array();
+
+        $j =0;
+        $k =0;
+        $l =0;
+
+//        $dataIndiceRotacionPersonalGeneral['total'] = 0;
+        foreach ($raw6 as $item){
+//            $dataPagosClasificacionFlujoVencida['total'] += $item->monto;
+            if(substr($item->periodo,0,4) == $startDate->year) {
+                $dataIndiceRotacionPersonalGeneralActual['nombre'] = 'General';
+                $dataIndiceRotacionPersonalGeneralActual['indice'][$j] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                $dataIndiceRotacionPersonalGeneralActual['año'] = substr($item->periodo,0,4);
+                $dataIndiceRotacionPersonalGeneralActual['mes'][$j] = $item->mesdescripcion;
+                $j++;
+            }
+            else{
+                if(substr($item->periodo,0,4) == ($startDate->year-1)) {
+                    $dataIndiceRotacionPersonalGeneralPasado['año']= substr($item->periodo,0,4);
+                    $dataIndiceRotacionPersonalGeneralPasado['indice'][$k] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceRotacionPersonalGeneralPasado['mes'][$k] = $item->mesdescripcion;
+                    $k++;
+                }
+                else{
+                    $dataIndiceRotacionPersonalGeneralPasado2['año'] = substr($item->periodo,0,4);
+                    $dataIndiceRotacionPersonalGeneralPasado2['indice'][$l] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceRotacionPersonalGeneralPasado2['mes'][$l] = $item->mesdescripcion;
+                    $l++;
+                }
+            }
+
+        }
+//        dd($dataIndiceRotacionPersonalGeneralActual,$dataIndiceRotacionPersonalGeneralPasado2,$dataIndiceRotacionPersonalGeneralPasado2);
+
+        $j =0;
+        $k =0;
+        $l =0;
+
+//        $dataIndiceRotacionPersonalGeneral['total'] = 0;
+        foreach ($raw7 as $item){
+//            $dataPagosClasificacionFlujoVencida['total'] += $item->monto;
+            if(substr($item->periodo,0,4) == $startDate->year) {
+                $dataIndiceRotacionPersonalObreroActual['nombre'] = 'General';
+                $dataIndiceRotacionPersonalObreroActual['indice'][$j] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                $dataIndiceRotacionPersonalObreroActual['año'] = substr($item->periodo,0,4);
+                $dataIndiceRotacionPersonalObreroActual['mes'][$j] = $item->mesdescripcion;
+                $j++;
+            }
+            else{
+                if(substr($item->periodo,0,4) == ($startDate->year-1)) {
+                    $dataIndiceRotacionPersonalObreroPasado['año']= substr($item->periodo,0,4);
+                    $dataIndiceRotacionPersonalObreroPasado['indice'][$k] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceRotacionPersonalObreroPasado['mes'][$k] = $item->mesdescripcion;
+                    $k++;
+                }
+                else{
+                    $dataIndiceRotacionPersonalObreroPasado2['año'] = substr($item->periodo,0,4);
+                    $dataIndiceRotacionPersonalObreroPasado2['indice'][$l] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceRotacionPersonalObreroPasado2['mes'][$l] = $item->mesdescripcion;
+                    $l++;
+                }
+            }
+
+        }
+
+        $j =0;
+        $k =0;
+        $l =0;
+
+//        $dataIndiceRotacionPersonalGeneral['total'] = 0;
+        foreach ($raw8 as $item){
+//            $dataPagosClasificacionFlujoVencida['total'] += $item->monto;
+            if(substr($item->periodo,0,4) == $startDate->year) {
+                $dataIndiceRotacionPersonalEmpleadoActual['nombre'] = 'General';
+                $dataIndiceRotacionPersonalEmpleadoActual['indice'][$j] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                $dataIndiceRotacionPersonalEmpleadoActual['año'] = substr($item->periodo,0,4);
+                $dataIndiceRotacionPersonalEmpleadoActual['mes'][$j] = $item->mesdescripcion;
+                $j++;
+            }
+            else{
+                if(substr($item->periodo,0,4) == ($startDate->year-1)) {
+                    $dataIndiceRotacionPersonalEmpleadoPasado['año']= substr($item->periodo,0,4);
+                    $dataIndiceRotacionPersonalEmpleadoPasado['indice'][$k] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceRotacionPersonalEmpleadoPasado['mes'][$k] = $item->mesdescripcion;
+                    $k++;
+                }
+                else{
+                    $dataIndiceRotacionPersonalEmpleadoPasado2['año'] = substr($item->periodo,0,4);
+                    $dataIndiceRotacionPersonalEmpleadoPasado2['indice'][$l] = round((double)$item->indice, 2, PHP_ROUND_HALF_UP);
+                    $dataIndiceRotacionPersonalEmpleadoPasado2['mes'][$l] = $item->mesdescripcion;
+                    $l++;
+                }
+            }
+
+        }
+
+
+//        dd($dataIndiceRotacionPersonalGeneralActual,$dataIndiceRotacionPersonalGeneralPasado,$dataIndiceRotacionPersonalGeneralPasado2);
+//        $dataPagosClasificacionFlujoVencida['total'] =round((double)$dataPagosClasificacionFlujoVencida['total'],0,PHP_ROUND_HALF_UP);
+//
+//        $i =0;
+//        $dataPagosPendientes43['total'] = 0;
+//        foreach ($raw11 as $item){
+//            $dataPagosPendientes43['proveedor'][$i] = $item->proveedor;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataPagosPendientes43['monto'][$i] = round((double) $item->monto, 0, PHP_ROUND_HALF_UP);
+//            $dataPagosPendientes43['total'] += $item->monto;
+//            $i++;
+//        }
+//        $dataPagosPendientes43['total'] =round((double)$dataPagosPendientes43['total'],0,PHP_ROUND_HALF_UP);
+
+        return view ('Dashboard.Reportes.Administracion.rrhh',compact(
+            'startDate',
+            'dataIndiceRotacionPersonalGeneralActual',
+        'dataIndiceRotacionPersonalObreroActual',
+        'dataIndiceRotacionPersonalEmpleadoActual',
+        'dataIndiceRotacionPersonalGeneralPasado',
+        'dataIndiceRotacionPersonalObreroPasado',
+        'dataIndiceRotacionPersonalEmpleadoPasado',
+        'dataIndiceRotacionPersonalGeneralPasado2',
+        'dataIndiceRotacionPersonalObreroPasado2',
+        'dataIndiceRotacionPersonalEmpleadoPasado2'
+//            'dataPagosPendientes42','dataPagosClasificacion',
+//            'dataPagosClasificacionxVencer','dataPagosClasificacionVencida',
+//            'dataPagosClasificacionFlujoVencida','dataPagosClasificacionFlujoxVencer',
+//            'dataPagosPendientes43'
+        ));
+
+
+
+    }
+
+
 }
 

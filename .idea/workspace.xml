@@ -10,11 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc3beb86-bc4d-43b5-856b-f0fa7cdd4c84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdministracionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdministracionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Dashboard/Reportes/administracion.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Dashboard/Reportes/administracion.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="cc3beb86-bc4d-43b5-856b-f0fa7cdd4c84" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -135,15 +131,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/Dashboard/Reportes/Comercial" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/Dashboard/Reportes/Administracion" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\laragon\www\diamante\resources\views\Dashboard\Reportes\Comercial" />
       <recent name="C:\laragon\www\diamante\resources\views\Dashboard\Reportes\Administracion" />
+      <recent name="C:\laragon\www\diamante\resources\views\Dashboard\Reportes\Comercial" />
       <recent name="C:\laragon\www\diamante\resources\views\Dashboard\Reportes" />
       <recent name="C:\laragon\www\diamante\resources\lang" />
     </key>
@@ -203,6 +199,15 @@
       <workItem from="1604088421051" duration="620000" />
       <workItem from="1604198824118" duration="4724000" />
       <workItem from="1604882660163" duration="41168000" />
+      <workItem from="1606224683704" duration="885000" />
+      <workItem from="1606829361620" duration="1799000" />
+      <workItem from="1607694777255" duration="267000" />
+      <workItem from="1607695516689" duration="613000" />
+      <workItem from="1608653146107" duration="1380000" />
+      <workItem from="1612982000378" duration="1545000" />
+      <workItem from="1614033661848" duration="1788000" />
+      <workItem from="1614700614817" duration="1225000" />
+      <workItem from="1616016362417" duration="9858000" />
     </task>
     <servers />
   </component>

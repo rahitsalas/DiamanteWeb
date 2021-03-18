@@ -51,6 +51,7 @@ Route::prefix('/administracion')->group(function (){
     Route::get('/creditos','AdministracionController@creditos')->name('getadministracioncreditos');
     Route::get('/finanzas','AdministracionController@finanzas')->name('getadministracionfinanzas');
     Route::get('/tesoreria','AdministracionController@tesoreria')->name('getadministraciontesoreria');
+    Route::get('/rrhh','AdministracionController@rrhh')->name('getadministracionrrhh');
 
 });
 
