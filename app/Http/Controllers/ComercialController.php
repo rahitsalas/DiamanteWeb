@@ -228,7 +228,7 @@ class ComercialController extends Controller
         $dataDespachoTotalUnidadNegocio['total'] =round((double)$dataDespachoTotalUnidadNegocio['total'],0,PHP_ROUND_HALF_UP);
 
 
-        return view ('Dashboard.Reportes.Comercial.ventas',compact('startDate',
+        return view ('Dashboard.Indicadores.Comercial.ventas',compact('startDate',
             'dataDescuentoMensual01','dataDescuentoMensual02','dataDescuentoMensual05','dataDescuentoMensual06',
             'dataDescuentoMensual07','dataDescuentoMensual12','dataDescuentoMensual13',
             'dataDespachoTotalTipoPago','dataDespachoTotalTipoItem',

@@ -461,7 +461,7 @@ class AdministracionController extends Controller
 
 
 
-        return view ('Dashboard.Reportes.Administracion.almacen',compact('startDate',
+        return view ('Dashboard.Indicadores.Administracion.almacen',compact('startDate',
             'dataStockTotalCalidad','dataStockTotalTipoItem',
             'dataStockTotalAlmacen','dataStockFamiliaEstructural',
             'dataStockFamiliaTabiqueria','dataStockFamiliaParaTecho'
@@ -790,7 +790,7 @@ class AdministracionController extends Controller
 //        $dataDespachoDiaroSoles['total'] =round((double)$dataDespachoDiaroSoles['total'],0,PHP_ROUND_HALF_UP);
 
 
-        return view ('Dashboard.Reportes.administracion',compact('startDate',
+        return view ('Dashboard.Indicadores.administracion',compact('startDate',
             'dataOrdenCompraServicioSolesActual','dataOrdenCompraServicioSolesPasado',
             'dataOrdenCompraServicioGastosActual', 'dataOrdenCompraServicioGastosPasado',
             'dataOrdenCompraServicioActivosActual', 'dataOrdenCompraServicioActivosPasado',
@@ -989,7 +989,7 @@ class AdministracionController extends Controller
         }
 
 
-        return view ('Dashboard.Reportes.Administracion.compras',compact('startDate',
+        return view ('Dashboard.Indicadores.Administracion.compras',compact('startDate',
             'dataOrdenCompraServicioSolesActual','dataOrdenCompraServicioSolesPasado',
             'dataOrdenCompraServicioGastosActual', 'dataOrdenCompraServicioGastosPasado',
             'dataOrdenCompraServicioActivosActual', 'dataOrdenCompraServicioActivosPasado',
@@ -1042,6 +1042,11 @@ class AdministracionController extends Controller
         $raw22 = DB::select("exec [DiamanteWeb].dbo.sp_data_CobranzaClasificacionxVencer '".$firstDay."', '".$lastDay."'");
 
 
+//        $raw23 = DB::select("exec [DiamanteWeb].dbo.sp_data_DeudaClasificacion'".$startDate."', 'ALL','LO'");
+//        $raw24 = DB::select("exec [DiamanteWeb].dbo.sp_data_DeudaClasificacion'".$startDate."', 'CON','LO'");
+//        $raw25 = DB::select("exec [DiamanteWeb].dbo.sp_data_DeudaClasificacion'".$startDate."', 'SIN','LO'");
+//dd($raw23,$raw24,$raw25);
+
         $dataIndiceMorisidadDetalle00 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '00'");
         $dataIndiceMorisidadDetalle01 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '01'");
         $dataIndiceMorisidadDetalle02 = DB::select("exec [DiamanteWeb].dbo.sp_data_IndiceMorosidadDetallado '02'");
@@ -1067,6 +1072,9 @@ class AdministracionController extends Controller
         $dataCobranzaClasificacionVencida = array();
         $dataCobranzaClasificacionxVencer = array();
         $dataIngresosCobranzaDiario = array();
+//        $dataDeudaClasificacion = array();
+//        $dataDeudaClasificacionCon = array();
+//        $dataDeudaClasificacionSin = array();
 
         $j =0;
         foreach ($raw1 as $item){
@@ -1193,7 +1201,47 @@ class AdministracionController extends Controller
         $dataIngresosCobranzaDiario['total'] =round((double)$dataIngresosCobranzaDiario['total'],0,PHP_ROUND_HALF_UP);
 
 
-        return view ('Dashboard.Reportes.Administracion.creditoscobranzas',compact('startDate',
+
+//
+//        $i =0;
+//        $dataDeudaClasificacion['total'] = 0;
+//        foreach ($raw23 as $item){
+//            $dataDeudaClasificacion['clasificacion'][$i] = $item->cobranza;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataDeudaClasificacion['monto'][$i] = round((double) $item->MontoPendiente, 0, PHP_ROUND_HALF_UP);
+//            $dataDeudaClasificacion['total'] += $item->MontoPendiente;
+//            $i++;
+//        }
+//        $dataDeudaClasificacion['total'] =round((double)$dataDeudaClasificacion['total'],0,PHP_ROUND_HALF_UP);
+//
+//
+//
+//        $i =0;
+//        $dataDeudaClasificacionCon['total'] = 0;
+//        foreach ($raw24 as $item){
+//            $dataDeudaClasificacionCon['clasificacion'][$i] = $item->cobranza;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataDeudaClasificacionCon['monto'][$i] = round((double) $item->MontoPendiente, 0, PHP_ROUND_HALF_UP);
+//            $dataDeudaClasificacionCon['total'] += $item->MontoPendiente;
+//            $i++;
+//        }
+//        $dataDeudaClasificacionCon['total'] =round((double)$dataDeudaClasificacionCon['total'],0,PHP_ROUND_HALF_UP);
+//
+//
+//
+//
+//        $i =0;
+//        $dataDeudaClasificacionSin['total'] = 0;
+//        foreach ($raw25 as $item){
+//            $dataDeudaClasificacionSin['clasificacion'][$i] = $item->cobranza;//.' '.round((double) $item->cantidad, 1, PHP_ROUND_HALF_UP).' Mill.';
+//            $dataDeudaClasificacionSin['monto'][$i] = round((double) $item->MontoPendiente, 0, PHP_ROUND_HALF_UP);
+//            $dataDeudaClasificacionSin['total'] += $item->MontoPendiente;
+//            $i++;
+//        }
+//        $dataDeudaClasificacionSin['total'] =round((double)$dataDeudaClasificacionSin['total'],0,PHP_ROUND_HALF_UP);
+
+
+
+
+        return view ('Dashboard.Indicadores.Administracion.creditoscobranzas',compact('startDate',
             'dataIndiceMorosidad00','dataIndiceMorosidad01','dataIndiceMorosidad02',
             'dataIndiceMorosidad05', 'dataIndiceMorosidad06',
             'dataIndiceMorosidad12', 'dataIndiceMorosidad13',
@@ -1204,7 +1252,10 @@ class AdministracionController extends Controller
             'dataCobranzaDeudaMorosa','dataCobranzaClasificacion',
             'dataCobranzaClasificacionVencida','dataCobranzaClasificacionxVencer',
             'dataIngresosCobranzaDiario'
-
+//            ,
+//            'dataDeudaClasificacion',
+//            'dataDeudaClasificacionCon',
+//'dataDeudaClasificacionSin'
 //            ,
 //            'dataOrdenCompraServicioCantidadActual','dataOrdenCompraServicioCantidadPasado',
 //            'dataOrdenCompraServicioMixActualOS','dataOrdenCompraServicioMixPasadoOS',
@@ -1250,7 +1301,7 @@ class AdministracionController extends Controller
             $i++;
         }
 
-        return view ('Dashboard.Reportes.Administracion.finanzas',compact('startDate',
+        return view ('Dashboard.Indicadores.Administracion.finanzas',compact('startDate',
             'dataSaldoCajaDiario'
         ));
 
@@ -1369,7 +1420,7 @@ class AdministracionController extends Controller
         }
         $dataPagosPendientes43['total'] =round((double)$dataPagosPendientes43['total'],0,PHP_ROUND_HALF_UP);
 
-        return view ('Dashboard.Reportes.Administracion.tesoreria',compact('startDate',
+        return view ('Dashboard.Indicadores.Administracion.tesoreria',compact('startDate',
             'dataPagosPendientes42','dataPagosClasificacion',
             'dataPagosClasificacionxVencer','dataPagosClasificacionVencida',
             'dataPagosClasificacionFlujoVencida','dataPagosClasificacionFlujoxVencer',
@@ -1752,7 +1803,7 @@ class AdministracionController extends Controller
 //        }
 //        $dataPagosPendientes43['total'] =round((double)$dataPagosPendientes43['total'],0,PHP_ROUND_HALF_UP);
 
-        return view ('Dashboard.Reportes.Administracion.rrhh',compact(
+        return view ('Dashboard.Indicadores.Administracion.rrhh',compact(
             'startDate',
             'dataIndiceRotacionPersonalGeneralActual',
         'dataIndiceRotacionPersonalObreroActual',
