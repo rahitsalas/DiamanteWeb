@@ -219,7 +219,9 @@
       <workItem from="1614700614817" duration="1225000" />
       <workItem from="1616016362417" duration="17735000" />
       <workItem from="1617044986044" duration="11167000" />
-      <workItem from="1617733630318" duration="832000" />
+      <workItem from="1617733630318" duration="4175000" />
+      <workItem from="1618839359782" duration="13649000" />
+      <workItem from="1618951186153" duration="3081000" />
     </task>
     <servers />
   </component>
@@ -237,45 +239,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="568" y="198" key="#File_Watchers" timestamp="1602716540506">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="568" y="198" key="#File_Watchers/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1602716540506" />
-    <state x="437" y="188" key="#Notifications" timestamp="1602717496674">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="437" y="188" key="#Notifications/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1602717496674" />
-    <state x="463" y="69" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1602716799302">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="463" y="69" key="#com.intellij.ide.macro.MacrosDialog/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1602716799302" />
-    <state x="399" y="72" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597683404149">
-      <screen x="0" y="0" width="1366" height="656" />
-    </state>
-    <state x="399" y="72" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.656@0.0.1366.656" timestamp="1597683404149" />
-    <state x="352" y="142" key="EditFileWatcherDialog" timestamp="1602717690132">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="352" y="142" key="EditFileWatcherDialog/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1602717690132" />
-    <state x="220" y="123" key="FileChooserDialogImpl" timestamp="1602717686954">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="220" y="123" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1602717686954" />
-    <state x="1829" y="119" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1366.728@1366.0.1366.728" timestamp="1602624502221" />
-    <state x="184" y="9" key="SettingsEditor" timestamp="1602717692417">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="184" y="9" key="SettingsEditor/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1602717692417" />
-    <state x="1756" y="0" width="585" height="728" key="find.popup" timestamp="1603408792288">
-      <screen x="1366" y="0" width="1366" height="728" />
-    </state>
-    <state x="1756" y="0" width="585" height="728" key="find.popup/0.0.1366.728/1366.0.1366.728@1366.0.1366.728" timestamp="1603408792288" />
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1605030526297">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1602717105636" />
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1605030526297" />
   </component>
 </project>

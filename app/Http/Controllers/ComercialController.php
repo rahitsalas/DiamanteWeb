@@ -106,8 +106,11 @@ class ComercialController extends Controller
 //        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9);
         $raw10 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalUnidadNegocio '".$firstDay."', '".$lastDay."'");
 //        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10);
+        $raw11 = DB::select("exec [DiamanteWeb].dbo.sp_data_DescuentoTop '".$startDate."',6");
 
-//        dd($raw1);
+
+
+//        dd($raw11);
 //        $dataDescuentoMensual00 = array();
         $dataDescuentoMensual01 = array();
         $dataDescuentoMensual02 = array();
@@ -123,6 +126,12 @@ class ComercialController extends Controller
         $dataDespachoTotalTipoCliente = array();
         $dataDespachoTotalUnidadNegocio = array();
 
+        $dataDescuentoTopAñoActual = array();
+        $dataDescuentoTopAñoPasado = array();
+        $dataDescuentoTop3 = array();
+        $dataDescuentoTop4 = array();
+        $dataDescuentoTop5 = array();
+        $dataDescuentoTop6 = array();
 
 //        $i =0;
         $j =0; $k =0; $l =0; $m =0; $n =0; $o =0; $p=0;
@@ -228,11 +237,44 @@ class ComercialController extends Controller
         $dataDespachoTotalUnidadNegocio['total'] =round((double)$dataDespachoTotalUnidadNegocio['total'],0,PHP_ROUND_HALF_UP);
 
 
+
+
+        $j =0; $k =0;
+        $dataDescuentoTopAñoActual['total'] = 0;
+        $dataDescuentoTopAñoPasado['total'] = 0;
+        foreach ($raw11 as $item){
+//            var_dump($item);
+
+            if((string)$item->periodo === (string)$startDate->year ) {
+                $dataDescuentoTopAñoActual['montodesc'][$j] = round((double)$item->montodesc1, 2, PHP_ROUND_HALF_UP);
+                $dataDescuentoTopAñoActual['descripcion'][$j] = $item->ClienteNombre;
+//                $dataDescuentoTop1['mesdescripcion'][$j] = $item->mesdescripcion;
+                $dataDescuentoTopAñoActual['total'] += $item->montodesc1;
+                $j++;
+            }
+            else{ //CO
+                $dataDescuentoTopAñoPasado['montodesc'][$k] = round((double)$item->montodesc1, 2, PHP_ROUND_HALF_UP);
+                $dataDescuentoTopAñoPasado['descripcion'][$k] = $item->ClienteNombre;
+                $dataDescuentoTopAñoPasado['total'] += $item->montodesc1;
+                $k++;
+            }
+
+//            $i++;
+        }
+        $dataDescuentoTopAñoActual['total'] =round((double)$dataDescuentoTopAñoActual['total'],2,PHP_ROUND_HALF_UP);
+        $dataDescuentoTopAñoPasado['total'] =round((double)$dataDescuentoTopAñoPasado['total'],2,PHP_ROUND_HALF_UP);
+
+
+//        dd(        $dataDescuentoTopAñoActual,  $dataDescuentoTopAñoPasado      );
+
         return view ('Dashboard.Indicadores.Comercial.ventas',compact('startDate',
             'dataDescuentoMensual01','dataDescuentoMensual02','dataDescuentoMensual05','dataDescuentoMensual06',
             'dataDescuentoMensual07','dataDescuentoMensual12','dataDescuentoMensual13',
             'dataDespachoTotalTipoPago','dataDespachoTotalTipoItem',
-            'dataDespachoTotalTipoCliente','dataDespachoTotalUnidadNegocio'
+            'dataDespachoTotalTipoCliente','dataDespachoTotalUnidadNegocio',
+            'dataDescuentoTopAñoActual',       'dataDescuentoTopAñoPasado'
+//            ,'dataDescuentoTop3',
+//            'dataDescuentoTop4', 'dataDescuentoTop5', 'dataDescuentoTop6'
         ));
 
 
