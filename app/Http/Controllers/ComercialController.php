@@ -107,7 +107,7 @@ class ComercialController extends Controller
         $raw10 = DB::select("exec [DiamanteWeb].dbo.sp_data_DespachoTotalUnidadNegocio '".$firstDay."', '".$lastDay."'");
 //        dd($raw1,$raw2,$raw3,$raw4,$raw5,$raw6,$raw7,$raw8,$raw9,$raw10);
         $raw11 = DB::select("exec [DiamanteWeb].dbo.sp_data_DescuentoTop '".$startDate."',6");
-
+        $raw12 = DB::select("exec [DiamanteWeb].dbo.sp_data_DescuentoTopAcumulado '".$startDate."',10");
 
 
 //        dd($raw11);
@@ -128,7 +128,7 @@ class ComercialController extends Controller
 
         $dataDescuentoTopAñoActual = array();
         $dataDescuentoTopAñoPasado = array();
-        $dataDescuentoTop3 = array();
+        $dataDescuentoTopAcumulado = array();
         $dataDescuentoTop4 = array();
         $dataDescuentoTop5 = array();
         $dataDescuentoTop6 = array();
@@ -239,6 +239,7 @@ class ComercialController extends Controller
 
 
 
+
         $j =0; $k =0;
         $dataDescuentoTopAñoActual['total'] = 0;
         $dataDescuentoTopAñoPasado['total'] = 0;
@@ -264,15 +265,29 @@ class ComercialController extends Controller
         $dataDescuentoTopAñoActual['total'] =round((double)$dataDescuentoTopAñoActual['total'],2,PHP_ROUND_HALF_UP);
         $dataDescuentoTopAñoPasado['total'] =round((double)$dataDescuentoTopAñoPasado['total'],2,PHP_ROUND_HALF_UP);
 
+        $j =0;
+        $dataDescuentoTopAcumulado['total'] = 0;
+        foreach ($raw12 as $item){
+            $dataDescuentoTopAcumulado['montodesc'][$j] = round((double)$item->montodesc1, 2, PHP_ROUND_HALF_UP);
+            $dataDescuentoTopAcumulado['descripcion'][$j] = $item->ClienteNombre;
+            $dataDescuentoTopAcumulado['total'] += $item->montodesc1;
+            $j++;
 
-//        dd(        $dataDescuentoTopAñoActual,  $dataDescuentoTopAñoPasado      );
+        }
+        $dataDescuentoTopAcumulado['total'] =round((double)$dataDescuentoTopAcumulado['total'],2,PHP_ROUND_HALF_UP);
+
+
+
+
+//        dd(        $dataDescuentoTopAcumulado);
 
         return view ('Dashboard.Indicadores.Comercial.ventas',compact('startDate',
             'dataDescuentoMensual01','dataDescuentoMensual02','dataDescuentoMensual05','dataDescuentoMensual06',
             'dataDescuentoMensual07','dataDescuentoMensual12','dataDescuentoMensual13',
             'dataDespachoTotalTipoPago','dataDespachoTotalTipoItem',
             'dataDespachoTotalTipoCliente','dataDespachoTotalUnidadNegocio',
-            'dataDescuentoTopAñoActual',       'dataDescuentoTopAñoPasado'
+            'dataDescuentoTopAñoActual',       'dataDescuentoTopAñoPasado',
+            'dataDescuentoTopAcumulado'
 //            ,'dataDescuentoTop3',
 //            'dataDescuentoTop4', 'dataDescuentoTop5', 'dataDescuentoTop6'
         ));
