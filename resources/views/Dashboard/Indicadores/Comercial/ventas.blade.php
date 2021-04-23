@@ -263,7 +263,7 @@
                         </div>
                         <div class="card-footer pt-0 mt-0 bg-white">
                             <span class="users-list-date mb-0">
-                                *S/K
+                                *Solo Distribuidores - S/K
                             </span>
                         </div>
                     </div>
